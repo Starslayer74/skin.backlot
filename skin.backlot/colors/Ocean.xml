@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Backlot color theme: Ocean (overrides colors/defaults.xml) -->
+<colors>
+	<color name="bg">FF0A1622</color>
+	<color name="bg_veil">F20A1622</color>
+	<color name="bg_dim">CC0A1622</color>
+	<color name="surface">FF12243A</color>
+	<color name="surface2">FF1B3250</color>
+	<color name="surface3">FF25406A</color>
+	<color name="focus">FFD9F3F0</color>
+	<color name="on_focus">FF0A1622</color>
+	<color name="accent">FF4FD1C5</color>
+	<color name="selected">FF4FD1C5</color>
+	<color name="text2">FFA9BFD6</color>
+</colors>

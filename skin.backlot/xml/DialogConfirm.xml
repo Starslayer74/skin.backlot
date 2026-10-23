@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Yes/No, OK and progress dialogs all use this window. -->
+<window>
+	<include>Anim_DialogPop</include>
+	<controls>
+		<include>DimBehind</include>
+		<control type="group">
+			<left>460</left>
+			<top>300</top>
+			<width>1000</width>
+			<height>480</height>
+			<include>DialogFrame</include>
+			<include content="DialogHeader">
+				<param name="id">1</param>
+			</include>
+			<control type="textbox" id="9">
+				<left>56</left>
+				<top>112</top>
+				<width>888</width>
+				<height>200</height>
+				<font>f_body</font>
+				<textcolor>text2</textcolor>
+				<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+			</control>
+			<control type="progress" id="20">
+				<left>56</left>
+				<top>326</top>
+				<width>888</width>
+				<height>10</height>
+				<info>System.Progressbar</info>
+			</control>
+			<control type="grouplist" id="9000">
+				<left>56</left>
+				<top>360</top>
+				<width>888</width>
+				<height>76</height>
+				<orientation>horizontal</orientation>
+				<align>right</align>
+				<itemgap>16</itemgap>
+				<include content="DialogButton">
+					<param name="id">11</param>
+					<param name="width">260</param>
+				</include>
+				<include content="DialogButton">
+					<param name="id">10</param>
+					<param name="width">260</param>
+				</include>
+				<include content="DialogButton">
+					<param name="id">12</param>
+					<param name="width">260</param>
+				</include>
+			</control>
+		</control>
+	</controls>
+</window>

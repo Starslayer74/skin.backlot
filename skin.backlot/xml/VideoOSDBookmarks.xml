@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">11</defaultcontrol>
+	<include>Anim_SlideUp</include>
+	<controls>
+		<control type="image">
+			<left>0</left>
+			<top>580</top>
+			<width>1920</width>
+			<height>500</height>
+			<texture colordiffuse="surface">colors/white.png</texture>
+		</control>
+		<control type="label">
+			<left>120</left>
+			<top>610</top>
+			<width>800</width>
+			<height>56</height>
+			<font>f_head</font>
+			<label>$LOCALIZE[298]</label>
+		</control>
+		<control type="grouplist" id="9001">
+			<right>110</right>
+			<top>600</top>
+			<width>1000</width>
+			<height>76</height>
+			<orientation>horizontal</orientation>
+			<align>right</align>
+			<itemgap>16</itemgap>
+			<ondown>11</ondown>
+			<onleft>9001</onleft>
+			<onright>9001</onright>
+			<include content="DialogButton">
+				<param name="id">2</param>
+				<param name="label">$LOCALIZE[294]</param>
+			</include>
+			<include content="DialogButton">
+				<param name="id">3</param>
+				<param name="label">$LOCALIZE[296]</param>
+			</include>
+			<include content="DialogButton">
+				<param name="id">4</param>
+				<param name="label">$LOCALIZE[20406]</param>
+				<param name="visible">Control.IsEnabled(4)</param>
+			</include>
+		</control>
+		<control type="panel" id="11">
+			<left>106</left>
+			<top>700</top>
+			<width>1814</width>
+			<height>340</height>
+			<orientation>horizontal</orientation>
+			<onup>9001</onup>
+			<onleft>11</onleft>
+			<onright>11</onright>
+			<itemlayout width="420" height="340">
+				<control type="group">
+					<left>14</left>
+					<top>14</top>
+					<width>384</width>
+					<height>216</height>
+					<control type="image">
+						<texture border="16" colordiffuse="surface2">frame/rounded16.png</texture>
+					</control>
+					<control type="image">
+						<aspectratio scalediffuse="false">scale</aspectratio>
+						<texture background="true" diffuse="masks/thumb.png">$INFO[ListItem.Art(thumb)]</texture>
+					</control>
+				</control>
+				<control type="textbox">
+					<left>14</left>
+					<top>240</top>
+					<width>384</width>
+					<height>80</height>
+					<font>f_small</font>
+					<label>$INFO[ListItem.Label][CR]$INFO[ListItem.Label2]</label>
+				</control>
+			</itemlayout>
+			<focusedlayout width="420" height="340">
+				<control type="group">
+					<left>14</left>
+					<top>14</top>
+					<width>384</width>
+					<height>216</height>
+					<control type="image">
+						<texture border="16" colordiffuse="surface2">frame/rounded16.png</texture>
+					</control>
+					<control type="image">
+						<aspectratio scalediffuse="false">scale</aspectratio>
+						<texture background="true" diffuse="masks/thumb.png">$INFO[ListItem.Art(thumb)]</texture>
+					</control>
+					<control type="image">
+						<left>-6</left>
+						<top>-6</top>
+						<right>-6</right>
+						<bottom>-6</bottom>
+						<texture border="20" colordiffuse="ring">frame/ring16.png</texture>
+						<visible>Control.HasFocus(11)</visible>
+					</control>
+				</control>
+				<control type="textbox">
+					<left>14</left>
+					<top>240</top>
+					<width>384</width>
+					<height>80</height>
+					<font>f_small</font>
+					<textcolor>text</textcolor>
+					<label>$INFO[ListItem.Label][CR]$INFO[ListItem.Label2]</label>
+				</control>
+			</focusedlayout>
+		</control>
+	</controls>
+</window>

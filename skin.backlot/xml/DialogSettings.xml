@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol>5</defaultcontrol>
+	<include>Anim_DialogPop</include>
+	<controls>
+		<include>DimBehind</include>
+		<control type="group">
+			<left>200</left>
+			<top>100</top>
+			<width>1520</width>
+			<height>880</height>
+			<visible>!Window.IsVisible(sliderdialog)</visible>
+			<include>DialogFrame</include>
+			<include content="DialogHeader">
+				<param name="id">2</param>
+			</include>
+			<control type="grouplist" id="5">
+				<left>36</left>
+				<top>112</top>
+				<width>1100</width>
+				<height>730</height>
+				<itemgap>4</itemgap>
+				<pagecontrol>60</pagecontrol>
+				<onleft>9000</onleft>
+				<onright>60</onright>
+				<onup>5</onup>
+				<ondown>5</ondown>
+			</control>
+			<include content="SettingTemplates">
+				<param name="width">1100</param>
+			</include>
+			<control type="scrollbar" id="60">
+				<left>1150</left>
+				<top>112</top>
+				<width>8</width>
+				<height>730</height>
+				<onleft>5</onleft>
+				<onright>9000</onright>
+			</control>
+			<control type="grouplist" id="9000">
+				<left>1190</left>
+				<top>112</top>
+				<width>290</width>
+				<height>300</height>
+				<itemgap>16</itemgap>
+				<onleft>5</onleft>
+				<onright>5</onright>
+				<include content="DialogButton">
+					<param name="id">28</param>
+					<param name="width">290</param>
+				</include>
+				<include content="DialogButton">
+					<param name="id">29</param>
+					<param name="width">290</param>
+				</include>
+				<include content="DialogButton">
+					<param name="id">30</param>
+					<param name="width">290</param>
+				</include>
+			</control>
+		</control>
+	</controls>
+</window>

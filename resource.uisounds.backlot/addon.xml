@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="resource.uisounds.backlot" version="1.0.0" name="Backlot Sounds" provider-name="starslayer74">
+	<requires>
+		<import addon="kodi.resource" version="1.0.0"/>
+	</requires>
+	<extension point="kodi.resource.uisounds"/>
+	<extension point="kodi.addon.metadata">
+		<summary lang="en_GB">Soft navigation sounds for the Backlot skin.</summary>
+		<description lang="en_GB">Gentle ticks as you move and a pop when you select, in the spirit of Android TV.</description>
+		<platform>all</platform>
+		<license>CC0-1.0</license>
+		<assets>
+			<icon>backlot-sounds-icon.png</icon>
+		</assets>
+	</extension>
+</addon>

@@ -1,0 +1,847 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Movie / show / episode info, and actor pages opened through TMDb Helper.
+     Rows past the cast need plugin.video.themoviedb.helper; without it the
+     dialog falls back to Kodi's own cast list. -->
+<window>
+	<defaultcontrol always="true">5000</defaultcontrol>
+	<onload condition="Skin.HasSetting(backlot.preshow_first) + Control.IsVisible(441)">SetFocus(441)</onload>
+	<onload condition="String.IsEqual(ListItem.Property(tmdb_type),person)">SetFocus(5030)</onload>
+	<include>Anim_WindowFade</include>
+	<controls>
+		<include>Background</include>
+		<include content="FanartBackground">
+			<param name="art">$VAR[FanartVar]</param>
+		</include>
+		<control type="grouplist" id="9001">
+			<left>0</left>
+			<top>0</top>
+			<width>1920</width>
+			<height>1080</height>
+			<itemgap>0</itemgap>
+			<usecontrolcoords>true</usecontrolcoords>
+			<scrolltime tween="cubic" easing="out">400</scrolltime>
+			<control type="group">
+				<height>560</height>
+				<!-- title / meta (movies, shows, episodes) -->
+				<control type="group">
+					<left>120</left>
+					<top>90</top>
+					<width>1300</width>
+					<visible>!String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>620</width>
+						<height>200</height>
+						<aspectratio align="left" aligny="bottom">keep</aspectratio>
+						<texture>$VAR[ClearLogoVar]</texture>
+						<visible>!String.IsEqual(ListItem.DBType,episode)</visible>
+					</control>
+					<control type="textbox">
+						<left>0</left>
+						<top>0</top>
+						<width>1300</width>
+						<height>200</height>
+						<aligny>bottom</aligny>
+						<font>f_hero</font>
+						<textcolor>text</textcolor>
+						<label>$INFO[ListItem.Title]</label>
+						<visible>String.IsEqual(ListItem.DBType,episode) | [String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo))]</visible>
+					</control>
+					<control type="label">
+						<left>0</left>
+						<top>216</top>
+						<width>1300</width>
+						<height>40</height>
+						<font>f_body_m</font>
+						<textcolor>text2</textcolor>
+						<label>$VAR[ItemMeta]</label>
+					</control>
+					<control type="label">
+						<left>0</left>
+						<top>262</top>
+						<width>1300</width>
+						<height>40</height>
+						<font>f_small</font>
+						<textcolor>text3</textcolor>
+						<label>$VAR[InfoCredits]</label>
+					</control>
+					<control type="textbox">
+						<left>0</left>
+						<top>320</top>
+						<width>1100</width>
+						<height>104</height>
+						<font>f_body</font>
+						<autoscroll delay="8000" time="3000" repeat="10000">true</autoscroll>
+						<label>$INFO[ListItem.Tagline,[I],[/I][CR]]$INFO[ListItem.Plot]</label>
+					</control>
+					<!-- library status, and where to stream titles you don't own (TMDb / JustWatch data via TMDb Helper) -->
+					<control type="group">
+						<left>0</left>
+						<top>430</top>
+						<width>1300</width>
+						<height>60</height>
+						<visible>Window.IsVisible(1190) + !String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
+						<control type="group">
+							<visible>!String.IsEmpty(ListItem.DBID)</visible>
+							<control type="image">
+								<left>0</left>
+								<top>6</top>
+								<width>250</width>
+								<height>48</height>
+								<texture border="24" colordiffuse="accent">frame/pill.png</texture>
+							</control>
+							<control type="label">
+								<left>0</left>
+								<top>6</top>
+								<width>250</width>
+								<height>48</height>
+								<align>center</align>
+								<aligny>center</aligny>
+								<font>f_small</font>
+								<textcolor>on_focus</textcolor>
+								<label>In your library</label>
+							</control>
+						</control>
+						<control type="label">
+							<left>0</left>
+							<top>6</top>
+							<width>400</width>
+							<height>48</height>
+							<aligny>center</aligny>
+							<font>f_small</font>
+							<textcolor>text2</textcolor>
+							<label>$VAR[WhereToWatchLabel]</label>
+							<visible>String.IsEmpty(ListItem.DBID)</visible>
+						</control>
+						<control type="grouplist">
+							<left>370</left>
+							<top>4</top>
+							<width>1000</width>
+							<height>52</height>
+							<orientation>horizontal</orientation>
+							<itemgap>12</itemgap>
+							<visible>String.IsEmpty(ListItem.DBID)</visible>
+							<control type="image">
+								<width>52</width>
+								<height>52</height>
+								<aspectratio>keep</aspectratio>
+								<texture diffuse="masks/square.png">$INFO[ListItem.Property(provider.1.icon)]</texture>
+								<visible>!String.IsEmpty(ListItem.Property(provider.1.icon))</visible>
+							</control>
+							<control type="image">
+								<width>52</width>
+								<height>52</height>
+								<aspectratio>keep</aspectratio>
+								<texture diffuse="masks/square.png">$INFO[ListItem.Property(provider.2.icon)]</texture>
+								<visible>!String.IsEmpty(ListItem.Property(provider.2.icon))</visible>
+							</control>
+							<control type="image">
+								<width>52</width>
+								<height>52</height>
+								<aspectratio>keep</aspectratio>
+								<texture diffuse="masks/square.png">$INFO[ListItem.Property(provider.3.icon)]</texture>
+								<visible>!String.IsEmpty(ListItem.Property(provider.3.icon))</visible>
+							</control>
+							<control type="image">
+								<width>52</width>
+								<height>52</height>
+								<aspectratio>keep</aspectratio>
+								<texture diffuse="masks/square.png">$INFO[ListItem.Property(provider.4.icon)]</texture>
+								<visible>!String.IsEmpty(ListItem.Property(provider.4.icon))</visible>
+							</control>
+							<control type="image">
+								<width>52</width>
+								<height>52</height>
+								<aspectratio>keep</aspectratio>
+								<texture diffuse="masks/square.png">$INFO[ListItem.Property(provider.5.icon)]</texture>
+								<visible>!String.IsEmpty(ListItem.Property(provider.5.icon))</visible>
+							</control>
+							<control type="image">
+								<width>52</width>
+								<height>52</height>
+								<aspectratio>keep</aspectratio>
+								<texture diffuse="masks/square.png">$INFO[ListItem.Property(provider.6.icon)]</texture>
+								<visible>!String.IsEmpty(ListItem.Property(provider.6.icon))</visible>
+							</control>
+							<control type="image">
+								<width>52</width>
+								<height>52</height>
+								<aspectratio>keep</aspectratio>
+								<texture diffuse="masks/square.png">$INFO[ListItem.Property(provider.7.icon)]</texture>
+								<visible>!String.IsEmpty(ListItem.Property(provider.7.icon))</visible>
+							</control>
+							<control type="image">
+								<width>52</width>
+								<height>52</height>
+								<aspectratio>keep</aspectratio>
+								<texture diffuse="masks/square.png">$INFO[ListItem.Property(provider.8.icon)]</texture>
+								<visible>!String.IsEmpty(ListItem.Property(provider.8.icon))</visible>
+							</control>
+						</control>
+					</control>
+				</control>
+				<!-- person -->
+				<control type="group">
+					<left>120</left>
+					<top>90</top>
+					<visible>String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>300</width>
+						<height>300</height>
+						<texture colordiffuse="surface2">masks/circle.png</texture>
+					</control>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>300</width>
+						<height>300</height>
+						<aspectratio scalediffuse="false">scale</aspectratio>
+						<texture background="true" diffuse="masks/circle.png">$INFO[ListItem.Icon]</texture>
+					</control>
+					<control type="label">
+						<left>360</left>
+						<top>10</top>
+						<width>1300</width>
+						<height>90</height>
+						<font>f_hero</font>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<control type="label">
+						<left>360</left>
+						<top>110</top>
+						<width>1300</width>
+						<height>40</height>
+						<font>f_body_m</font>
+						<textcolor>text2</textcolor>
+						<label>$INFO[ListItem.Property(Known_For_Department)]$INFO[ListItem.Property(Department)]$INFO[ListItem.Property(Birthday),  •  Born ,]$INFO[ListItem.Property(Age), (age ,)]$INFO[ListItem.Property(Born),  •  ,]</label>
+					</control>
+					<control type="textbox">
+						<left>360</left>
+						<top>170</top>
+						<width>1320</width>
+						<height>320</height>
+						<font>f_body</font>
+						<autoscroll delay="8000" time="3000" repeat="10000">true</autoscroll>
+						<label>$VAR[PersonBio]</label>
+					</control>
+				</control>
+			</control>
+			<control type="group">
+				<height>130</height>
+				<visible>!String.IsEqual(ListItem.Property(tmdb_type),person)</visible>
+			<control type="grouplist" id="5000">
+				<left>120</left>
+				<top>20</top>
+				<width>1700</width>
+				<height>80</height>
+				<orientation>horizontal</orientation>
+				<itemgap>16</itemgap>
+				<onleft>5000</onleft>
+				<onright>5000</onright>
+				<ondown condition="Control.IsVisible(5010)">5010</ondown>
+				<ondown condition="Control.IsVisible(50)">50</ondown>
+				<ondown condition="Control.IsVisible(5020)">5020</ondown>
+				<control type="button" id="8">
+					<width>280</width>
+					<height>76</height>
+					<align>center</align>
+					<textoffsetx>16</textoffsetx>
+					<label>$VAR[InfoPlayLabel]</label>
+					<texturefocus border="38" colordiffuse="focus">frame/pill.png</texturefocus>
+					<texturenofocus border="38" colordiffuse="surface2">frame/pill.png</texturenofocus>
+					<visible>!Window.IsVisible(1190)</visible>
+				</control>
+				<!-- PreShow Experience (trailers, intros and ratings before the movie) -->
+				<control type="button" id="441">
+					<width>300</width>
+					<height>76</height>
+					<align>center</align>
+					<textoffsetx>16</textoffsetx>
+					<label>PreShow</label>
+					<texturefocus border="38" colordiffuse="focus">frame/pill.png</texturefocus>
+					<texturenofocus border="38" colordiffuse="surface2">frame/pill.png</texturenofocus>
+					<onclick>RunScript(script.preshowexperience)</onclick>
+					<visible>System.AddonIsEnabled(script.preshowexperience) + !Window.IsVisible(1190) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode)]</visible>
+				</control>
+				<control type="button" id="9008">
+					<width>280</width>
+					<height>76</height>
+					<align>center</align>
+					<textoffsetx>16</textoffsetx>
+					<label>$VAR[InfoPlayLabel]</label>
+					<texturefocus border="38" colordiffuse="focus">frame/pill.png</texturefocus>
+					<texturenofocus border="38" colordiffuse="surface2">frame/pill.png</texturenofocus>
+					<onclick>RunScript(plugin.video.themoviedb.helper,close_dialog=1190)</onclick>
+					<onclick>RunScript(script.backlot.helper,open,$INFO[ListItem.DBType],$INFO[ListItem.DBID])</onclick>
+					<visible>Window.IsVisible(1190) + !String.IsEmpty(ListItem.DBID) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)]</visible>
+				</control>
+				<control type="button" id="11">
+					<width>280</width>
+					<height>76</height>
+					<align>center</align>
+					<textoffsetx>16</textoffsetx>
+					<label>$LOCALIZE[20410]</label>
+					<texturefocus border="38" colordiffuse="focus">frame/pill.png</texturefocus>
+					<texturenofocus border="38" colordiffuse="surface2">frame/pill.png</texturenofocus>
+					<visible>!String.IsEmpty(ListItem.Trailer)</visible>
+				</control>
+				<control type="button" id="443">
+					<width>280</width>
+					<height>76</height>
+					<align>center</align>
+					<textoffsetx>16</textoffsetx>
+					<label>$LOCALIZE[20457]</label>
+					<texturefocus border="38" colordiffuse="focus">frame/pill.png</texturefocus>
+					<texturenofocus border="38" colordiffuse="surface2">frame/pill.png</texturenofocus>
+					<onclick>Dialog.Close(MovieInformation)</onclick>
+					<onclick>ActivateWindow(Videos,videodb://movies/sets/$INFO[ListItem.SetId]/?setid=$INFO[ListItem.SetId],return)</onclick>
+					<visible>!String.IsEmpty(ListItem.SetId) + !Window.IsVisible(1190)</visible>
+				</control>
+				<control type="button" id="10">
+					<width>280</width>
+					<height>76</height>
+					<align>center</align>
+					<textoffsetx>16</textoffsetx>
+					<label>$LOCALIZE[13511]</label>
+					<texturefocus border="38" colordiffuse="focus">frame/pill.png</texturefocus>
+					<texturenofocus border="38" colordiffuse="surface2">frame/pill.png</texturenofocus>
+					<visible>Control.IsEnabled(10)</visible>
+				</control>
+				<control type="button" id="6">
+					<width>280</width>
+					<height>76</height>
+					<align>center</align>
+					<textoffsetx>16</textoffsetx>
+					<label>$LOCALIZE[184]</label>
+					<texturefocus border="38" colordiffuse="focus">frame/pill.png</texturefocus>
+					<texturenofocus border="38" colordiffuse="surface2">frame/pill.png</texturenofocus>
+					<visible>Control.IsEnabled(6)</visible>
+				</control>
+			</control>
+			</control>
+			<control type="group">
+				<height>330</height>
+				<visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + [[Integer.IsGreater(Container(5010).NumItems,0) | Container(5010).IsUpdating] + $EXP[backlot_tmdb_rows] | Integer.IsGreater(Container(50).NumItems,0) + !$EXP[backlot_tmdb_rows]]</visible>
+				<control type="label">
+					<left>120</left>
+					<top>0</top>
+					<width>1600</width>
+					<height>44</height>
+					<font>f_sub</font>
+					<label>$LOCALIZE[206]</label>
+				</control>
+				<control type="list" id="5010">
+					<left>96</left>
+					<top>54</top>
+					<width>1824</width>
+					<height>270</height>
+					<orientation>horizontal</orientation>
+					<onup>5000</onup>
+					<ondown condition="Control.IsVisible(5020)">5020</ondown>
+					<ondown>5010</ondown>
+					<onleft>5010</onleft>
+					<onright>5010</onright>
+					<itemlayout width="200" height="270">
+						<control type="image">
+							<left>25</left>
+							<top>14</top>
+							<width>150</width>
+							<height>150</height>
+							<texture colordiffuse="surface2">masks/circle.png</texture>
+						</control>
+						<control type="image">
+							<left>25</left>
+							<top>14</top>
+							<width>150</width>
+							<height>150</height>
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<texture background="true" diffuse="masks/circle.png">$INFO[ListItem.Icon]</texture>
+						</control>
+						<control type="label">
+							<left>0</left>
+							<top>178</top>
+							<width>200</width>
+							<height>34</height>
+							<align>center</align>
+							<font>f_small</font>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+						<control type="label">
+							<left>0</left>
+							<top>212</top>
+							<width>200</width>
+							<height>32</height>
+							<align>center</align>
+							<font>f_caption</font>
+							<textcolor>text3</textcolor>
+							<label>$INFO[ListItem.Label2]</label>
+						</control>
+					</itemlayout>
+					<focusedlayout width="200" height="270">
+						<control type="group">
+							<left>25</left>
+							<top>14</top>
+							<width>150</width>
+							<height>150</height>
+							<animation effect="zoom" end="110" center="auto" time="200" condition="Control.HasFocus(5010)">Conditional</animation>
+							<control type="image">
+								<texture colordiffuse="surface2">masks/circle.png</texture>
+							</control>
+							<control type="image">
+								<aspectratio scalediffuse="false">scale</aspectratio>
+								<texture background="true" diffuse="masks/circle.png">$INFO[ListItem.Icon]</texture>
+							</control>
+							<control type="image">
+								<left>-7</left>
+								<top>-7</top>
+								<right>-7</right>
+								<bottom>-7</bottom>
+								<texture colordiffuse="ring">frame/ring_circle.png</texture>
+								<visible>Control.HasFocus(5010)</visible>
+							</control>
+						</control>
+						<control type="label">
+							<left>0</left>
+							<top>184</top>
+							<width>200</width>
+							<height>34</height>
+							<align>center</align>
+							<font>f_small</font>
+							<scroll>true</scroll>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+						<control type="label">
+							<left>0</left>
+							<top>218</top>
+							<width>200</width>
+							<height>32</height>
+							<align>center</align>
+							<font>f_caption</font>
+							<textcolor>text3</textcolor>
+							<scroll>true</scroll>
+							<label>$INFO[ListItem.Label2]</label>
+						</control>
+					</focusedlayout>
+					<onclick>RunScript(plugin.video.themoviedb.helper,add_path=$INFO[ListItem.FolderPath],call_auto=1190)</onclick>
+					<visible>$EXP[backlot_tmdb_rows]</visible>
+					<content target="videos">$VAR[TmdbCastPath]</content>
+				</control>
+				<control type="list" id="50">
+					<left>96</left>
+					<top>54</top>
+					<width>1824</width>
+					<height>270</height>
+					<orientation>horizontal</orientation>
+					<onup>5000</onup>
+					<ondown condition="Control.IsVisible(5020)">5020</ondown>
+					<ondown>50</ondown>
+					<onleft>50</onleft>
+					<onright>50</onright>
+					<itemlayout width="200" height="270">
+						<control type="image">
+							<left>25</left>
+							<top>14</top>
+							<width>150</width>
+							<height>150</height>
+							<texture colordiffuse="surface2">masks/circle.png</texture>
+						</control>
+						<control type="image">
+							<left>25</left>
+							<top>14</top>
+							<width>150</width>
+							<height>150</height>
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<texture background="true" diffuse="masks/circle.png">$INFO[ListItem.Icon]</texture>
+						</control>
+						<control type="label">
+							<left>0</left>
+							<top>178</top>
+							<width>200</width>
+							<height>34</height>
+							<align>center</align>
+							<font>f_small</font>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+						<control type="label">
+							<left>0</left>
+							<top>212</top>
+							<width>200</width>
+							<height>32</height>
+							<align>center</align>
+							<font>f_caption</font>
+							<textcolor>text3</textcolor>
+							<label>$INFO[ListItem.Label2]</label>
+						</control>
+					</itemlayout>
+					<focusedlayout width="200" height="270">
+						<control type="group">
+							<left>25</left>
+							<top>14</top>
+							<width>150</width>
+							<height>150</height>
+							<animation effect="zoom" end="110" center="auto" time="200" condition="Control.HasFocus(50)">Conditional</animation>
+							<control type="image">
+								<texture colordiffuse="surface2">masks/circle.png</texture>
+							</control>
+							<control type="image">
+								<aspectratio scalediffuse="false">scale</aspectratio>
+								<texture background="true" diffuse="masks/circle.png">$INFO[ListItem.Icon]</texture>
+							</control>
+							<control type="image">
+								<left>-7</left>
+								<top>-7</top>
+								<right>-7</right>
+								<bottom>-7</bottom>
+								<texture colordiffuse="ring">frame/ring_circle.png</texture>
+								<visible>Control.HasFocus(50)</visible>
+							</control>
+						</control>
+						<control type="label">
+							<left>0</left>
+							<top>184</top>
+							<width>200</width>
+							<height>34</height>
+							<align>center</align>
+							<font>f_small</font>
+							<scroll>true</scroll>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+						<control type="label">
+							<left>0</left>
+							<top>218</top>
+							<width>200</width>
+							<height>32</height>
+							<align>center</align>
+							<font>f_caption</font>
+							<textcolor>text3</textcolor>
+							<scroll>true</scroll>
+							<label>$INFO[ListItem.Label2]</label>
+						</control>
+					</focusedlayout>
+					<visible>!$EXP[backlot_tmdb_rows]</visible>
+				</control>
+			</control>
+			<control type="group">
+				<height>450</height>
+				<visible>!String.IsEqual(ListItem.Property(tmdb_type),person) + [Integer.IsGreater(Container(5020).NumItems,0) | Container(5020).IsUpdating]</visible>
+				<control type="label">
+					<left>120</left>
+					<top>0</top>
+					<width>1600</width>
+					<height>44</height>
+					<font>f_sub</font>
+					<label>More like this</label>
+				</control>
+				<control type="list" id="5020">
+					<left>96</left>
+					<top>54</top>
+					<width>1824</width>
+					<height>390</height>
+					<orientation>horizontal</orientation>
+					<onup condition="Control.IsVisible(5010)">5010</onup>
+					<onup condition="Control.IsVisible(50)">50</onup>
+					<onup>5000</onup>
+					<ondown>5020</ondown>
+					<onleft>5020</onleft>
+					<onright>5020</onright>
+					<onclick condition="String.StartsWith(Container(5020).ListItem.FolderPath,plugin://plugin.video.themoviedb.helper)">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[Container(5020).ListItem.FolderPath],call_auto=1190)</onclick>
+					<onclick condition="!String.StartsWith(Container(5020).ListItem.FolderPath,plugin://plugin.video.themoviedb.helper)">RunScript(script.backlot.helper,info,$INFO[Container(5020).ListItem.DBType],$INFO[Container(5020).ListItem.DBID])</onclick>
+					<itemlayout width="232" height="390">
+						<include content="PosterItem">
+							<param name="cid">5020</param>
+						</include>
+						<control type="group">
+							<left>14</left>
+							<top>14</top>
+							<width>200</width>
+							<height>300</height>
+						<control type="group">
+							<right>10</right>
+							<top>10</top>
+							<width>110</width>
+							<height>36</height>
+							<visible>Skin.HasSetting(backlot.similar_all) + !String.IsEmpty(ListItem.DBID)</visible>
+							<control type="image">
+								<texture border="18" colordiffuse="E6000000">frame/pill.png</texture>
+							</control>
+							<control type="label">
+								<align>center</align>
+								<aligny>center</aligny>
+								<font>f_caption</font>
+								<textcolor>accent</textcolor>
+								<label>In library</label>
+							</control>
+						</control>
+						</control>
+						<control type="label">
+							<left>14</left>
+							<top>326</top>
+							<width>200</width>
+							<height>32</height>
+							<font>f_small</font>
+							<textcolor>text2</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+					</itemlayout>
+					<focusedlayout width="232" height="390">
+						<include content="PosterItemFocused">
+							<param name="cid">5020</param>
+						</include>
+						<control type="group">
+							<left>14</left>
+							<top>14</top>
+							<width>200</width>
+							<height>300</height>
+						<control type="group">
+							<right>10</right>
+							<top>10</top>
+							<width>110</width>
+							<height>36</height>
+							<visible>Skin.HasSetting(backlot.similar_all) + !String.IsEmpty(ListItem.DBID)</visible>
+							<control type="image">
+								<texture border="18" colordiffuse="E6000000">frame/pill.png</texture>
+							</control>
+							<control type="label">
+								<align>center</align>
+								<aligny>center</aligny>
+								<font>f_caption</font>
+								<textcolor>accent</textcolor>
+								<label>In library</label>
+							</control>
+						</control>
+						</control>
+						<control type="label">
+							<left>14</left>
+							<top>330</top>
+							<width>200</width>
+							<height>32</height>
+							<font>f_small</font>
+							<scroll>true</scroll>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+					</focusedlayout>
+					<content target="videos">$VAR[TmdbSimilarPath]</content>
+				</control>
+			</control>
+			<control type="group">
+				<height>80</height>
+				<visible>String.IsEqual(ListItem.Property(tmdb_type),person) + !Skin.HasSetting(backlot.similar_all)</visible>
+				<visible>!Integer.IsGreater(Container(5030).NumItems,0) + !Container(5030).IsUpdating + !Integer.IsGreater(Container(5040).NumItems,0) + !Container(5040).IsUpdating</visible>
+				<control type="label">
+					<left>120</left>
+					<width>1600</width>
+					<height>60</height>
+					<font>f_body</font>
+					<textcolor>text3</textcolor>
+					<label>Nothing else from $INFO[ListItem.Label] in your library. Turn on "show everything" in Backlot settings to see their full filmography.</label>
+				</control>
+			</control>
+			<control type="group">
+				<height>450</height>
+				<visible>String.IsEqual(ListItem.Property(tmdb_type),person) + [Integer.IsGreater(Container(5030).NumItems,0) | Container(5030).IsUpdating]</visible>
+				<control type="label">
+					<left>120</left>
+					<top>0</top>
+					<width>1600</width>
+					<height>44</height>
+					<font>f_sub</font>
+					<label>Movies</label>
+				</control>
+				<control type="list" id="5030">
+					<left>96</left>
+					<top>54</top>
+					<width>1824</width>
+					<height>390</height>
+					<orientation>horizontal</orientation>
+					<onup>5030</onup>
+					<ondown condition="Control.IsVisible(5040)">5040</ondown>
+					<ondown>5030</ondown>
+					<onleft>5030</onleft>
+					<onright>5030</onright>
+					<onclick condition="String.StartsWith(Container(5030).ListItem.FolderPath,plugin://plugin.video.themoviedb.helper)">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[Container(5030).ListItem.FolderPath],call_auto=1190)</onclick>
+					<onclick condition="!String.StartsWith(Container(5030).ListItem.FolderPath,plugin://plugin.video.themoviedb.helper)">RunScript(script.backlot.helper,info,$INFO[Container(5030).ListItem.DBType],$INFO[Container(5030).ListItem.DBID])</onclick>
+					<itemlayout width="232" height="390">
+						<include content="PosterItem">
+							<param name="cid">5030</param>
+						</include>
+						<control type="group">
+							<left>14</left>
+							<top>14</top>
+							<width>200</width>
+							<height>300</height>
+						<control type="group">
+							<right>10</right>
+							<top>10</top>
+							<width>110</width>
+							<height>36</height>
+							<visible>Skin.HasSetting(backlot.similar_all) + !String.IsEmpty(ListItem.DBID)</visible>
+							<control type="image">
+								<texture border="18" colordiffuse="E6000000">frame/pill.png</texture>
+							</control>
+							<control type="label">
+								<align>center</align>
+								<aligny>center</aligny>
+								<font>f_caption</font>
+								<textcolor>accent</textcolor>
+								<label>In library</label>
+							</control>
+						</control>
+						</control>
+						<control type="label">
+							<left>14</left>
+							<top>326</top>
+							<width>200</width>
+							<height>32</height>
+							<font>f_small</font>
+							<textcolor>text2</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+					</itemlayout>
+					<focusedlayout width="232" height="390">
+						<include content="PosterItemFocused">
+							<param name="cid">5030</param>
+						</include>
+						<control type="group">
+							<left>14</left>
+							<top>14</top>
+							<width>200</width>
+							<height>300</height>
+						<control type="group">
+							<right>10</right>
+							<top>10</top>
+							<width>110</width>
+							<height>36</height>
+							<visible>Skin.HasSetting(backlot.similar_all) + !String.IsEmpty(ListItem.DBID)</visible>
+							<control type="image">
+								<texture border="18" colordiffuse="E6000000">frame/pill.png</texture>
+							</control>
+							<control type="label">
+								<align>center</align>
+								<aligny>center</aligny>
+								<font>f_caption</font>
+								<textcolor>accent</textcolor>
+								<label>In library</label>
+							</control>
+						</control>
+						</control>
+						<control type="label">
+							<left>14</left>
+							<top>330</top>
+							<width>200</width>
+							<height>32</height>
+							<font>f_small</font>
+							<scroll>true</scroll>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+					</focusedlayout>
+					<content target="videos">$VAR[TmdbPersonMoviesPath]</content>
+				</control>
+			</control>
+			<control type="group">
+				<height>450</height>
+				<visible>String.IsEqual(ListItem.Property(tmdb_type),person) + [Integer.IsGreater(Container(5040).NumItems,0) | Container(5040).IsUpdating]</visible>
+				<control type="label">
+					<left>120</left>
+					<top>0</top>
+					<width>1600</width>
+					<height>44</height>
+					<font>f_sub</font>
+					<label>TV shows</label>
+				</control>
+				<control type="list" id="5040">
+					<left>96</left>
+					<top>54</top>
+					<width>1824</width>
+					<height>390</height>
+					<orientation>horizontal</orientation>
+					<onup condition="Control.IsVisible(5030)">5030</onup>
+					<onup>5040</onup>
+					<ondown>5040</ondown>
+					<onleft>5040</onleft>
+					<onright>5040</onright>
+					<onclick condition="String.StartsWith(Container(5040).ListItem.FolderPath,plugin://plugin.video.themoviedb.helper)">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[Container(5040).ListItem.FolderPath],call_auto=1190)</onclick>
+					<onclick condition="!String.StartsWith(Container(5040).ListItem.FolderPath,plugin://plugin.video.themoviedb.helper)">RunScript(script.backlot.helper,info,$INFO[Container(5040).ListItem.DBType],$INFO[Container(5040).ListItem.DBID])</onclick>
+					<itemlayout width="232" height="390">
+						<include content="PosterItem">
+							<param name="cid">5040</param>
+						</include>
+						<control type="group">
+							<left>14</left>
+							<top>14</top>
+							<width>200</width>
+							<height>300</height>
+						<control type="group">
+							<right>10</right>
+							<top>10</top>
+							<width>110</width>
+							<height>36</height>
+							<visible>Skin.HasSetting(backlot.similar_all) + !String.IsEmpty(ListItem.DBID)</visible>
+							<control type="image">
+								<texture border="18" colordiffuse="E6000000">frame/pill.png</texture>
+							</control>
+							<control type="label">
+								<align>center</align>
+								<aligny>center</aligny>
+								<font>f_caption</font>
+								<textcolor>accent</textcolor>
+								<label>In library</label>
+							</control>
+						</control>
+						</control>
+						<control type="label">
+							<left>14</left>
+							<top>326</top>
+							<width>200</width>
+							<height>32</height>
+							<font>f_small</font>
+							<textcolor>text2</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+					</itemlayout>
+					<focusedlayout width="232" height="390">
+						<include content="PosterItemFocused">
+							<param name="cid">5040</param>
+						</include>
+						<control type="group">
+							<left>14</left>
+							<top>14</top>
+							<width>200</width>
+							<height>300</height>
+						<control type="group">
+							<right>10</right>
+							<top>10</top>
+							<width>110</width>
+							<height>36</height>
+							<visible>Skin.HasSetting(backlot.similar_all) + !String.IsEmpty(ListItem.DBID)</visible>
+							<control type="image">
+								<texture border="18" colordiffuse="E6000000">frame/pill.png</texture>
+							</control>
+							<control type="label">
+								<align>center</align>
+								<aligny>center</aligny>
+								<font>f_caption</font>
+								<textcolor>accent</textcolor>
+								<label>In library</label>
+							</control>
+						</control>
+						</control>
+						<control type="label">
+							<left>14</left>
+							<top>330</top>
+							<width>200</width>
+							<height>32</height>
+							<font>f_small</font>
+							<scroll>true</scroll>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+					</focusedlayout>
+					<content target="videos">$VAR[TmdbPersonShowsPath]</content>
+				</control>
+			</control>
+		</control>
+		<include>Clock</include>
+	</controls>
+</window>

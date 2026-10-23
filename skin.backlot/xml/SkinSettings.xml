@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">101</defaultcontrol>
+	<backgroundcolor>bg</backgroundcolor>
+	<include>Anim_WindowFade</include>
+	<controls>
+		<include>Background</include>
+		<control type="label">
+			<left>120</left>
+			<top>50</top>
+			<width>1200</width>
+			<height>70</height>
+			<font>f_title</font>
+			<label>Backlot</label>
+		</control>
+		<control type="label">
+			<left>120</left>
+			<top>124</top>
+			<width>1200</width>
+			<height>40</height>
+			<font>f_body</font>
+			<textcolor>text2</textcolor>
+			<label>Skin settings  •  version $INFO[System.AddonVersion(skin.backlot)]</label>
+		</control>
+		<include>Clock</include>
+		<control type="label">
+			<left>152</left>
+			<top>210</top>
+			<width>1100</width>
+			<height>50</height>
+			<font>f_small</font>
+			<textcolor>accent</textcolor>
+			<label>HOME SCREEN</label>
+		</control>
+		<control type="grouplist" id="9000">
+			<left>120</left>
+			<top>264</top>
+			<width>1100</width>
+			<height>700</height>
+			<itemgap>6</itemgap>
+			<onleft>9000</onleft>
+			<onright>9000</onright>
+			<control type="radiobutton" id="101">
+				<width>1100</width>
+				<include>SettingRow</include>
+				<label>Use circle icons for services (modern Android TV)</label>
+				<selected>Skin.HasSetting(backlot.circles)</selected>
+				<onclick>Skin.ToggleSetting(backlot.circles)</onclick>
+			</control>
+			<control type="button" id="102">
+				<width>1100</width>
+				<include>SettingRow</include>
+				<label>Service names under tiles</label>
+				<label2>$VAR[LabelsName]</label2>
+				<onclick>RunScript(script.backlot.helper,labels)</onclick>
+			</control>
+			<control type="button" id="108">
+				<width>1100</width>
+				<include>SettingRow</include>
+				<label>Color theme</label>
+				<label2>$VAR[ThemeName]</label2>
+				<onclick>RunScript(script.backlot.helper,theme)</onclick>
+			</control>
+			<control type="radiobutton" id="112">
+				<width>1100</width>
+				<include>SettingRow</include>
+				<label>Classic episode layout (one row of large thumbnails)</label>
+				<selected>Skin.HasSetting(backlot.episodes_classic)</selected>
+				<onclick>Skin.ToggleSetting(backlot.episodes_classic)</onclick>
+			</control>
+			<control type="button" id="114">
+				<width>1100</width>
+				<include>SettingRow</include>
+				<label>Arrange services</label>
+				<onclick>RunScript(script.backlot.helper,reorder)</onclick>
+			</control>
+			<control type="button" id="104">
+				<width>1100</width>
+				<include>SettingRow</include>
+				<label>Manage services</label>
+				<onclick>RunScript(script.backlot.helper)</onclick>
+			</control>
+			<control type="button" id="105">
+				<width>1100</width>
+				<include>SettingRow</include>
+				<label>Studios not in any service</label>
+				<onclick>RunScript(script.backlot.helper,report)</onclick>
+			</control>
+			<control type="radiobutton" id="106">
+				<width>1100</width>
+				<include>SettingRow</include>
+				<label>Similar titles: show everything, mark what I own</label>
+				<selected>Skin.HasSetting(backlot.similar_all)</selected>
+				<onclick>Skin.ToggleSetting(backlot.similar_all)</onclick>
+			</control>
+			<control type="button" id="107">
+				<width>1100</width>
+				<include>SettingRow</include>
+				<label>Install TMDb Helper (cast details and similar titles)</label>
+				<onclick>RunScript(script.backlot.helper,tmdbhelper)</onclick>
+				<visible>!System.HasAddon(plugin.video.themoviedb.helper)</visible>
+			</control>
+			<control type="radiobutton" id="110">
+				<width>1100</width>
+				<include>SettingRow</include>
+				<label>Show weather on the home screen</label>
+				<selected>!Skin.HasSetting(backlot.hide_weather)</selected>
+				<onclick>Skin.ToggleSetting(backlot.hide_weather)</onclick>
+			</control>
+			<control type="button" id="109">
+				<width>1100</width>
+				<include>SettingRow</include>
+				<label>Weather provider and location</label>
+				<label2>$INFO[Weather.Location]</label2>
+				<onclick>RunScript(script.backlot.helper,weather)</onclick>
+			</control>
+			<control type="button" id="111">
+				<width>1100</width>
+				<include>SettingRow</include>
+				<label>Run setup again</label>
+				<onclick>RunScript(script.backlot.helper,setup)</onclick>
+			</control>
+			<control type="button" id="115">
+				<width>1100</width>
+				<include>SettingRow</include>
+				<label>Install PreShow Experience</label>
+				<onclick>RunScript(script.backlot.helper,preshow)</onclick>
+				<visible>!System.HasAddon(script.preshowexperience)</visible>
+			</control>
+			<control type="button" id="116">
+				<width>1100</width>
+				<include>SettingRow</include>
+				<label>Navigation sounds</label>
+				<onclick>RunScript(script.backlot.helper,sounds)</onclick>
+			</control>
+			<control type="radiobutton" id="113">
+				<width>1100</width>
+				<include>SettingRow</include>
+				<label>Start on PreShow instead of Play</label>
+				<selected>Skin.HasSetting(backlot.preshow_first)</selected>
+				<onclick>Skin.ToggleSetting(backlot.preshow_first)</onclick>
+				<visible>System.AddonIsEnabled(script.preshowexperience)</visible>
+			</control>
+			<control type="button" id="117">
+				<width>1100</width>
+				<include>SettingRow</include>
+				<label>Check for Backlot updates</label>
+				<label2>$INFO[System.AddonVersion(skin.backlot)]</label2>
+				<onclick>UpdateAddonRepos</onclick>
+				<onclick>Notification(Backlot,Checking for updates...,4000,special://skin/resources/backlot-icon.png)</onclick>
+			</control>
+			<control type="button" id="103">
+				<width>1100</width>
+				<include>SettingRow</include>
+				<label>Reload skin</label>
+				<onclick>ReloadSkin()</onclick>
+			</control>
+		</control>
+		<control type="textbox">
+			<left>1300</left>
+			<top>264</top>
+			<width>500</width>
+			<height>400</height>
+			<font>f_small</font>
+			<textcolor>text2</textcolor>
+			<label>$VAR[SkinSettingsHelp]</label>
+		</control>
+	</controls>
+</window>

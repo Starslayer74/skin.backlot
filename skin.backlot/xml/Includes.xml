@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<include file="Defaults.xml" />
+	<include file="Variables.xml" />
+	<include file="Includes_Services.xml" />
+	<include file="Includes_Views.xml" />
+	<include file="Includes_Settings.xml" />
+
+	<!-- TMDb Helper rows: installed, and the item is a movie or show with a TMDb id -->
+	<expression name="backlot_labels_all">[String.IsEqual(Skin.String(backlot.labels),all)]</expression>
+	<expression name="backlot_labels_none">[String.IsEqual(Skin.String(backlot.labels),none)]</expression>
+	<expression name="hero_logo_empty">[[Control.HasFocus(420) + String.IsEmpty(Container(420).ListItem.Art(clearlogo))] | [Control.HasFocus(410) + String.IsEmpty(Container(410).ListItem.Art(clearlogo))] | [$EXP[backlot_cycle] + String.IsEmpty(Container(9200).ListItem.Art(clearlogo))] | [!Control.HasFocus(410) + !Control.HasFocus(420) + !$EXP[backlot_cycle] + String.IsEmpty(Container(410).ListItem.Art(clearlogo))]]</expression>
+	<expression name="hero_title_empty">[[Control.HasFocus(420) + String.IsEmpty(Container(420).ListItem.Title)] | [Control.HasFocus(410) + String.IsEmpty(Container(410).ListItem.Title)] | [$EXP[backlot_cycle] + String.IsEmpty(Container(9200).ListItem.Title)] | [!Control.HasFocus(410) + !Control.HasFocus(420) + !$EXP[backlot_cycle] + String.IsEmpty(Container(410).ListItem.Title)]]</expression>
+	<expression name="backlot_cycle">[!Control.HasFocus(410) + !Control.HasFocus(420) + Integer.IsGreater(Container(9200).NumItems,0)]</expression>
+	<expression name="backlot_tmdb_rows">[[System.HasAddon(plugin.video.themoviedb.helper) + [!String.IsEmpty(ListItem.Property(tmdb_id)) | !String.IsEmpty(ListItem.UniqueID(tmdb))] + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.Property(tmdb_type),movie) | String.IsEqual(ListItem.Property(tmdb_type),tv)]]]</expression>
+
+	<!-- ============================================================ layout -->
+	<include name="FullScreen">
+		<left>0</left>
+		<top>0</top>
+		<width>1920</width>
+		<height>1080</height>
+	</include>
+	<include name="HiddenObject">
+		<left>-2000</left>
+		<top>-2000</top>
+		<width>1</width>
+		<height>1</height>
+		<texturefocus />
+		<texturenofocus />
+		<label />
+	</include>
+	<include name="Clock">
+		<control type="label">
+			<right>80</right>
+			<top>44</top>
+			<width>300</width>
+			<height>44</height>
+			<align>right</align>
+			<aligny>center</aligny>
+			<font>f_clock</font>
+			<textcolor>text</textcolor>
+			<label>$INFO[System.Time]</label>
+		</control>
+	</include>
+
+	<!-- ============================================================ backgrounds -->
+	<include name="Background">
+		<control type="image">
+			<include>FullScreen</include>
+			<texture colordiffuse="bg">colors/white.png</texture>
+		</control>
+	</include>
+	<include name="FanartBackground">
+		<param name="art">$VAR[FanartVar]</param>
+		<param name="visible">true</param>
+		<definition>
+			<control type="group">
+				<visible>$PARAM[visible]</visible>
+				<include>FullScreen</include>
+				<control type="image">
+					<include>FullScreen</include>
+					<aspectratio>scale</aspectratio>
+					<fadetime>400</fadetime>
+					<texture background="true">$PARAM[art]</texture>
+					<animation effect="fade" time="400">VisibleChange</animation>
+				</control>
+				<control type="image">
+					<left>0</left>
+					<top>0</top>
+					<width>1300</width>
+					<height>1080</height>
+					<texture colordiffuse="E6000000">frame/grad_left.png</texture>
+				</control>
+				<control type="image">
+					<left>0</left>
+					<top>380</top>
+					<width>1920</width>
+					<height>700</height>
+					<texture colordiffuse="bg">frame/grad_bottom.png</texture>
+				</control>
+				<control type="image">
+					<include>FullScreen</include>
+					<texture colordiffuse="40000000">colors/white.png</texture>
+				</control>
+			</control>
+		</definition>
+	</include>
+
+	<!-- home: artwork fills the screen; only the bottom and left are shaded for text -->
+	<include name="HomeArt">
+		<control type="image">
+			<include>FullScreen</include>
+			<aspectratio>scale</aspectratio>
+			<fadetime>500</fadetime>
+			<texture background="true">$VAR[Hero_Fanart]</texture>
+		</control>
+		<control type="image">
+			<left>0</left>
+			<top>0</top>
+			<width>1100</width>
+			<height>1080</height>
+			<texture colordiffuse="A6000000">frame/grad_left.png</texture>
+		</control>
+		<control type="image">
+			<left>0</left>
+			<top>0</top>
+			<width>1920</width>
+			<height>220</height>
+			<texture colordiffuse="99000000">frame/grad_top.png</texture>
+		</control>
+		<control type="image">
+			<left>0</left>
+			<top>560</top>
+			<width>1920</width>
+			<height>520</height>
+			<texture colordiffuse="bg_veil">frame/grad_bottom.png</texture>
+		</control>
+		<control type="image">
+			<include>FullScreen</include>
+			<texture colordiffuse="bg_dim">colors/white.png</texture>
+			<visible>Control.HasFocus(410) | Control.HasFocus(420)</visible>
+			<animation effect="fade" time="250">VisibleChange</animation>
+		</control>
+	</include>
+
+	<!-- weather: top-left, only when a weather provider has data -->
+	<include name="WeatherBug">
+		<control type="group">
+			<left>110</left>
+			<top>32</top>
+			<width>700</width>
+			<height>90</height>
+			<visible>!Skin.HasSetting(backlot.hide_weather) + Weather.IsFetched + !String.IsEmpty(Weather.Conditions)</visible>
+			<animation effect="fade" time="300">VisibleChange</animation>
+			<control type="image">
+				<left>0</left>
+				<top>4</top>
+				<width>80</width>
+				<height>80</height>
+				<aspectratio>keep</aspectratio>
+				<texture>$INFO[Weather.ConditionsIcon]</texture>
+			</control>
+			<control type="label">
+				<left>92</left>
+				<top>6</top>
+				<width>200</width>
+				<height>48</height>
+				<font>f_head</font>
+				<label>$INFO[Weather.Temperature]</label>
+			</control>
+			<control type="label">
+				<left>94</left>
+				<top>52</top>
+				<width>600</width>
+				<height>32</height>
+				<font>f_small</font>
+				<textcolor>text2</textcolor>
+				<label>$INFO[Weather.Conditions]$INFO[Weather.Location,  •  ,]</label>
+			</control>
+		</control>
+	</include>
+
+	<!-- ============================================================ animations -->
+	<include name="Anim_WindowFade">
+		<animation effect="fade" start="0" end="100" time="250">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="180">WindowClose</animation>
+	</include>
+	<include name="Anim_DialogPop">
+		<animation type="WindowOpen" reversible="false">
+			<effect type="fade" start="0" end="100" time="200" />
+			<effect type="zoom" start="94" end="100" center="auto" time="220" tween="cubic" easing="out" />
+		</animation>
+		<animation type="WindowClose" reversible="false">
+			<effect type="fade" start="100" end="0" time="150" />
+			<effect type="zoom" start="100" end="96" center="auto" time="150" tween="cubic" easing="in" />
+		</animation>
+	</include>
+	<include name="Anim_SlideUp">
+		<animation type="WindowOpen" reversible="false">
+			<effect type="fade" start="0" end="100" time="200" />
+			<effect type="slide" start="0,120" end="0,0" time="260" tween="cubic" easing="out" />
+		</animation>
+		<animation type="WindowClose" reversible="false">
+			<effect type="fade" start="100" end="0" time="160" />
+			<effect type="slide" start="0,0" end="0,120" time="200" tween="cubic" easing="in" />
+		</animation>
+	</include>
+	<include name="Anim_SlideLeftPanel">
+		<animation type="WindowOpen" reversible="false">
+			<effect type="fade" start="0" end="100" time="200" />
+			<effect type="slide" start="-120,0" end="0,0" time="260" tween="cubic" easing="out" />
+		</animation>
+		<animation type="WindowClose" reversible="false">
+			<effect type="fade" start="100" end="0" time="160" />
+		</animation>
+	</include>
+	<include name="Anim_FocusScale">
+		<param name="zoom">110</param>
+		<definition>
+			<animation type="Focus" reversible="false">
+				<effect type="zoom" start="100" end="$PARAM[zoom]" center="auto" time="200" tween="cubic" easing="out" />
+			</animation>
+			<animation type="Unfocus" reversible="false">
+				<effect type="zoom" start="$PARAM[zoom]" end="100" center="auto" time="160" tween="cubic" easing="out" />
+			</animation>
+		</definition>
+	</include>
+	<include name="Anim_DimDialog">
+		<animation effect="fade" start="100" end="35" time="200" condition="System.HasActiveModalDialog">Conditional</animation>
+	</include>
+
+	<!-- ============================================================ dialogs -->
+	<!-- Use inside a group that has <width>/<height> set to the dialog size. -->
+	<include name="DialogFrame">
+		<control type="image">
+			<left>-60</left>
+			<top>-60</top>
+			<right>-60</right>
+			<bottom>-60</bottom>
+			<texture border="64">frame/shadow.png</texture>
+		</control>
+		<control type="image">
+			<left>0</left>
+			<top>0</top>
+			<right>0</right>
+			<bottom>0</bottom>
+			<texture border="24" colordiffuse="surface">frame/rounded24.png</texture>
+		</control>
+	</include>
+	<include name="DialogHeader">
+		<param name="id">1</param>
+		<param name="label"></param>
+		<definition>
+			<control type="label" id="$PARAM[id]">
+				<left>56</left>
+				<top>36</top>
+				<right>56</right>
+				<height>56</height>
+				<font>f_head</font>
+				<textcolor>text</textcolor>
+				<aligny>center</aligny>
+				<label>$PARAM[label]</label>
+			</control>
+		</definition>
+	</include>
+	<include name="DimBehind">
+		<control type="image">
+			<left>-1920</left>
+			<top>-1080</top>
+			<width>5760</width>
+			<height>3240</height>
+			<texture colordiffuse="B3000000">colors/white.png</texture>
+			<animation effect="fade" start="0" end="100" time="200">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="150">WindowClose</animation>
+		</control>
+	</include>
+	<include name="DialogButton">
+		<param name="width">300</param>
+		<param name="height">76</param>
+		<param name="label"></param>
+		<param name="onclick"></param>
+		<param name="visible">true</param>
+		<param name="enable">true</param>
+		<definition>
+			<control type="button" id="$PARAM[id]">
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<label>$PARAM[label]</label>
+				<align>center</align>
+				<textoffsetx>16</textoffsetx>
+				<texturefocus border="38" colordiffuse="focus">frame/pill.png</texturefocus>
+				<texturenofocus border="38" colordiffuse="surface2">frame/pill.png</texturenofocus>
+				<onclick>$PARAM[onclick]</onclick>
+				<visible>$PARAM[visible]</visible>
+				<enable>$PARAM[enable]</enable>
+			</control>
+		</definition>
+	</include>
+	<include name="IconButton">
+		<param name="size">88</param>
+		<param name="onclick"></param>
+		<param name="visible">true</param>
+		<definition>
+			<control type="button" id="$PARAM[id]">
+				<width>$PARAM[size]</width>
+				<height>$PARAM[size]</height>
+				<label />
+				<texturefocus colordiffuse="focus">masks/circle.png</texturefocus>
+				<texturenofocus />
+				<onclick>$PARAM[onclick]</onclick>
+				<visible>$PARAM[visible]</visible>
+			</control>
+		</definition>
+	</include>
+
+	<!-- ============================================================ keyboard -->
+	<include name="KeyboardKey">
+		<width>96</width>
+		<height>84</height>
+		<font>f_key</font>
+		<align>center</align>
+		<textoffsetx>0</textoffsetx>
+		<texturefocus border="16" colordiffuse="focus">frame/rounded16.png</texturefocus>
+		<texturenofocus border="16" colordiffuse="surface2">frame/rounded16.png</texturenofocus>
+	</include>
+
+	<!-- ============================================================ simple list rows -->
+	<include name="SimpleListLayouts">
+		<param name="width">900</param>
+		<param name="icon">true</param>
+		<definition>
+			<itemlayout width="$PARAM[width]" height="76">
+				<control type="image">
+					<left>20</left>
+					<top>14</top>
+					<width>48</width>
+					<height>48</height>
+					<aspectratio>keep</aspectratio>
+					<texture background="true">$INFO[ListItem.Icon]</texture>
+					<visible>$PARAM[icon]</visible>
+				</control>
+				<control type="label">
+					<left>88</left>
+					<right>24</right>
+					<height>76</height>
+					<aligny>center</aligny>
+					<font>f_body</font>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+			</itemlayout>
+			<focusedlayout width="$PARAM[width]" height="76">
+				<control type="image">
+					<texture border="16" colordiffuse="focus">frame/rounded16.png</texture>
+					<visible>Control.HasFocus($PARAM[id])</visible>
+				</control>
+				<control type="image">
+					<texture border="16" colordiffuse="surface2">frame/rounded16.png</texture>
+					<visible>!Control.HasFocus($PARAM[id])</visible>
+				</control>
+				<control type="image">
+					<left>20</left>
+					<top>14</top>
+					<width>48</width>
+					<height>48</height>
+					<aspectratio>keep</aspectratio>
+					<texture background="true">$INFO[ListItem.Icon]</texture>
+					<visible>$PARAM[icon]</visible>
+				</control>
+				<control type="label">
+					<left>88</left>
+					<right>24</right>
+					<height>76</height>
+					<aligny>center</aligny>
+					<font>f_body_m</font>
+					<scroll>true</scroll>
+					<textcolor>on_focus</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+					<visible>Control.HasFocus($PARAM[id])</visible>
+				</control>
+				<control type="label">
+					<left>88</left>
+					<right>24</right>
+					<height>76</height>
+					<aligny>center</aligny>
+					<font>f_body_m</font>
+					<label>$INFO[ListItem.Label]</label>
+					<visible>!Control.HasFocus($PARAM[id])</visible>
+				</control>
+			</focusedlayout>
+		</definition>
+	</include>
+
+	<!-- ============================================================ settings rows -->
+	<include name="SettingRow">
+		<param name="height">80</param>
+		<definition>
+			<height>$PARAM[height]</height>
+			<textoffsetx>32</textoffsetx>
+			<aligny>center</aligny>
+			<font>f_body_m</font>
+			<textcolor>text</textcolor>
+			<focusedcolor>on_focus</focusedcolor>
+			<invalidcolor>invalid</invalidcolor>
+			<selectedcolor>selected</selectedcolor>
+			<texturefocus border="16" colordiffuse="focus">frame/rounded16.png</texturefocus>
+			<texturenofocus />
+		</definition>
+	</include>
+
+	<!-- ============================================================ list helpers -->
+	<include name="WatchedBadge">
+		<param name="right">12</param>
+		<param name="top">12</param>
+		<definition>
+			<control type="group">
+				<right>$PARAM[right]</right>
+				<top>$PARAM[top]</top>
+				<width>44</width>
+				<height>44</height>
+				<visible>Integer.IsGreater(ListItem.PlayCount,0)</visible>
+				<control type="image">
+					<texture colordiffuse="E6000000">masks/circle.png</texture>
+				</control>
+				<control type="image">
+					<left>8</left>
+					<top>8</top>
+					<width>28</width>
+					<height>28</height>
+					<texture colordiffuse="accent">icons/check.png</texture>
+				</control>
+			</control>
+		</definition>
+	</include>
+	<include name="ResumeBar">
+		<param name="left">14</param>
+		<param name="right">14</param>
+		<param name="bottom">14</param>
+		<definition>
+			<control type="progress">
+				<left>$PARAM[left]</left>
+				<right>$PARAM[right]</right>
+				<bottom>$PARAM[bottom]</bottom>
+				<height>8</height>
+				<info>ListItem.PercentPlayed</info>
+				<texturebg border="4" colordiffuse="80000000">frame/rounded8.png</texturebg>
+				<midtexture border="4" colordiffuse="accent">frame/rounded8.png</midtexture>
+				<visible>ListItem.IsResumable</visible>
+			</control>
+		</definition>
+	</include>
+</includes>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="skin.backlot" version="0.4.8" name="Backlot" provider-name="starslayer74">
+	<requires>
+		<import addon="xbmc.gui" version="5.17.0"/>
+		<import addon="script.backlot.helper" version="0.4.7"/>
+		<import addon="resource.uisounds.backlot" version="1.0.0"/>
+	</requires>
+	<extension point="xbmc.gui.skin" debugging="false">
+		<res width="1920" height="1080" aspect="16:9" default="true" folder="xml" />
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<summary lang="en_GB">An Android TV style skin that organizes your library by service.</summary>
+		<description lang="en_GB">Backlot groups your local movies and TV shows under the network or studio that made them (Peacock, Max, Netflix, Paramount+, Disney+ and more), with an Android TV / Google TV style home screen.</description>
+		<license>GPL-2.0-or-later (skin), Apache-2.0 (Roboto font)</license>
+		<assets>
+			<icon>resources/backlot-icon.png</icon>
+			<fanart>resources/backlot-fanart.jpg</fanart>
+		</assets>
+		<news>v0.4.8 - Info screens and episode lists no longer start a line with a stray dot when a director or runtime is missing. v0.4.7 - Check for Backlot updates button in settings. v0.4.6 - Services now include the studios their companies own (Paramount Pictures in Paramount+, MGM in Prime Video and more). Discovery+ inside Max option. Clearer studios report with one-step new services.</news>
+	</extension>
+</addon>

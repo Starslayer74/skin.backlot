@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Backlot color theme: Crimson (overrides colors/defaults.xml) -->
+<colors>
+	<color name="bg">FF140C0E</color>
+	<color name="bg_veil">F2140C0E</color>
+	<color name="bg_dim">CC140C0E</color>
+	<color name="surface">FF231417</color>
+	<color name="surface2">FF321C21</color>
+	<color name="surface3">FF42262C</color>
+	<color name="focus">FFF7E3E5</color>
+	<color name="on_focus">FF140C0E</color>
+	<color name="accent">FFFF5C6C</color>
+	<color name="selected">FFFF5C6C</color>
+	<color name="text2">FFC9B4B8</color>
+</colors>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Backlot color theme: Charcoal (overrides colors/defaults.xml) -->
+<colors>
+	<color name="bg">FF161616</color>
+	<color name="bg_veil">F2161616</color>
+	<color name="bg_dim">CC161616</color>
+	<color name="surface">FF222222</color>
+	<color name="surface2">FF2E2E2E</color>
+	<color name="surface3">FF3A3A3A</color>
+	<color name="focus">FFF2F2F2</color>
+	<color name="on_focus">FF161616</color>
+	<color name="accent">FFF5B841</color>
+	<color name="selected">FFF5B841</color>
+	<color name="text2">FFBDBDBD</color>
+</colors>

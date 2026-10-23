@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Transport controls; the title, progress bar and times come from
+     DialogSeekBar, which stays visible while the OSD is open. -->
+<window>
+	<defaultcontrol always="true">602</defaultcontrol>
+	<animation type="WindowOpen" reversible="false">
+		<effect type="fade" start="0" end="100" time="200" />
+	</animation>
+	<animation type="WindowClose" reversible="false">
+		<effect type="fade" start="100" end="0" time="160" />
+	</animation>
+	<controls>
+		<!-- transport, centered -->
+		<control type="grouplist" id="200">
+			<left>0</left>
+			<top>978</top>
+			<width>1920</width>
+			<height>84</height>
+			<orientation>horizontal</orientation>
+			<align>center</align>
+			<itemgap>20</itemgap>
+			<onleft>300</onleft>
+			<onright>300</onright>
+			<include content="OSDButton">
+				<param name="id">600</param>
+				<param name="left">70043</param>
+				<param name="right">601</param>
+				<param name="icon">icons/prev.png</param>
+				<param name="onclick">PlayerControl(Previous)</param>
+			</include>
+			<include content="OSDButton">
+				<param name="id">601</param>
+				<param name="left">600</param>
+				<param name="right">602</param>
+				<param name="icon">icons/rewind.png</param>
+				<param name="onclick">PlayerControl(Rewind)</param>
+			</include>
+			<include content="OSDButton">
+				<param name="id">602</param>
+				<param name="left">601</param>
+				<param name="right">606</param>
+				<param name="icon">icons/pause.png</param>
+				<param name="icon_alt">icons/play.png</param>
+				<param name="alt_condition">Player.Paused</param>
+				<param name="onclick">PlayerControl(Play)</param>
+			</include>
+			<include content="OSDButton">
+				<param name="id">606</param>
+				<param name="left">602</param>
+				<param name="right">607</param>
+				<param name="icon">icons/forward.png</param>
+				<param name="onclick">PlayerControl(Forward)</param>
+			</include>
+			<include content="OSDButton">
+				<param name="id">607</param>
+				<param name="left">606</param>
+				<param name="right">603</param>
+				<param name="icon">icons/next.png</param>
+				<param name="onclick">PlayerControl(Next)</param>
+			</include>
+			<include content="OSDButton">
+				<param name="id">603</param>
+				<param name="left">607</param>
+				<param name="right">70046</param>
+				<param name="icon">icons/stop.png</param>
+				<param name="onclick">PlayerControl(Stop)</param>
+			</include>
+		</control>
+		<!-- settings, right -->
+		<control type="grouplist" id="300">
+			<right>110</right>
+			<top>978</top>
+			<width>560</width>
+			<height>84</height>
+			<orientation>horizontal</orientation>
+			<align>right</align>
+			<itemgap>12</itemgap>
+			<onleft>200</onleft>
+			<onright>200</onright>
+			<include content="OSDButton">
+				<param name="id">70046</param>
+				<param name="left">603</param>
+				<param name="right">70049</param>
+				<param name="icon">icons/subtitles.png</param>
+				<param name="onclick">ActivateWindow(osdsubtitlesettings)</param>
+			</include>
+			<include content="OSDButton">
+				<param name="id">70049</param>
+				<param name="left">70046</param>
+				<param name="right">70050</param>
+				<param name="icon">icons/audio.png</param>
+				<param name="onclick">ActivateWindow(osdaudiosettings)</param>
+			</include>
+			<include content="OSDButton">
+				<param name="id">70050</param>
+				<param name="left">70049</param>
+				<param name="right">70044</param>
+				<param name="icon">icons/video.png</param>
+				<param name="onclick">ActivateWindow(osdvideosettings)</param>
+			</include>
+			<include content="OSDButton">
+				<param name="id">70044</param>
+				<param name="left">70050</param>
+				<param name="right">70043</param>
+				<param name="icon">icons/bookmark.png</param>
+				<param name="onclick">ActivateWindow(videobookmarks)</param>
+			</include>
+			<include content="OSDButton">
+				<param name="id">70043</param>
+				<param name="left">70044</param>
+				<param name="right">600</param>
+				<param name="icon">icons/info.png</param>
+				<param name="onclick">Info</param>
+			</include>
+		</control>
+	</controls>
+</window>

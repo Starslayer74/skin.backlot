@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<animation effect="fade" start="0" end="100" time="300" delay="200">WindowOpen</animation>
+	<animation effect="fade" start="100" end="0" time="160">WindowClose</animation>
+	<controls>
+		<control type="group">
+			<visible>!Window.IsActive(startup) + !Player.Caching + String.IsEmpty(Window(Home).Property(script.preshowexperience.running))</visible>
+			<left>890</left>
+			<top>470</top>
+			<width>140</width>
+			<height>140</height>
+			<control type="image">
+				<texture colordiffuse="CC000000">masks/circle.png</texture>
+			</control>
+			<control type="image">
+				<left>30</left>
+				<top>30</top>
+				<width>80</width>
+				<height>80</height>
+				<texture colordiffuse="accent">spinner.png</texture>
+				<animation effect="rotate" end="-360" center="auto" time="1000" loop="true" condition="true">Conditional</animation>
+			</control>
+		</control>
+	</controls>
+</window>

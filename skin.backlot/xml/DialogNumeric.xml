@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- GENERATED layout: numeric entry (PINs, times, dates, IP addresses). -->
+<window>
+	<defaultcontrol always="true">21</defaultcontrol>
+	<include>Anim_DialogPop</include>
+	<controls>
+		<include>DimBehind</include>
+		<control type="group">
+			<left>608</left>
+			<top>134</top>
+			<width>704</width>
+			<height>812</height>
+			<include>DialogFrame</include>
+			<control type="textbox" id="1">
+				<left>56</left>
+				<top>36</top>
+				<width>592</width>
+				<height>80</height>
+				<font>f_sub</font>
+				<textcolor>text</textcolor>
+				<aligny>center</aligny>
+			</control>
+			<control type="image">
+				<left>56</left>
+				<top>130</top>
+				<width>592</width>
+				<height>100</height>
+				<texture border="16" colordiffuse="surface2">frame/rounded16.png</texture>
+			</control>
+			<control type="label" id="4">
+				<left>56</left>
+				<top>130</top>
+				<width>592</width>
+				<height>100</height>
+				<align>center</align>
+				<aligny>center</aligny>
+				<font>f_title</font>
+			</control>
+			<control type="group">
+				<left>56</left>
+				<top>270</top>
+				<control type="button" id="11">
+					<left>0</left>
+					<top>0</top>
+					<width>110</width>
+					<height>110</height>
+					<label>1</label>
+					<font>f_key</font>
+					<align>center</align>
+					<textoffsetx>0</textoffsetx>
+					<onup>20</onup>
+					<ondown>14</ondown>
+					<onleft>23</onleft>
+					<onright>12</onright>
+				</control>
+				<control type="button" id="12">
+					<left>124</left>
+					<top>0</top>
+					<width>110</width>
+					<height>110</height>
+					<label>2</label>
+					<font>f_key</font>
+					<align>center</align>
+					<textoffsetx>0</textoffsetx>
+					<onup>10</onup>
+					<ondown>15</ondown>
+					<onleft>11</onleft>
+					<onright>13</onright>
+				</control>
+				<control type="button" id="13">
+					<left>248</left>
+					<top>0</top>
+					<width>110</width>
+					<height>110</height>
+					<label>3</label>
+					<font>f_key</font>
+					<align>center</align>
+					<textoffsetx>0</textoffsetx>
+					<onup>22</onup>
+					<ondown>16</ondown>
+					<onleft>12</onleft>
+					<onright>23</onright>
+				</control>
+				<control type="button" id="14">
+					<left>0</left>
+					<top>124</top>
+					<width>110</width>
+					<height>110</height>
+					<label>4</label>
+					<font>f_key</font>
+					<align>center</align>
+					<textoffsetx>0</textoffsetx>
+					<onup>11</onup>
+					<ondown>17</ondown>
+					<onleft>23</onleft>
+					<onright>15</onright>
+				</control>
+				<control type="button" id="15">
+					<left>124</left>
+					<top>124</top>
+					<width>110</width>
+					<height>110</height>
+					<label>5</label>
+					<font>f_key</font>
+					<align>center</align>
+					<textoffsetx>0</textoffsetx>
+					<onup>12</onup>
+					<ondown>18</ondown>
+					<onleft>14</onleft>
+					<onright>16</onright>
+				</control>
+				<control type="button" id="16">
+					<left>248</left>
+					<top>124</top>
+					<width>110</width>
+					<height>110</height>
+					<label>6</label>
+					<font>f_key</font>
+					<align>center</align>
+					<textoffsetx>0</textoffsetx>
+					<onup>13</onup>
+					<ondown>19</ondown>
+					<onleft>15</onleft>
+					<onright>23</onright>
+				</control>
+				<control type="button" id="17">
+					<left>0</left>
+					<top>248</top>
+					<width>110</width>
+					<height>110</height>
+					<label>7</label>
+					<font>f_key</font>
+					<align>center</align>
+					<textoffsetx>0</textoffsetx>
+					<onup>14</onup>
+					<ondown>20</ondown>
+					<onleft>23</onleft>
+					<onright>18</onright>
+				</control>
+				<control type="button" id="18">
+					<left>124</left>
+					<top>248</top>
+					<width>110</width>
+					<height>110</height>
+					<label>8</label>
+					<font>f_key</font>
+					<align>center</align>
+					<textoffsetx>0</textoffsetx>
+					<onup>15</onup>
+					<ondown>10</ondown>
+					<onleft>17</onleft>
+					<onright>19</onright>
+				</control>
+				<control type="button" id="19">
+					<left>248</left>
+					<top>248</top>
+					<width>110</width>
+					<height>110</height>
+					<label>9</label>
+					<font>f_key</font>
+					<align>center</align>
+					<textoffsetx>0</textoffsetx>
+					<onup>16</onup>
+					<ondown>22</ondown>
+					<onleft>18</onleft>
+					<onright>21</onright>
+				</control>
+				<control type="button" id="20">
+					<left>0</left>
+					<top>372</top>
+					<width>110</width>
+					<height>110</height>
+					<label>&lt;</label>
+					<font>f_key</font>
+					<align>center</align>
+					<textoffsetx>0</textoffsetx>
+					<onup>17</onup>
+					<ondown>11</ondown>
+					<onleft>23</onleft>
+					<onright>10</onright>
+				</control>
+				<control type="button" id="10">
+					<left>124</left>
+					<top>372</top>
+					<width>110</width>
+					<height>110</height>
+					<label>0</label>
+					<font>f_key</font>
+					<align>center</align>
+					<textoffsetx>0</textoffsetx>
+					<onup>18</onup>
+					<ondown>12</ondown>
+					<onleft>20</onleft>
+					<onright>22</onright>
+				</control>
+				<control type="button" id="22">
+					<left>248</left>
+					<top>372</top>
+					<width>110</width>
+					<height>110</height>
+					<label>&gt;</label>
+					<font>f_key</font>
+					<align>center</align>
+					<textoffsetx>0</textoffsetx>
+					<onup>19</onup>
+					<ondown>13</ondown>
+					<onleft>10</onleft>
+					<onright>21</onright>
+				</control>
+				<control type="button" id="23">
+					<left>372</left>
+					<top>0</top>
+					<width>220</width>
+					<height>234</height>
+					<label>$LOCALIZE[20181]</label>
+					<font>f_key</font>
+					<align>center</align>
+					<textoffsetx>0</textoffsetx>
+					<onup>21</onup>
+					<ondown>21</ondown>
+					<onleft>13</onleft>
+					<onright>11</onright>
+				</control>
+				<control type="button" id="21">
+					<left>372</left>
+					<top>248</top>
+					<width>220</width>
+					<height>234</height>
+					<label>$LOCALIZE[20177]</label>
+					<font>f_key</font>
+					<align>center</align>
+					<textoffsetx>0</textoffsetx>
+					<onup>23</onup>
+					<ondown>23</ondown>
+					<onleft>19</onleft>
+					<onright>17</onright>
+				</control>
+			</control>
+		</control>
+	</controls>
+</window>

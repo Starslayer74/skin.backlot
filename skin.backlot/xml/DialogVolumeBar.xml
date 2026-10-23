@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<visible>Window.IsActive(volumebar)</visible>
+	<animation effect="fade" start="0" end="100" time="150">WindowOpen</animation>
+	<animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+	<controls>
+		<control type="group">
+			<right>60</right>
+			<top>150</top>
+			<width>460</width>
+			<height>96</height>
+			<include>DialogFrame</include>
+			<control type="image">
+				<left>26</left>
+				<top>26</top>
+				<width>44</width>
+				<height>44</height>
+				<texture colordiffuse="text">icons/audio.png</texture>
+			</control>
+			<control type="progress" id="29999">
+				<left>90</left>
+				<top>44</top>
+				<width>230</width>
+				<height>8</height>
+			</control>
+			<control type="label">
+				<left>320</left>
+				<top>28</top>
+				<width>120</width>
+				<height>40</height>
+				<align>right</align>
+				<font>f_body_m</font>
+				<textcolor>invalid</textcolor>
+				<label>Muted</label>
+				<visible>Player.Muted</visible>
+			</control>
+		</control>
+	</controls>
+</window>

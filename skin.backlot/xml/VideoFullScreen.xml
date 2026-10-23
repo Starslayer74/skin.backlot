@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol />
+	<controls>
+		<!-- codec info (Kodi fills 10/11/12 when toggled) -->
+		<control type="group" id="0">
+			<control type="label" id="10">
+				<left>80</left>
+				<top>40</top>
+				<width>1760</width>
+				<height>36</height>
+				<font>f_mono</font>
+				<shadowcolor>shadow</shadowcolor>
+			</control>
+			<control type="label" id="11">
+				<left>80</left>
+				<top>76</top>
+				<width>1760</width>
+				<height>36</height>
+				<font>f_mono</font>
+				<shadowcolor>shadow</shadowcolor>
+			</control>
+			<control type="label" id="12">
+				<left>80</left>
+				<top>112</top>
+				<width>1760</width>
+				<height>36</height>
+				<font>f_mono</font>
+				<shadowcolor>shadow</shadowcolor>
+			</control>
+		</control>
+		<!-- buffering -->
+		<control type="group" id="1">
+			<left>880</left>
+			<top>460</top>
+			<width>160</width>
+			<height>160</height>
+			<visible>Player.Caching + Integer.IsGreater(Player.CacheLevel,0)</visible>
+			<animation effect="fade" delay="300" time="200">Visible</animation>
+			<animation effect="fade" time="150">Hidden</animation>
+			<control type="image">
+				<texture colordiffuse="B3000000">masks/circle.png</texture>
+			</control>
+			<control type="image">
+				<left>24</left>
+				<top>24</top>
+				<width>112</width>
+				<height>112</height>
+				<texture colordiffuse="accent">spinner.png</texture>
+				<animation effect="rotate" end="-360" center="auto" time="1100" loop="true" condition="true">Conditional</animation>
+			</control>
+			<control type="label">
+				<width>160</width>
+				<height>160</height>
+				<align>center</align>
+				<aligny>center</aligny>
+				<font>f_body_m</font>
+				<label>$INFO[Player.CacheLevel,,%]</label>
+			</control>
+		</control>
+	</controls>
+</window>

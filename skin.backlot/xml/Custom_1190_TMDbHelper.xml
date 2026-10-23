@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Base window for TMDb Helper's info window manager (actor pages, similar
+     titles). Holds the item TMDb Helper is opening; the info dialog sits on top. -->
+<window type="window" id="1190">
+	<defaultcontrol always="true">9999</defaultcontrol>
+	<backgroundcolor>bg</backgroundcolor>
+	<controls>
+		<include>Background</include>
+		<control type="list" id="9999">
+			<left>-1000</left>
+			<top>-1000</top>
+			<width>1</width>
+			<height>1</height>
+			<itemlayout />
+			<focusedlayout />
+			<content target="videos">$INFO[Window(Home).Property(TMDbHelper.Path.Current)]</content>
+		</control>
+		<control type="group">
+			<visible>Container(9999).IsUpdating + !Window.IsVisible(DialogVideoInfo.xml)</visible>
+			<left>890</left>
+			<top>470</top>
+			<width>140</width>
+			<height>140</height>
+			<control type="image">
+				<texture colordiffuse="CC000000">masks/circle.png</texture>
+			</control>
+			<control type="image">
+				<left>30</left>
+				<top>30</top>
+				<width>80</width>
+				<height>80</height>
+				<texture colordiffuse="accent">spinner.png</texture>
+				<animation effect="rotate" end="-360" center="auto" time="1000" loop="true" condition="true">Conditional</animation>
+			</control>
+		</control>
+	</controls>
+</window>

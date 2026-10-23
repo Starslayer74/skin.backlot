@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">50</defaultcontrol>
+	<backgroundcolor>bg</backgroundcolor>
+	<views>50</views>
+	<menucontrol>9000</menucontrol>
+	<controls>
+		<include>Background</include>
+		<include>View_50_List</include>
+		<include>LibraryHeader</include>
+		<include>Clock</include>
+		<control type="button" id="3">
+			<include>HiddenObject</include>
+		</control>
+		<control type="button" id="4">
+			<include>HiddenObject</include>
+		</control>
+		<control type="group">
+			<left>-600</left>
+			<animation effect="slide" end="600,0" time="260" tween="cubic" easing="out" condition="ControlGroup(9000).HasFocus()" reversible="true">Conditional</animation>
+			<control type="image">
+				<left>600</left>
+				<top>0</top>
+				<width>1920</width>
+				<height>1080</height>
+				<texture colordiffuse="99000000">colors/white.png</texture>
+				<visible>ControlGroup(9000).HasFocus()</visible>
+			</control>
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>600</width>
+				<height>1080</height>
+				<texture colordiffuse="surface">colors/white.png</texture>
+			</control>
+			<control type="label">
+				<left>50</left>
+				<top>60</top>
+				<width>500</width>
+				<height>60</height>
+				<font>f_head</font>
+				<label>Options</label>
+			</control>
+			<control type="grouplist" id="9000">
+				<left>50</left>
+				<top>150</top>
+				<width>500</width>
+				<height>880</height>
+				<itemgap>8</itemgap>
+				<onleft>9000</onleft>
+				<onright>50</onright>
+				<onup>9000</onup>
+				<ondown>9000</ondown>
+				<onback>50</onback>
+				<control type="button" id="6053">
+					<include>OptionsMenuItem</include>
+					<label>Sort by</label>
+					<label2>$INFO[Container.SortMethod]</label2>
+					<onclick>SendClick(3)</onclick>
+					<visible>Control.IsEnabled(3)</visible>
+				</control>
+				<control type="button" id="6052">
+					<include>OptionsMenuItem</include>
+					<label>Order</label>
+					<label2>$INFO[Container.SortOrder]</label2>
+					<onclick>SendClick(4)</onclick>
+					<visible>Control.IsEnabled(4)</visible>
+				</control>
+				<control type="radiobutton" id="7">
+					<include>OptionsMenuItem</include>
+					<label>$LOCALIZE[25001]</label>
+					<visible>Control.IsEnabled(7)</visible>
+				</control>
+				<control type="radiobutton" id="8">
+					<include>OptionsMenuItem</include>
+					<label>$LOCALIZE[24999]</label>
+					<visible>Control.IsEnabled(8)</visible>
+				</control>
+				<control type="button" id="9">
+					<include>OptionsMenuItem</include>
+					<label>$LOCALIZE[24034]</label>
+				</control>
+				<control type="button" id="5">
+					<include>OptionsMenuItem</include>
+					<label>$LOCALIZE[10004]</label>
+				</control>
+			</control>
+		</control>
+	</controls>
+</window>

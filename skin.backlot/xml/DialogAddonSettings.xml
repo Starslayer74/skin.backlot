@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol>5</defaultcontrol>
+	<include>Anim_DialogPop</include>
+	<controls>
+		<include>DimBehind</include>
+		<control type="group">
+			<left>80</left>
+			<top>80</top>
+			<width>1760</width>
+			<height>920</height>
+			<include>DialogFrame</include>
+			<include content="DialogHeader">
+				<param name="id">2</param>
+			</include>
+			<control type="grouplist" id="3">
+				<left>36</left>
+				<top>112</top>
+				<width>380</width>
+				<height>580</height>
+				<itemgap>6</itemgap>
+				<onleft>9000</onleft>
+				<onright>5</onright>
+				<onup>20</onup>
+				<ondown>20</ondown>
+			</control>
+			<control type="button" id="10">
+				<description>Category button template</description>
+				<width>380</width>
+				<height>76</height>
+				<textoffsetx>28</textoffsetx>
+				<texturenofocus />
+			</control>
+			<include content="SettingsLevelButton">
+				<param name="left">36</param>
+				<param name="top">720</param>
+				<param name="width">380</param>
+			</include>
+			<control type="grouplist" id="5">
+				<left>446</left>
+				<top>112</top>
+				<width>960</width>
+				<height>650</height>
+				<itemgap>4</itemgap>
+				<pagecontrol>60</pagecontrol>
+				<onleft>3</onleft>
+				<onright>60</onright>
+				<onup>5</onup>
+				<ondown>5</ondown>
+			</control>
+			<include content="SettingTemplates">
+				<param name="width">960</param>
+			</include>
+			<control type="scrollbar" id="60">
+				<left>1420</left>
+				<top>112</top>
+				<width>8</width>
+				<height>650</height>
+				<onleft>5</onleft>
+				<onright>9000</onright>
+			</control>
+			<control type="textbox" id="6">
+				<left>446</left>
+				<top>790</top>
+				<width>960</width>
+				<height>100</height>
+				<font>f_small</font>
+				<textcolor>text2</textcolor>
+			</control>
+			<control type="grouplist" id="9000">
+				<left>1450</left>
+				<top>112</top>
+				<width>270</width>
+				<height>300</height>
+				<itemgap>16</itemgap>
+				<onleft>5</onleft>
+				<onright>3</onright>
+				<include content="DialogButton">
+					<param name="id">28</param>
+					<param name="width">270</param>
+				</include>
+				<include content="DialogButton">
+					<param name="id">29</param>
+					<param name="width">270</param>
+				</include>
+				<include content="DialogButton">
+					<param name="id">30</param>
+					<param name="width">270</param>
+				</include>
+			</control>
+		</control>
+	</controls>
+</window>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Backlot color theme: OLED Black (overrides colors/defaults.xml) -->
+<colors>
+	<color name="bg">FF000000</color>
+	<color name="bg_veil">F2000000</color>
+	<color name="bg_dim">CC000000</color>
+	<color name="surface">FF121212</color>
+	<color name="surface2">FF1E1E1E</color>
+	<color name="surface3">FF2A2A2A</color>
+	<color name="focus">FFFFFFFF</color>
+	<color name="on_focus">FF000000</color>
+	<color name="accent">FF8AB4F8</color>
+	<color name="selected">FF8AB4F8</color>
+	<color name="text2">FFB0B0B0</color>
+</colors>

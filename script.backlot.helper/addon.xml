@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.backlot.helper" name="Backlot Helper" version="0.4.7" provider-name="starslayer74">
+	<requires>
+		<import addon="xbmc.python" version="3.0.0"/>
+		<import addon="resource.images.studios.coloured" version="0.0.20"/>
+	</requires>
+	<extension point="xbmc.python.script" library="default.py">
+		<provides>executable</provides>
+	</extension>
+	<extension point="xbmc.python.pluginsource" library="plugin.py">
+		<provides></provides>
+	</extension>
+	<extension point="xbmc.service" library="service.py" start="startup"/>
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<summary lang="en_GB">Service presets, logos and custom services for the Backlot skin.</summary>
+		<description lang="en_GB">Builds the service tiles for the Backlot skin from the studios and networks in your library. Turn presets on or off, reorder them, add your own services, set custom art, and export or import your setup.</description>
+		<license>GPL-2.0-or-later</license>
+		<assets>
+			<icon>resources/backlot-helper-icon.png</icon>
+		</assets>
+		<news>v0.4.6 - Fuller studio lists per service, Discovery+ inside Max, one-step services from the studios report.</news>
+	</extension>
+</addon>

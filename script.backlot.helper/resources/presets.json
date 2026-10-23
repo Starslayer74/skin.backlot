@@ -1,0 +1,273 @@
+{
+  "_note": "Preset services. 'matches' are studio/network names; a title belongs to a service when any of its studios contains one of them (case-insensitive). 'enabled' is the out-of-the-box state. Art lives in resources/media/services/<id>_banner.png and <id>_icon.png.",
+  "services": [
+    {
+      "id": "peacock",
+      "name": "Peacock",
+      "enabled": true,
+      "color": "FF1E1E1E",
+      "matches": [
+        "NBC",
+        "Universal",
+        "Focus Features",
+        "DreamWorks Animation",
+        "Illumination",
+        "Bravo",
+        "USA Network",
+        "Syfy",
+        "E!",
+        "Oxygen",
+        "Telemundo",
+        "Peacock"
+      ],
+      "logo": "Peacock",
+      "android_app": "com.peacocktv.peacockandroid",
+      "website": "https://www.peacocktv.com"
+    },
+    {
+      "id": "max",
+      "name": "Max",
+      "enabled": true,
+      "color": "FF0A2AD6",
+      "matches": [
+        "HBO",
+        "Cinemax",
+        "Warner Bros.",
+        "New Line",
+        "DC Entertainment",
+        "DC Films",
+        "DC Studios",
+        "Castle Rock",
+        "Turner",
+        "TNT",
+        "TBS",
+        "Adult Swim",
+        "Cartoon Network",
+        "CNN",
+        "Max Original"
+      ],
+      "logo": "special://home/addons/script.backlot.helper/resources/media/logos/max.png",
+      "android_app": "com.wbd.stream",
+      "website": "https://www.hbomax.com"
+    },
+    {
+      "id": "netflix",
+      "name": "Netflix",
+      "enabled": true,
+      "color": "FF141414",
+      "matches": [
+        "Netflix"
+      ],
+      "logo": "Netflix",
+      "android_app": "com.netflix.ninja",
+      "website": "https://www.netflix.com"
+    },
+    {
+      "id": "paramount",
+      "name": "Paramount+",
+      "enabled": true,
+      "color": "FF0057E6",
+      "matches": [
+        "CBS",
+        "Showtime",
+        "Paramount Pictures",
+        "Paramount Television",
+        "Paramount Animation",
+        "Paramount Players",
+        "Paramount+",
+        "Nickelodeon",
+        "MTV",
+        "Comedy Central",
+        "BET Networks",
+        "Skydance",
+        "BET+"
+      ],
+      "logo": "Paramount+",
+      "android_app": "com.cbs.ott",
+      "website": "https://www.paramountplus.com"
+    },
+    {
+      "id": "disney",
+      "name": "Disney+",
+      "enabled": true,
+      "color": "FF13285E",
+      "matches": [
+        "ABC",
+        "Disney",
+        "Pixar",
+        "Marvel",
+        "Lucasfilm",
+        "20th Century",
+        "Searchlight",
+        "National Geographic",
+        "Touchstone",
+        "Freeform"
+      ],
+      "logo": "Disney+",
+      "android_app": "com.disney.disneyplus",
+      "website": "https://www.disneyplus.com"
+    },
+    {
+      "id": "cw",
+      "name": "The CW",
+      "enabled": true,
+      "color": "FF1F7A3A",
+      "matches": [
+        "The CW",
+        "Paramount Network",
+        "The WB"
+      ],
+      "logo": "The CW",
+      "android_app": "com.cw.fullepisodes.android",
+      "website": "https://www.cwtv.com"
+    },
+    {
+      "id": "amc",
+      "name": "AMC+",
+      "enabled": true,
+      "color": "FF202020",
+      "matches": [
+        "AMC",
+        "Shudder",
+        "IFC",
+        "Sundance",
+        "Acorn"
+      ],
+      "logo": "AMC+",
+      "android_app": "",
+      "website": "https://www.amcplus.com"
+    },
+    {
+      "id": "british",
+      "name": "British",
+      "enabled": true,
+      "color": "FF7A0019",
+      "matches": [
+        "BBC",
+        "ITV",
+        "Channel 4",
+        "Sky UK",
+        "Sky Atlantic",
+        "Sky Studios"
+      ],
+      "logo": "BBC",
+      "android_app": "uk.co.bbc.iplayer",
+      "website": "https://www.bbc.co.uk/iplayer"
+    },
+    {
+      "id": "prime",
+      "name": "Prime Video",
+      "enabled": false,
+      "color": "FF0F2E4C",
+      "matches": [
+        "Amazon",
+        "MGM",
+        "Metro-Goldwyn-Mayer",
+        "United Artists",
+        "Orion Pictures",
+        "Epix"
+      ],
+      "logo": "Amazon Prime Video",
+      "android_app": "com.amazon.amazonvideo.livingroom",
+      "website": "https://www.primevideo.com"
+    },
+    {
+      "id": "appletv",
+      "name": "Apple TV+",
+      "enabled": false,
+      "color": "FF111111",
+      "matches": [
+        "Apple TV+",
+        "Apple Studios",
+        "Apple Original Films",
+        "Apple TV"
+      ],
+      "logo": "Apple TV+",
+      "android_app": "com.apple.atve.androidtv.appletv",
+      "website": "https://tv.apple.com"
+    },
+    {
+      "id": "hulu",
+      "name": "Hulu / FX",
+      "enabled": false,
+      "color": "FF0B5C37",
+      "matches": [
+        "Hulu",
+        "FX"
+      ],
+      "logo": "Hulu",
+      "android_app": "com.hulu.livingroomplus",
+      "website": "https://www.hulu.com"
+    },
+    {
+      "id": "discovery",
+      "name": "Discovery",
+      "enabled": false,
+      "color": "FF0B4F9C",
+      "matches": [
+        "Discovery",
+        "TLC",
+        "HGTV",
+        "Food Network",
+        "Animal Planet",
+        "Travel Channel",
+        "Investigation Discovery",
+        "Science Channel"
+      ],
+      "logo": "Discovery+",
+      "android_app": "",
+      "website": "https://www.discoveryplus.com"
+    }
+  ],
+  "palette": [
+    [
+      "Charcoal",
+      "FF2A2F3A"
+    ],
+    [
+      "Black",
+      "FF141414"
+    ],
+    [
+      "Navy",
+      "FF13285E"
+    ],
+    [
+      "Blue",
+      "FF0057E6"
+    ],
+    [
+      "Teal",
+      "FF0B5C5C"
+    ],
+    [
+      "Green",
+      "FF1F7A3A"
+    ],
+    [
+      "Olive",
+      "FF5A5A12"
+    ],
+    [
+      "Orange",
+      "FFB5520B"
+    ],
+    [
+      "Red",
+      "FF9B1020"
+    ],
+    [
+      "Burgundy",
+      "FF6A0F2B"
+    ],
+    [
+      "Purple",
+      "FF4B1F7A"
+    ],
+    [
+      "Pink",
+      "FF9C2563"
+    ]
+  ],
+  "presets_version": 2
+}

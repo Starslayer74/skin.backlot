@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Backlot navigation sounds (original recordings made for Backlot). -->
+<sounds>
+	<actions>
+		<action><name>left</name><file>cursor.wav</file></action>
+		<action><name>right</name><file>cursor.wav</file></action>
+		<action><name>up</name><file>cursor.wav</file></action>
+		<action><name>down</name><file>cursor.wav</file></action>
+		<action><name>pageup</name><file>cursor.wav</file></action>
+		<action><name>pagedown</name><file>cursor.wav</file></action>
+		<action><name>select</name><file>select.wav</file></action>
+		<action><name>back</name><file>back.wav</file></action>
+		<action><name>previousmenu</name><file>back.wav</file></action>
+		<action><name>parentdir</name><file>back.wav</file></action>
+		<action><name>contextmenu</name><file>select.wav</file></action>
+		<action><name>info</name><file>select.wav</file></action>
+	</actions>
+	<windows>
+		<window><name>notification</name><activate>notify.wav</activate></window>
+		<window><name>yesnodialog</name><activate>notify.wav</activate></window>
+		<window><name>okdialog</name><activate>notify.wav</activate></window>
+	</windows>
+</sounds>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Backlot color theme: Forest (overrides colors/defaults.xml) -->
+<colors>
+	<color name="bg">FF0C130F</color>
+	<color name="bg_veil">F20C130F</color>
+	<color name="bg_dim">CC0C130F</color>
+	<color name="surface">FF15211A</color>
+	<color name="surface2">FF1E2E25</color>
+	<color name="surface3">FF283C31</color>
+	<color name="focus">FFE3F2E6</color>
+	<color name="on_focus">FF0C130F</color>
+	<color name="accent">FF7BD389</color>
+	<color name="selected">FF7BD389</color>
+	<color name="text2">FFB1C4B6</color>
+</colors>

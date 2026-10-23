@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addons>
+<addon id="repository.backlot" name="Backlot Repository" version="1.1.0" provider-name="starslayer74">
+	<extension point="xbmc.addon.repository" name="Backlot Repository">
+		<dir>
+			<info compressed="false">https://raw.githubusercontent.com/Starslayer74/skin.backlot/main/docs/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/Starslayer74/skin.backlot/main/docs/addons.xml.md5</checksum>
+			<datadir zip="true">https://raw.githubusercontent.com/Starslayer74/skin.backlot/main/docs/zips/</datadir>
+		</dir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en_GB">Backlot skin and Backlot Helper.</summary>
+		<description lang="en_GB">Install Backlot from here and Kodi brings in the helper automatically. Updates arrive on their own.</description>
+		<platform>all</platform>
+		<assets>
+			<icon>backlot-repo-icon.png</icon>
+		</assets>
+	</extension>
+</addon>
+<addon id="script.backlot.helper" name="Backlot Helper" version="0.4.7" provider-name="starslayer74">
+	<requires>
+		<import addon="xbmc.python" version="3.0.0"/>
+		<import addon="resource.images.studios.coloured" version="0.0.20"/>
+	</requires>
+	<extension point="xbmc.python.script" library="default.py">
+		<provides>executable</provides>
+	</extension>
+	<extension point="xbmc.python.pluginsource" library="plugin.py">
+		<provides></provides>
+	</extension>
+	<extension point="xbmc.service" library="service.py" start="startup"/>
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<summary lang="en_GB">Service presets, logos and custom services for the Backlot skin.</summary>
+		<description lang="en_GB">Builds the service tiles for the Backlot skin from the studios and networks in your library. Turn presets on or off, reorder them, add your own services, set custom art, and export or import your setup.</description>
+		<license>GPL-2.0-or-later</license>
+		<assets>
+			<icon>resources/backlot-helper-icon.png</icon>
+		</assets>
+		<news>v0.4.6 - Fuller studio lists per service, Discovery+ inside Max, one-step services from the studios report.</news>
+	</extension>
+</addon>
+<addon id="skin.backlot" version="0.4.8" name="Backlot" provider-name="starslayer74">
+	<requires>
+		<import addon="xbmc.gui" version="5.17.0"/>
+		<import addon="script.backlot.helper" version="0.4.7"/>
+		<import addon="resource.uisounds.backlot" version="1.0.0"/>
+	</requires>
+	<extension point="xbmc.gui.skin" debugging="false">
+		<res width="1920" height="1080" aspect="16:9" default="true" folder="xml" />
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<summary lang="en_GB">An Android TV style skin that organizes your library by service.</summary>
+		<description lang="en_GB">Backlot groups your local movies and TV shows under the network or studio that made them (Peacock, Max, Netflix, Paramount+, Disney+ and more), with an Android TV / Google TV style home screen.</description>
+		<license>GPL-2.0-or-later (skin), Apache-2.0 (Roboto font)</license>
+		<assets>
+			<icon>resources/backlot-icon.png</icon>
+			<fanart>resources/backlot-fanart.jpg</fanart>
+		</assets>
+		<news>v0.4.8 - Info screens and episode lists no longer start a line with a stray dot when a director or runtime is missing. v0.4.7 - Check for Backlot updates button in settings. v0.4.6 - Services now include the studios their companies own (Paramount Pictures in Paramount+, MGM in Prime Video and more). Discovery+ inside Max option. Clearer studios report with one-step new services.</news>
+	</extension>
+</addon>
+<addon id="resource.uisounds.backlot" version="1.0.0" name="Backlot Sounds" provider-name="starslayer74">
+	<requires>
+		<import addon="kodi.resource" version="1.0.0"/>
+	</requires>
+	<extension point="kodi.resource.uisounds"/>
+	<extension point="kodi.addon.metadata">
+		<summary lang="en_GB">Soft navigation sounds for the Backlot skin.</summary>
+		<description lang="en_GB">Gentle ticks as you move and a pop when you select, in the spirit of Android TV.</description>
+		<platform>all</platform>
+		<license>CC0-1.0</license>
+		<assets>
+			<icon>backlot-sounds-icon.png</icon>
+		</assets>
+	</extension>
+</addon>
+<addon id="repository.jurialmunkey" name="jurialmunkey Alpha Repository" version="3.5" provider-name="jurialmunkey">
+    <extension point="xbmc.addon.repository" name="jurialmunkey Alpha Repository">
+        <dir>
+            <info compressed="false">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/repo/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/repo/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/repo/zips/</datadir>
+        </dir>
+        <dir minversion="19.9.1" maxversion="20.9.0">
+            <info compressed="false">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/nexusrepo/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/nexusrepo/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/nexusrepo/zips/</datadir>
+        </dir>
+        <dir minversion="20.9.1">
+            <info compressed="false">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/omega/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/omega/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/omega/zips/</datadir>
+        </dir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>jurialmunkey Alpha Repository</summary>
+        <description>A repository for alpha releases of jurialmunkey's skins.</description>
+        <disclaimer></disclaimer>
+        <platform>all</platform>
+        <assets>
+            <icon>icon.png</icon>
+        </assets>
+    </extension>
+</addon>
+</addons>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">95</defaultcontrol>
+	<backgroundcolor>bg</backgroundcolor>
+	<include>Anim_WindowFade</include>
+	<controls>
+		<include>Background</include>
+		<control type="image">
+			<left>0</left>
+			<top>0</top>
+			<width>560</width>
+			<height>1080</height>
+			<texture colordiffuse="surface">colors/white.png</texture>
+		</control>
+		<control type="label">
+			<left>70</left>
+			<top>50</top>
+			<width>440</width>
+			<height>60</height>
+			<font>f_head</font>
+			<label>$LOCALIZE[130]</label>
+		</control>
+		<include>Clock</include>
+		<control type="grouplist" id="9000">
+			<left>50</left>
+			<top>140</top>
+			<width>460</width>
+			<height>880</height>
+			<itemgap>6</itemgap>
+			<onleft>9000</onleft>
+			<onright>30</onright>
+			<control type="button" id="95">
+				<width>460</width>
+				<height>76</height>
+				<textoffsetx>32</textoffsetx>
+				<texturenofocus />
+				<label>$LOCALIZE[20037]</label>
+			</control>
+			<control type="button" id="94">
+				<width>460</width>
+				<height>76</height>
+				<textoffsetx>32</textoffsetx>
+				<texturenofocus />
+				<label>$LOCALIZE[13277]</label>
+			</control>
+			<control type="button" id="96">
+				<width>460</width>
+				<height>76</height>
+				<textoffsetx>32</textoffsetx>
+				<texturenofocus />
+				<label>$LOCALIZE[13279]</label>
+			</control>
+			<control type="button" id="97">
+				<width>460</width>
+				<height>76</height>
+				<textoffsetx>32</textoffsetx>
+				<texturenofocus />
+				<label>$LOCALIZE[13280]</label>
+			</control>
+			<control type="button" id="98">
+				<width>460</width>
+				<height>76</height>
+				<textoffsetx>32</textoffsetx>
+				<texturenofocus />
+				<label>$LOCALIZE[13281]</label>
+			</control>
+			<control type="button" id="99">
+				<width>460</width>
+				<height>76</height>
+				<textoffsetx>32</textoffsetx>
+				<texturenofocus />
+				<label>$LOCALIZE[19191]</label>
+			</control>
+			<control type="button" id="100">
+				<width>460</width>
+				<height>76</height>
+				<textoffsetx>32</textoffsetx>
+				<texturenofocus />
+				<label>$LOCALIZE[12389]</label>
+			</control>
+			<control type="button" id="101">
+				<width>460</width>
+				<height>76</height>
+				<textoffsetx>32</textoffsetx>
+				<texturenofocus />
+				<label>$LOCALIZE[12396]</label>
+			</control>
+		</control>
+		<control type="grouplist">
+			<left>650</left>
+			<top>140</top>
+			<width>1180</width>
+			<height>700</height>
+			<itemgap>0</itemgap>
+			<control type="label" id="2">
+				<width>1180</width>
+				<height>56</height>
+				<font>f_body</font>
+				<textcolor>text2</textcolor>
+			</control>
+			<control type="label" id="3">
+				<width>1180</width>
+				<height>56</height>
+				<font>f_body</font>
+				<textcolor>text2</textcolor>
+			</control>
+			<control type="label" id="4">
+				<width>1180</width>
+				<height>56</height>
+				<font>f_body</font>
+				<textcolor>text2</textcolor>
+			</control>
+			<control type="label" id="5">
+				<width>1180</width>
+				<height>56</height>
+				<font>f_body</font>
+				<textcolor>text2</textcolor>
+			</control>
+			<control type="label" id="6">
+				<width>1180</width>
+				<height>56</height>
+				<font>f_body</font>
+				<textcolor>text2</textcolor>
+			</control>
+			<control type="label" id="7">
+				<width>1180</width>
+				<height>56</height>
+				<font>f_body</font>
+				<textcolor>text2</textcolor>
+			</control>
+			<control type="label" id="8">
+				<width>1180</width>
+				<height>56</height>
+				<font>f_body</font>
+				<textcolor>text2</textcolor>
+			</control>
+			<control type="label" id="9">
+				<width>1180</width>
+				<height>56</height>
+				<font>f_body</font>
+				<textcolor>text2</textcolor>
+			</control>
+			<control type="label" id="10">
+				<width>1180</width>
+				<height>56</height>
+				<font>f_body</font>
+				<textcolor>text2</textcolor>
+			</control>
+			<control type="label" id="11">
+				<width>1180</width>
+				<height>56</height>
+				<font>f_body</font>
+				<textcolor>text2</textcolor>
+			</control>
+			<control type="label" id="12">
+				<width>1180</width>
+				<height>56</height>
+				<font>f_body</font>
+				<textcolor>text2</textcolor>
+			</control>
+			<control type="label" id="13">
+				<width>1180</width>
+				<height>56</height>
+				<font>f_body</font>
+				<textcolor>text2</textcolor>
+			</control>
+		</control>
+		<control type="textbox" id="30">
+			<left>650</left>
+			<top>140</top>
+			<width>1150</width>
+			<height>880</height>
+			<font>f_body</font>
+			<textcolor>text2</textcolor>
+			<pagecontrol>60</pagecontrol>
+		</control>
+		<control type="scrollbar" id="60">
+			<left>1830</left>
+			<top>140</top>
+			<width>8</width>
+			<height>880</height>
+			<onleft>9000</onleft>
+			<onright>9000</onright>
+		</control>
+		<control type="label">
+			<left>650</left>
+			<top>990</top>
+			<width>1180</width>
+			<height>40</height>
+			<font>f_small</font>
+			<textcolor>text3</textcolor>
+			<label>$INFO[System.BuildVersion,Kodi ,]$INFO[System.FriendlyName,  •  ,]  •  Backlot $INFO[System.AddonVersion(skin.backlot)]</label>
+		</control>
+	</controls>
+</window>

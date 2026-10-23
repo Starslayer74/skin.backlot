@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Service hub: opened from a home tile. Two tabs (normally TV Shows and
+     Movies) open the library; the row under them previews what's new. -->
+<window id="1100">
+	<defaultcontrol always="true">101</defaultcontrol>
+	<onload>SetProperty(tab,1)</onload>
+	<backgroundcolor>bg</backgroundcolor>
+	<controls>
+		<include>Background</include>
+		<include content="FanartBackground">
+			<param name="art">$VAR[Hub_Fanart]</param>
+		</include>
+		<include>Clock</include>
+
+		<control type="group">
+			<include>Anim_WindowFade</include>
+			<!-- service banner (falls back to a colored tile with the name) -->
+			<control type="image">
+				<left>120</left>
+				<top>50</top>
+				<width>256</width>
+				<height>144</height>
+				<texture border="24" colordiffuse="$INFO[Window(Home).Property(hub.tint)]">frame/rounded24.png</texture>
+				<visible>String.IsEmpty(Window(Home).Property(hub.banner))</visible>
+			</control>
+			<control type="label">
+				<left>120</left>
+				<top>50</top>
+				<width>256</width>
+				<height>144</height>
+				<align>center</align>
+				<aligny>center</aligny>
+				<font>f_body_m</font>
+				<label>$INFO[Window(Home).Property(hub.label)]</label>
+				<visible>String.IsEmpty(Window(Home).Property(hub.banner)) + String.IsEmpty(Window(Home).Property(hub.logo))</visible>
+			</control>
+			<control type="image">
+				<left>152</left>
+				<top>74</top>
+				<width>192</width>
+				<height>96</height>
+				<aspectratio>keep</aspectratio>
+				<texture>$INFO[Window(Home).Property(hub.logo)]</texture>
+				<visible>String.IsEmpty(Window(Home).Property(hub.banner))</visible>
+			</control>
+			<control type="image">
+				<left>120</left>
+				<top>50</top>
+				<width>256</width>
+				<height>144</height>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<texture diffuse="masks/banner.png">$INFO[Window(Home).Property(hub.banner)]</texture>
+			</control>
+
+			<!-- focused title -->
+			<control type="group">
+				<left>120</left>
+				<top>230</top>
+				<width>1200</width>
+				<control type="image">
+					<left>0</left>
+					<top>0</top>
+					<width>560</width>
+					<height>170</height>
+					<aspectratio align="left" aligny="bottom">keep</aspectratio>
+					<fadetime>300</fadetime>
+					<texture>$VAR[Hub_Logo]</texture>
+				</control>
+				<control type="textbox">
+					<left>0</left>
+					<top>0</top>
+					<width>1200</width>
+					<height>170</height>
+					<aligny>bottom</aligny>
+					<font>f_title</font>
+					<textcolor>text</textcolor>
+					<label>$INFO[Container(510).ListItem.Title]</label>
+					<visible>!String.IsEqual(Window.Property(tab),2) + String.IsEmpty(Container(510).ListItem.Art(clearlogo))</visible>
+				</control>
+				<control type="textbox">
+					<left>0</left>
+					<top>0</top>
+					<width>1200</width>
+					<height>170</height>
+					<aligny>bottom</aligny>
+					<font>f_title</font>
+					<textcolor>text</textcolor>
+					<label>$INFO[Container(520).ListItem.Title]</label>
+					<visible>String.IsEqual(Window.Property(tab),2) + String.IsEmpty(Container(520).ListItem.Art(clearlogo))</visible>
+				</control>
+				<control type="label">
+					<left>0</left>
+					<top>184</top>
+					<width>1200</width>
+					<height>40</height>
+					<font>f_body_m</font>
+					<textcolor>text2</textcolor>
+					<label>$VAR[Hub_Meta]</label>
+				</control>
+				<control type="textbox">
+					<left>0</left>
+					<top>232</top>
+					<width>1000</width>
+					<height>76</height>
+					<label>$VAR[Hub_Plot]</label>
+				</control>
+			</control>
+
+			<!-- tabs -->
+			<control type="grouplist" id="9000">
+				<left>120</left>
+				<top>570</top>
+				<width>1400</width>
+				<height>76</height>
+				<orientation>horizontal</orientation>
+				<itemgap>20</itemgap>
+				<onleft>9000</onleft>
+				<onright>9000</onright>
+				<ondown condition="!String.IsEqual(Window.Property(tab),2)">510</ondown>
+				<ondown condition="String.IsEqual(Window.Property(tab),2)">520</ondown>
+				<control type="button" id="101">
+					<width>320</width>
+					<height>76</height>
+					<align>center</align>
+					<textoffsetx>16</textoffsetx>
+					<label>$INFO[Window(Home).Property(hub.tab1_label)]</label>
+					<texturefocus border="38" colordiffuse="focus">frame/pill.png</texturefocus>
+					<texturenofocus border="38" colordiffuse="surface2">frame/pill.png</texturenofocus>
+					<onfocus>SetProperty(tab,1)</onfocus>
+					<onclick>ActivateWindow(Videos,$INFO[Window(Home).Property(hub.tab1_path)],return)</onclick>
+				</control>
+				<control type="button" id="102">
+					<width>320</width>
+					<height>76</height>
+					<align>center</align>
+					<textoffsetx>16</textoffsetx>
+					<label>$INFO[Window(Home).Property(hub.tab2_label)]</label>
+					<texturefocus border="38" colordiffuse="focus">frame/pill.png</texturefocus>
+					<texturenofocus border="38" colordiffuse="surface2">frame/pill.png</texturenofocus>
+					<onfocus>SetProperty(tab,2)</onfocus>
+					<onclick>ActivateWindow(Videos,$INFO[Window(Home).Property(hub.tab2_path)],return)</onclick>
+				</control>
+				<control type="button" id="103">
+					<width>360</width>
+					<height>76</height>
+					<align>center</align>
+					<textoffsetx>16</textoffsetx>
+					<label>Open $INFO[Window(Home).Property(hub.label)]</label>
+					<texturefocus border="38" colordiffuse="focus">frame/pill.png</texturefocus>
+					<texturenofocus border="38" colordiffuse="surface2">frame/pill.png</texturenofocus>
+					<onclick>RunScript(script.backlot.helper,launch,$INFO[Window(Home).Property(hub.id)])</onclick>
+					<visible>!String.IsEmpty(Window(Home).Property(hub.can_launch))</visible>
+				</control>
+			</control>
+			<control type="image">
+				<left>250</left>
+				<top>654</top>
+				<width>60</width>
+				<height>6</height>
+				<texture border="3" colordiffuse="accent">frame/rounded8.png</texture>
+				<visible>!String.IsEqual(Window.Property(tab),2) + !Control.HasFocus(101) + !Control.HasFocus(102)</visible>
+			</control>
+			<control type="image">
+				<left>590</left>
+				<top>654</top>
+				<width>60</width>
+				<height>6</height>
+				<texture border="3" colordiffuse="accent">frame/rounded8.png</texture>
+				<visible>String.IsEqual(Window.Property(tab),2) + !Control.HasFocus(101) + !Control.HasFocus(102)</visible>
+			</control>
+			<control type="label">
+				<left>820</left>
+				<top>570</top>
+				<width>900</width>
+				<height>76</height>
+				<aligny>center</aligny>
+				<font>f_small</font>
+				<textcolor>text3</textcolor>
+				<label>Select to browse everything</label>
+				<visible>[Control.HasFocus(101) | Control.HasFocus(102)] + !Control.IsVisible(103)</visible>
+			</control>
+			<control type="label">
+				<left>1200</left>
+				<top>570</top>
+				<width>620</width>
+				<height>76</height>
+				<aligny>center</aligny>
+				<font>f_small</font>
+				<textcolor>text3</textcolor>
+				<label>Select to browse everything</label>
+				<visible>[Control.HasFocus(101) | Control.HasFocus(102)] + Control.IsVisible(103)</visible>
+			</control>
+
+			<!-- preview rows -->
+			<control type="group">
+				<top>690</top>
+				<control type="label">
+					<left>120</left>
+					<top>0</top>
+					<width>1400</width>
+					<height>40</height>
+					<font>f_sub</font>
+					<label>$INFO[Window(Home).Property(hub.row1_label)]</label>
+					<visible>!String.IsEqual(Window.Property(tab),2)</visible>
+				</control>
+				<control type="label">
+					<left>120</left>
+					<top>0</top>
+					<width>1400</width>
+					<height>40</height>
+					<font>f_sub</font>
+					<label>$INFO[Window(Home).Property(hub.row2_label)]</label>
+					<visible>String.IsEqual(Window.Property(tab),2)</visible>
+				</control>
+				<control type="label">
+					<left>120</left>
+					<top>60</top>
+					<width>1400</width>
+					<height>60</height>
+					<textcolor>text3</textcolor>
+					<label>Nothing here yet.</label>
+					<visible>[!String.IsEqual(Window.Property(tab),2) + !Integer.IsGreater(Container(510).NumItems,0) + !Container(510).IsUpdating] | [String.IsEqual(Window.Property(tab),2) + !Integer.IsGreater(Container(520).NumItems,0) + !Container(520).IsUpdating]</visible>
+				</control>
+				<include content="HubRow">
+					<param name="id">510</param>
+					<param name="tab">1</param>
+					<param name="path">$INFO[Window(Home).Property(hub.row1_path)]</param>
+					<param name="visible">!String.IsEqual(Window.Property(tab),2)</param>
+				</include>
+				<include content="HubRow">
+					<param name="id">520</param>
+					<param name="tab">2</param>
+					<param name="path">$INFO[Window(Home).Property(hub.row2_path)]</param>
+					<param name="visible">String.IsEqual(Window.Property(tab),2)</param>
+				</include>
+			</control>
+		</control>
+	</controls>
+</window>

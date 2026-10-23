@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<variable name="PosterArt">
+		<value condition="!String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(tvshow.poster)) + String.IsEqual(ListItem.DBType,season)">$INFO[ListItem.Art(tvshow.poster)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(thumb))">$INFO[ListItem.Art(thumb)]</value>
+		<value>$INFO[ListItem.Icon]</value>
+	</variable>
+	<variable name="LandscapeArt">
+		<value condition="!String.IsEmpty(ListItem.Art(landscape))">$INFO[ListItem.Art(landscape)]</value>
+		<value condition="String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(ListItem.Art(thumb))">$INFO[ListItem.Art(thumb)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(tvshow.fanart))">$INFO[ListItem.Art(tvshow.fanart)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(thumb))">$INFO[ListItem.Art(thumb)]</value>
+		<value>$INFO[ListItem.Icon]</value>
+	</variable>
+	<variable name="FanartVar">
+		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(tvshow.fanart))">$INFO[ListItem.Art(tvshow.fanart)]</value>
+		<value condition="!String.IsEmpty(Container.Art(fanart))">$INFO[Container.Art(fanart)]</value>
+		<value condition="!String.IsEmpty(Container.Art(set.fanart))">$INFO[Container.Art(set.fanart)]</value>
+		<value condition="!String.IsEmpty(Container.Art(tvshow.fanart))">$INFO[Container.Art(tvshow.fanart)]</value>
+	</variable>
+	<variable name="ClearLogoVar">
+		<value condition="!String.IsEmpty(ListItem.Art(clearlogo))">$INFO[ListItem.Art(clearlogo)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(tvshow.clearlogo))">$INFO[ListItem.Art(tvshow.clearlogo)]</value>
+	</variable>
+	<variable name="InfoCredits">
+		<value condition="!String.IsEmpty(ListItem.Director)">$INFO[ListItem.Director,Directed by ,]$INFO[ListItem.Studio,  •  ,]$INFO[ListItem.Rating,  •  , / 10]</value>
+		<value condition="!String.IsEmpty(ListItem.Studio)">$INFO[ListItem.Studio]$INFO[ListItem.Rating,  •  , / 10]</value>
+		<value>$INFO[ListItem.Rating,, / 10]</value>
+	</variable>
+	<variable name="EpisodeRowMeta">
+		<value condition="!String.IsEmpty(ListItem.Duration)">$INFO[ListItem.Duration(mins),, min]$INFO[ListItem.Premiered,  •  ,]</value>
+		<value>$INFO[ListItem.Premiered]</value>
+	</variable>
+	<variable name="ItemMeta">
+		<value condition="String.IsEqual(ListItem.DBType,episode)">$INFO[ListItem.Season,S, ]$INFO[ListItem.Episode,E,]$INFO[ListItem.Premiered,  •  ,]$INFO[ListItem.Duration(mins),  •  , min]</value>
+		<value condition="String.IsEqual(ListItem.DBType,tvshow)">$INFO[ListItem.Year]$INFO[ListItem.Genre,  •  ,]$INFO[ListItem.Property(TotalSeasons),  •  , seasons]$INFO[ListItem.Mpaa,  •  ,]</value>
+		<value condition="String.IsEqual(ListItem.DBType,season)">$INFO[ListItem.TVShowTitle]$INFO[ListItem.Property(TotalEpisodes),  •  , episodes]</value>
+		<value condition="String.IsEqual(ListItem.DBType,set)">$INFO[ListItem.Property(total),, movies]</value>
+		<value>$INFO[ListItem.Year]$INFO[ListItem.Genre,  •  ,]$INFO[ListItem.Duration(mins),  •  , min]$INFO[ListItem.Mpaa,  •  ,]</value>
+	</variable>
+	<variable name="Home_row1_path">
+		<value condition="Skin.HasSetting(backlot.circles)">$INFO[Container(301).ListItem.Property(row1_path)]</value>
+		<value>$INFO[Container(300).ListItem.Property(row1_path)]</value>
+	</variable>
+	<variable name="Home_row1_label">
+		<value condition="Skin.HasSetting(backlot.circles)">$INFO[Container(301).ListItem.Property(row1_label)]</value>
+		<value>$INFO[Container(300).ListItem.Property(row1_label)]</value>
+	</variable>
+	<variable name="Home_row2_path">
+		<value condition="Skin.HasSetting(backlot.circles)">$INFO[Container(301).ListItem.Property(row2_path)]</value>
+		<value>$INFO[Container(300).ListItem.Property(row2_path)]</value>
+	</variable>
+	<variable name="Home_row2_label">
+		<value condition="Skin.HasSetting(backlot.circles)">$INFO[Container(301).ListItem.Property(row2_label)]</value>
+		<value>$INFO[Container(300).ListItem.Property(row2_label)]</value>
+	</variable>
+	<variable name="Home_ServiceName">
+		<value condition="Skin.HasSetting(backlot.circles)">$INFO[Container(301).ListItem.Label]</value>
+		<value>$INFO[Container(300).ListItem.Label]</value>
+	</variable>
+	<variable name="Home_ArtPath">
+		<value condition="Skin.HasSetting(backlot.circles) + !String.IsEmpty(Container(301).ListItem.Property(id))">plugin://script.backlot.helper/?action=art&amp;id=$INFO[Container(301).ListItem.Property(id)]</value>
+		<value condition="!Skin.HasSetting(backlot.circles) + !String.IsEmpty(Container(300).ListItem.Property(id))">plugin://script.backlot.helper/?action=art&amp;id=$INFO[Container(300).ListItem.Property(id)]</value>
+	</variable>
+	<variable name="Hero_Fanart">
+		<value condition="Control.HasFocus(420)">$INFO[Container(420).ListItem.Art(fanart)]</value>
+		<value condition="Control.HasFocus(410)">$INFO[Container(410).ListItem.Art(fanart)]</value>
+		<value condition="$EXP[backlot_cycle]">$INFO[Container(9200).ListItem.Art(fanart)]</value>
+		<value>$INFO[Container(410).ListItem.Art(fanart)]</value>
+	</variable>
+	<variable name="Hero_Logo">
+		<value condition="Control.HasFocus(420)">$INFO[Container(420).ListItem.Art(clearlogo)]</value>
+		<value condition="Control.HasFocus(410)">$INFO[Container(410).ListItem.Art(clearlogo)]</value>
+		<value condition="$EXP[backlot_cycle]">$INFO[Container(9200).ListItem.Art(clearlogo)]</value>
+		<value>$INFO[Container(410).ListItem.Art(clearlogo)]</value>
+	</variable>
+	<variable name="Hero_Title">
+		<value condition="Control.HasFocus(420)">$INFO[Container(420).ListItem.Title]</value>
+		<value condition="Control.HasFocus(410)">$INFO[Container(410).ListItem.Title]</value>
+		<value condition="$EXP[backlot_cycle]">$INFO[Container(9200).ListItem.Title]</value>
+		<value>$INFO[Container(410).ListItem.Title]</value>
+	</variable>
+	<variable name="Hero_Plot">
+		<value condition="Control.HasFocus(420)">$INFO[Container(420).ListItem.Plot]</value>
+		<value condition="Control.HasFocus(410)">$INFO[Container(410).ListItem.Plot]</value>
+		<value condition="$EXP[backlot_cycle]">$INFO[Container(9200).ListItem.Plot]</value>
+		<value>$INFO[Container(410).ListItem.Plot]</value>
+	</variable>
+	<variable name="Hero_Meta">
+		<value condition="Control.HasFocus(420)">$INFO[Container(420).ListItem.Year]$INFO[Container(420).ListItem.Genre,  •  ,]$INFO[Container(420).ListItem.Mpaa,  •  ,]</value>
+		<value condition="$EXP[backlot_cycle]">$INFO[Container(9200).ListItem.Year]$INFO[Container(9200).ListItem.Genre,  •  ,]$INFO[Container(9200).ListItem.Mpaa,  •  ,]</value>
+		<value>$INFO[Container(410).ListItem.Year]$INFO[Container(410).ListItem.Genre,  •  ,]$INFO[Container(410).ListItem.Mpaa,  •  ,]</value>
+	</variable>
+	<variable name="Hub_Fanart">
+		<value condition="String.IsEqual(Window(1100).Property(tab),2)">$INFO[Container(520).ListItem.Art(fanart)]</value>
+		<value>$INFO[Container(510).ListItem.Art(fanart)]</value>
+	</variable>
+	<variable name="Hub_Logo">
+		<value condition="String.IsEqual(Window(1100).Property(tab),2)">$INFO[Container(520).ListItem.Art(clearlogo)]</value>
+		<value>$INFO[Container(510).ListItem.Art(clearlogo)]</value>
+	</variable>
+	<variable name="Hub_Title">
+		<value condition="String.IsEqual(Window(1100).Property(tab),2)">$INFO[Container(520).ListItem.Title]</value>
+		<value>$INFO[Container(510).ListItem.Title]</value>
+	</variable>
+	<variable name="Hub_Plot">
+		<value condition="String.IsEqual(Window(1100).Property(tab),2)">$INFO[Container(520).ListItem.Plot]</value>
+		<value>$INFO[Container(510).ListItem.Plot]</value>
+	</variable>
+	<variable name="Hub_Meta">
+		<value condition="String.IsEqual(Window(1100).Property(tab),2)">$INFO[Container(520).ListItem.Year]$INFO[Container(520).ListItem.Genre,  •  ,]$INFO[Container(520).ListItem.Mpaa,  •  ,]</value>
+		<value>$INFO[Container(510).ListItem.Year]$INFO[Container(510).ListItem.Genre,  •  ,]$INFO[Container(510).ListItem.Mpaa,  •  ,]</value>
+	</variable>
+	<variable name="BrowseHeader">
+		<value condition="!String.IsEmpty(Window(Home).Property(hub.label)) + String.StartsWith(Container.FolderPath,special://skin/playlists/)">$INFO[Window(Home).Property(hub.label)]$INFO[Container.FolderName,  ›  ,]</value>
+		<value>$INFO[Container.FolderName]</value>
+	</variable>
+	<variable name="SeekTime">
+		<value condition="Player.Seeking | Player.HasPerformedSeek(3) | !String.IsEmpty(Player.SeekNumeric)">$INFO[Player.SeekTime]</value>
+		<value>$INFO[Player.Time]</value>
+	</variable>
+	<variable name="PlayerTitle">
+		<value condition="VideoPlayer.Content(episodes)">$INFO[VideoPlayer.TVShowTitle]</value>
+		<value>$INFO[VideoPlayer.Title]</value>
+	</variable>
+	<variable name="PlayerSubtitle">
+		<value condition="VideoPlayer.Content(episodes)">$INFO[VideoPlayer.Season,S, ]$INFO[VideoPlayer.Episode,E,  •  ]$INFO[VideoPlayer.Title]</value>
+		<value>$INFO[VideoPlayer.Year]$INFO[VideoPlayer.Genre,  •  ,]</value>
+	</variable>
+	<variable name="PlayerLogo">
+		<value condition="!String.IsEmpty(Player.Art(clearlogo))">$INFO[Player.Art(clearlogo)]</value>
+		<value condition="!String.IsEmpty(Player.Art(tvshow.clearlogo))">$INFO[Player.Art(tvshow.clearlogo)]</value>
+	</variable>
+	<variable name="TopIconLabel">
+		<value condition="Control.HasFocus(24)">Manage services</value>
+		<value condition="Control.HasFocus(21)">Add-ons</value>
+		<value condition="Control.HasFocus(22)">Settings</value>
+		<value condition="Control.HasFocus(23)">Power</value>
+	</variable>
+	<variable name="AutoCompletionContentVar">
+		<value condition="System.AddonIsEnabled(plugin.program.autocompletion) + !System.HasHiddenInput">plugin://plugin.program.autocompletion?info=autocomplete&amp;&amp;id=$INFO[Control.GetLabel(312).index(1)]&amp;&amp;limit=9</value>
+	</variable>
+	<variable name="WhereToWatchLabel">
+		<value condition="!String.IsEmpty(ListItem.Property(provider.1.name))">Not in your library. Watch on</value>
+		<value>Not in your library</value>
+	</variable>
+	<variable name="LabelsName">
+		<value condition="$EXP[backlot_labels_all]">Every tile</value>
+		<value condition="$EXP[backlot_labels_none]">Off</value>
+		<value>The one I'm on</value>
+	</variable>
+	<variable name="ThemeName">
+		<value condition="String.IsEqual(Skin.CurrentColourTheme,SKINDEFAULT) | String.IsEqual(Skin.CurrentColourTheme,defaults)">Midnight</value>
+		<value>$INFO[Skin.CurrentColourTheme]</value>
+	</variable>
+	<variable name="SkinSettingsHelp">
+		<value condition="Control.HasFocus(101)">Banners are the classic full-width Android TV app tiles. Circles are the smaller round icons from newer Google TV, leaving more room for content rows.</value>
+		<value condition="Control.HasFocus(102)">Show the service name under every tile, only under the one you're on, or not at all. Works for banners and circles.</value>
+		<value condition="Control.HasFocus(106)">Off: "More like this" and actor filmographies only list titles in your library. On: they list everything from TMDb and badge the ones you own.</value>
+		<value condition="Control.HasFocus(107)">Installs jurialmunkey's repository and TMDb Helper. Needed for actor biographies, filmographies and "More like this" on info screens.</value>
+		<value condition="Control.HasFocus(105)">Studios and networks in your library that no service covers, most titles first. Their movies and shows sit under the Movies and TV Shows tiles. Pick one to make it its own service or add it to one you have.</value>
+		<value condition="Control.HasFocus(104)">Turn services on or off, change their order, add your own, set custom art, and export or import your setup.</value>
+		<value condition="Control.HasFocus(112)">Off: seasons on the left and a list of episodes with pictures and descriptions on the right, like Netflix today. On: a single row of large episode thumbnails.</value>
+		<value condition="Control.HasFocus(108)">Changes the background, highlight and accent colors across the whole skin.</value>
+		<value condition="Control.HasFocus(110)">Shows the temperature and conditions in the top-left corner of the home screen.</value>
+		<value condition="Control.HasFocus(109)">Choose where weather comes from (installs it if needed) and set your location.</value>
+		<value condition="Control.HasFocus(111)">Walks through the first-time questions again: tile style, colors, services, collections, info screens and weather.</value>
+		<value condition="Control.HasFocus(113)">PreShow Experience is installed. Info screens get a PreShow button next to Play; turn this on to have it selected when the screen opens.</value>
+		<value condition="Control.HasFocus(114)">Put your services in any order. Pick a tile up with OK, move it with left and right, and drop it with OK.</value>
+		<value condition="Control.HasFocus(115)">Adds trailers, intros and ratings before your movie. Downloads the PreShow repository from preshowmedia.com and installs the add-on.</value>
+		<value condition="Control.HasFocus(116)">Backlot's own soft navigation sounds, your current Kodi sounds, or none.</value>
+		<value condition="Control.HasFocus(117)">Asks every add-on repository, including Backlot's, for new versions right now. Kodi installs them on its own; the repository window has to be open.</value>
+		<value condition="Control.HasFocus(103)">Reloads the skin files. Useful after updating Backlot or its service presets.</value>
+	</variable>
+	<variable name="InfoPlayLabel">
+		<value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,set)">$LOCALIZE[1024]</value>
+		<value condition="ListItem.IsResumable">$LOCALIZE[13362]</value>
+		<value>$LOCALIZE[208]</value>
+	</variable>
+	<variable name="HeaderLogo">
+		<value condition="[Container.Content(seasons) | Container.Content(episodes)] + !String.IsEmpty(Container.Art(tvshow.clearlogo))">$INFO[Container.Art(tvshow.clearlogo)]</value>
+		<value condition="Container.Content(movies) + !String.IsEmpty(Container.Art(set.clearlogo))">$INFO[Container.Art(set.clearlogo)]</value>
+	</variable>
+	<variable name="InfoTmdbId">
+		<value condition="!String.IsEmpty(ListItem.Property(tmdb_id))">$INFO[ListItem.Property(tmdb_id)]</value>
+		<value>$INFO[ListItem.UniqueID(tmdb)]</value>
+	</variable>
+	<variable name="InfoTmdbType">
+		<value condition="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.Property(tmdb_type),tv)">tv</value>
+		<value>movie</value>
+	</variable>
+	<variable name="LibraryFilter">
+		<value condition="!Skin.HasSetting(backlot.similar_all)">&amp;exclude_key=dbid&amp;exclude_value=is_empty</value>
+	</variable>
+	<variable name="PersonBio">
+		<value condition="!String.IsEmpty(ListItem.Property(Biography))">$INFO[ListItem.Property(Biography)]</value>
+		<value>$INFO[ListItem.Plot]</value>
+	</variable>
+	<variable name="TmdbCastPath">
+		<value condition="$EXP[backlot_tmdb_rows]">plugin://plugin.video.themoviedb.helper/?info=cast&amp;tmdb_type=$VAR[InfoTmdbType]&amp;tmdb_id=$VAR[InfoTmdbId]</value>
+	</variable>
+	<variable name="TmdbSimilarPath">
+		<value condition="!Skin.HasSetting(backlot.similar_all) + !String.IsEmpty(ListItem.DBID) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)]">plugin://script.backlot.helper/?action=similar&amp;dbtype=$INFO[ListItem.DBType]&amp;dbid=$INFO[ListItem.DBID]</value>
+		<value condition="$EXP[backlot_tmdb_rows]">plugin://plugin.video.themoviedb.helper/?info=recommendations&amp;tmdb_type=$VAR[InfoTmdbType]&amp;tmdb_id=$VAR[InfoTmdbId]$VAR[LibraryFilter]</value>
+	</variable>
+	<variable name="TmdbPersonMoviesPath">
+		<value condition="!Skin.HasSetting(backlot.similar_all) + String.IsEqual(ListItem.Property(tmdb_type),person)">plugin://script.backlot.helper/?action=actor&amp;type=movie&amp;name=$INFO[ListItem.Label]</value>
+		<value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.IsEqual(ListItem.Property(tmdb_type),person)">plugin://plugin.video.themoviedb.helper/?info=stars_in_movies&amp;tmdb_type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]$VAR[LibraryFilter]</value>
+	</variable>
+	<variable name="TmdbPersonShowsPath">
+		<value condition="!Skin.HasSetting(backlot.similar_all) + String.IsEqual(ListItem.Property(tmdb_type),person)">plugin://script.backlot.helper/?action=actor&amp;type=tvshow&amp;name=$INFO[ListItem.Label]</value>
+		<value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.IsEqual(ListItem.Property(tmdb_type),person)">plugin://plugin.video.themoviedb.helper/?info=stars_in_tvshows&amp;tmdb_type=person&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]$VAR[LibraryFilter]</value>
+	</variable>
+</includes>

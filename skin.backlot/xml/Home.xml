@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Backlot home: hero for the focused title, a row of service tiles
+     (banners or circles), and two content rows for the focused service. -->
+<window>
+	<defaultcontrol always="false">9100</defaultcontrol>
+	<onload condition="Skin.HasSetting(backlot.circles) + !Control.HasFocus(301) + !Control.HasFocus(410) + !Control.HasFocus(420)">SetFocus(301)</onload>
+	<onload condition="!Skin.HasSetting(backlot.circles) + !Control.HasFocus(300) + !Control.HasFocus(410) + !Control.HasFocus(420)">SetFocus(300)</onload>
+	<onload condition="String.IsEmpty(Window(Home).Property(backlot.ready)) + String.IsEmpty(Window(Home).Property(backlot.service)) + System.HasAddon(script.backlot.helper)">RunScript(script.backlot.helper,startup)</onload>
+	<onload condition="!Skin.HasSetting(backlot.setup_done) + System.HasAddon(script.backlot.helper)">AlarmClock(backlotsetup,RunScript(script.backlot.helper,setup),00:02,silent)</onload>
+	<backgroundcolor>bg</backgroundcolor>
+	<controls>
+		<include>Background</include>
+		<!-- hidden list that cycles through the focused service's titles for the background -->
+		<control type="list" id="9200">
+			<left>-2000</left>
+			<top>-2000</top>
+			<width>10</width>
+			<height>10</height>
+			<orientation>horizontal</orientation>
+			<itemlayout width="10" height="10" />
+			<focusedlayout width="10" height="10" />
+			<autoscroll time="8000">!Control.HasFocus(410) + !Control.HasFocus(420) + !System.ScreenSaverActive</autoscroll>
+			<content target="videos">$VAR[Home_ArtPath]</content>
+		</control>
+		<include content="HomeArt" />
+
+		<!-- ======================================================= hero -->
+		<control type="group">
+			<left>120</left>
+			<top>410</top>
+			<animation effect="slide" end="0,-40" time="0" condition="!Skin.HasSetting(backlot.circles) + !$EXP[backlot_labels_none]">Conditional</animation>
+			<width>1100</width>
+			<height>350</height>
+			<include>Anim_WindowFade</include>
+			<animation effect="fade" start="100" end="0" time="200" condition="ControlGroup(9100).HasFocus() | Control.HasFocus(410) | Control.HasFocus(420)">Conditional</animation>
+			<control type="image">
+				<left>0</left>
+				<top>20</top>
+				<width>640</width>
+				<height>190</height>
+				<aspectratio align="left" aligny="bottom">keep</aspectratio>
+				<fadetime>300</fadetime>
+				<texture>$VAR[Hero_Logo]</texture>
+			</control>
+			<control type="textbox">
+				<left>0</left>
+				<top>10</top>
+				<width>1100</width>
+				<height>200</height>
+				<aligny>bottom</aligny>
+				<font>f_hero</font>
+				<textcolor>text</textcolor>
+				<label>$VAR[Hero_Title]</label>
+				<visible>[$EXP[hero_logo_empty]] + ![$EXP[hero_title_empty]]</visible>
+			</control>
+			<!-- nothing in the library yet for this service -->
+			<control type="label">
+				<left>0</left>
+				<top>110</top>
+				<width>1100</width>
+				<height>100</height>
+				<font>f_hero</font>
+				<label>$VAR[Home_ServiceName]</label>
+				<visible>$EXP[hero_title_empty]</visible>
+			</control>
+			<control type="label">
+				<left>0</left>
+				<top>222</top>
+				<width>1100</width>
+				<height>40</height>
+				<font>f_body_m</font>
+				<textcolor>text2</textcolor>
+				<label>$VAR[Hero_Meta]</label>
+			</control>
+			<control type="label">
+				<left>0</left>
+				<top>222</top>
+				<width>1100</width>
+				<height>40</height>
+				<font>f_body_m</font>
+				<textcolor>text2</textcolor>
+				<label>Nothing from this service in your library yet.</label>
+				<visible>$EXP[hero_title_empty]</visible>
+			</control>
+			<control type="textbox">
+				<left>0</left>
+				<top>266</top>
+				<width>980</width>
+				<height>72</height>
+				<font>f_body</font>
+				<textcolor>text2</textcolor>
+				<label>$VAR[Hero_Plot]</label>
+			</control>
+		</control>
+
+		<!-- compact title while the content rows are up -->
+		<control type="group">
+			<left>120</left>
+			<top>120</top>
+			<width>1300</width>
+			<visible>Control.HasFocus(410) | Control.HasFocus(420)</visible>
+			<animation effect="fade" start="0" end="100" time="250" delay="150">Visible</animation>
+			<animation effect="fade" start="100" end="0" time="150">Hidden</animation>
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>520</width>
+				<height>120</height>
+				<aspectratio align="left" aligny="bottom">keep</aspectratio>
+				<texture>$VAR[Hero_Logo]</texture>
+			</control>
+			<control type="label">
+				<left>0</left>
+				<top>40</top>
+				<width>1300</width>
+				<height>80</height>
+				<aligny>bottom</aligny>
+				<font>f_title</font>
+				<label>$VAR[Hero_Title]</label>
+				<visible>String.IsEmpty(Container(410).ListItem.Art(clearlogo)) + Control.HasFocus(410)</visible>
+			</control>
+			<control type="label">
+				<left>0</left>
+				<top>40</top>
+				<width>1300</width>
+				<height>80</height>
+				<aligny>bottom</aligny>
+				<font>f_title</font>
+				<label>$INFO[Container(420).ListItem.Title]</label>
+				<visible>String.IsEmpty(Container(420).ListItem.Art(clearlogo)) + Control.HasFocus(420)</visible>
+			</control>
+			<control type="label">
+				<left>0</left>
+				<top>130</top>
+				<width>1300</width>
+				<height>40</height>
+				<font>f_body_m</font>
+				<textcolor>text2</textcolor>
+				<label>$VAR[Hero_Meta]</label>
+			</control>
+		</control>
+
+		<!-- ======================================================= weather -->
+		<include>WeatherBug</include>
+
+		<!-- ======================================================= top bar -->
+		<include>Clock</include>
+		<control type="grouplist" id="9100">
+			<right>400</right>
+			<top>22</top>
+			<width>420</width>
+			<height>88</height>
+			<orientation>horizontal</orientation>
+			<align>right</align>
+			<itemgap>12</itemgap>
+			<onleft>9100</onleft>
+			<onright>9100</onright>
+			<ondown condition="Skin.HasSetting(backlot.circles)">301</ondown>
+			<ondown condition="!Skin.HasSetting(backlot.circles)">300</ondown>
+			<include content="TopIcon">
+				<param name="id">24</param>
+				<param name="left">23</param>
+				<param name="right">21</param>
+				<param name="icon">icons/list.png</param>
+				<param name="onclick">RunScript(script.backlot.helper)</param>
+			</include>
+			<include content="TopIcon">
+				<param name="id">21</param>
+				<param name="left">24</param>
+				<param name="right">22</param>
+				<param name="icon">icons/addons.png</param>
+				<param name="onclick">ActivateWindow(addonbrowser,addons://sources/video/,return)</param>
+			</include>
+			<include content="TopIcon">
+				<param name="id">22</param>
+				<param name="left">21</param>
+				<param name="right">23</param>
+				<param name="icon">icons/settings.png</param>
+				<param name="onclick">ActivateWindow(settings)</param>
+			</include>
+			<include content="TopIcon">
+				<param name="id">23</param>
+				<param name="left">22</param>
+				<param name="right">24</param>
+				<param name="icon">icons/power.png</param>
+				<param name="onclick">ActivateWindow(shutdownmenu)</param>
+			</include>
+		</control>
+		<control type="label">
+			<right>400</right>
+			<top>118</top>
+			<width>420</width>
+			<height>36</height>
+			<align>right</align>
+			<font>f_small</font>
+			<textcolor>text2</textcolor>
+			<label>$VAR[TopIconLabel]</label>
+			<visible>ControlGroup(9100).HasFocus()</visible>
+		</control>
+
+		<!-- ======================================================= rows -->
+		<control type="group">
+			<animation effect="slide" end="0,-700" time="320" tween="cubic" easing="out" condition="Control.HasFocus(410) | Control.HasFocus(420)">Conditional</animation>
+			<include>Anim_WindowFade</include>
+
+			<!-- services: banners -->
+			<control type="group">
+				<top>780</top>
+				<visible>!Skin.HasSetting(backlot.circles)</visible>
+				<animation effect="slide" end="0,-40" time="0" condition="!$EXP[backlot_labels_none]">Conditional</animation>
+				<animation effect="fade" start="100" end="0" time="200" condition="Control.HasFocus(410) | Control.HasFocus(420)">Conditional</animation>
+				<control type="label">
+					<left>120</left>
+					<top>0</top>
+					<width>800</width>
+					<height>40</height>
+					<font>f_sub</font>
+					<label>Your services</label>
+				</control>
+				<control type="list" id="300">
+					<left>110</left>
+					<top>40</top>
+					<width>1810</width>
+					<height>250</height>
+					<orientation>horizontal</orientation>
+					<onup>9100</onup>
+					<ondown condition="Integer.IsGreater(Container(410).NumItems,0)">410</ondown>
+					<ondown condition="!Integer.IsGreater(Container(410).NumItems,0) + Integer.IsGreater(Container(420).NumItems,0)">420</ondown>
+					<onleft>300</onleft>
+					<onright>300</onright>
+					<visible>!Skin.HasSetting(backlot.circles)</visible>
+					<itemlayout width="352" height="250">
+						<control type="image">
+							<left>10</left>
+							<top>15</top>
+							<width>320</width>
+							<height>180</height>
+							<texture border="24" colordiffuse="$INFO[ListItem.Property(tint)]">frame/rounded24.png</texture>
+							<animation effect="fade" start="100" end="65" time="150" condition="Control.HasFocus(300)">Conditional</animation>
+							<visible>String.IsEmpty(ListItem.Property(tile_banner))</visible>
+						</control>
+						<control type="label">
+							<left>10</left>
+							<top>15</top>
+							<width>320</width>
+							<height>180</height>
+							<align>center</align>
+							<aligny>center</aligny>
+							<font>f_head</font>
+							<label>$INFO[ListItem.Label]</label>
+							<animation effect="fade" start="100" end="65" time="150" condition="Control.HasFocus(300)">Conditional</animation>
+							<visible>String.IsEmpty(ListItem.Property(tile_banner)) + String.IsEmpty(ListItem.Property(logo))</visible>
+						</control>
+						<control type="image">
+							<left>50</left>
+							<top>45</top>
+							<width>240</width>
+							<height>120</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$INFO[ListItem.Property(logo)]</texture>
+							<animation effect="fade" start="100" end="65" time="150" condition="Control.HasFocus(300)">Conditional</animation>
+							<visible>String.IsEmpty(ListItem.Property(tile_banner))</visible>
+						</control>
+						<control type="image">
+							<left>10</left>
+							<top>15</top>
+							<width>320</width>
+							<height>180</height>
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<texture diffuse="masks/banner.png">$INFO[ListItem.Property(tile_banner)]</texture>
+							<animation effect="fade" start="100" end="65" time="150" condition="Control.HasFocus(300)">Conditional</animation>
+						</control>
+						<control type="label">
+							<left>10</left>
+							<top>204</top>
+							<width>320</width>
+							<height>36</height>
+							<align>center</align>
+							<font>f_small</font>
+							<textcolor>text2</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+							<visible>$EXP[backlot_labels_all]</visible>
+						</control>
+					</itemlayout>
+					<focusedlayout width="352" height="250">
+						<control type="group">
+							<left>10</left>
+							<top>15</top>
+							<width>320</width>
+							<height>180</height>
+							<animation effect="zoom" end="110" center="auto" time="200" tween="cubic" easing="out" condition="Control.HasFocus(300)">Conditional</animation>
+							<control type="image">
+								<left>-40</left>
+								<top>-40</top>
+								<right>-40</right>
+								<bottom>-40</bottom>
+								<texture border="64">frame/shadow.png</texture>
+								<visible>Control.HasFocus(300)</visible>
+							</control>
+							<control type="image">
+								<left>0</left>
+								<top>0</top>
+								<width>320</width>
+								<height>180</height>
+								<texture border="24" colordiffuse="$INFO[ListItem.Property(tint)]">frame/rounded24.png</texture>
+								<visible>String.IsEmpty(ListItem.Property(tile_banner))</visible>
+							</control>
+							<control type="label">
+								<left>0</left>
+								<top>0</top>
+								<width>320</width>
+								<height>180</height>
+								<align>center</align>
+								<aligny>center</aligny>
+								<font>f_sub</font>
+								<label>$INFO[ListItem.Label]</label>
+								<visible>String.IsEmpty(ListItem.Property(tile_banner)) + String.IsEmpty(ListItem.Property(logo))</visible>
+							</control>
+							<control type="image">
+								<left>40</left>
+								<top>30</top>
+								<width>240</width>
+								<height>120</height>
+								<aspectratio>keep</aspectratio>
+								<texture>$INFO[ListItem.Property(logo)]</texture>
+								<visible>String.IsEmpty(ListItem.Property(tile_banner))</visible>
+							</control>
+							<control type="image">
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<texture diffuse="masks/banner.png">$INFO[ListItem.Property(tile_banner)]</texture>
+							</control>
+							<control type="image">
+								<left>-7</left>
+								<top>-7</top>
+								<right>-7</right>
+								<bottom>-7</bottom>
+								<texture border="24" colordiffuse="ring">frame/ring24.png</texture>
+								<visible>Control.HasFocus(300)</visible>
+							</control>
+						</control>
+						<control type="label">
+							<left>10</left>
+							<top>212</top>
+							<width>320</width>
+							<height>36</height>
+							<align>center</align>
+							<font>f_body_m</font>
+							<textcolor>text</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+							<visible>[Control.HasFocus(300) + !$EXP[backlot_labels_none]] | $EXP[backlot_labels_all]</visible>
+						</control>
+					</focusedlayout>
+					<content>
+						<include>ServiceItems</include>
+					</content>
+				</control>
+			</control>
+
+			<!-- services: circles -->
+			<control type="group">
+				<top>756</top>
+				<visible>Skin.HasSetting(backlot.circles)</visible>
+				<animation effect="fade" start="100" end="0" time="200" condition="Control.HasFocus(410) | Control.HasFocus(420)">Conditional</animation>
+				<control type="label">
+					<left>120</left>
+					<top>0</top>
+					<width>800</width>
+					<height>40</height>
+					<font>f_sub</font>
+					<label>Your services</label>
+				</control>
+				<control type="list" id="301">
+					<left>110</left>
+					<top>40</top>
+					<width>1810</width>
+					<height>220</height>
+					<orientation>horizontal</orientation>
+					<onup>9100</onup>
+					<ondown condition="Integer.IsGreater(Container(410).NumItems,0)">410</ondown>
+					<ondown condition="!Integer.IsGreater(Container(410).NumItems,0) + Integer.IsGreater(Container(420).NumItems,0)">420</ondown>
+					<onleft>301</onleft>
+					<onright>301</onright>
+					<visible>Skin.HasSetting(backlot.circles)</visible>
+					<itemlayout width="196" height="220">
+						<control type="image">
+							<left>23</left>
+							<top>12</top>
+							<width>150</width>
+							<height>150</height>
+							<texture colordiffuse="$INFO[ListItem.Property(tint)]">masks/circle.png</texture>
+							<animation effect="fade" start="100" end="65" time="150" condition="Control.HasFocus(301)">Conditional</animation>
+							<visible>String.IsEmpty(ListItem.Property(tile_icon))</visible>
+						</control>
+						<control type="label">
+							<left>23</left>
+							<top>12</top>
+							<width>150</width>
+							<height>150</height>
+							<align>center</align>
+							<aligny>center</aligny>
+							<font>f_small</font>
+							<label>$INFO[ListItem.Label]</label>
+							<animation effect="fade" start="100" end="65" time="150" condition="Control.HasFocus(301)">Conditional</animation>
+							<visible>String.IsEmpty(ListItem.Property(tile_icon)) + String.IsEmpty(ListItem.Property(logo))</visible>
+						</control>
+						<control type="image">
+							<left>45</left>
+							<top>47</top>
+							<width>106</width>
+							<height>80</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$INFO[ListItem.Property(logo)]</texture>
+							<animation effect="fade" start="100" end="65" time="150" condition="Control.HasFocus(301)">Conditional</animation>
+							<visible>String.IsEmpty(ListItem.Property(tile_icon))</visible>
+						</control>
+						<control type="image">
+							<left>23</left>
+							<top>12</top>
+							<width>150</width>
+							<height>150</height>
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<texture diffuse="masks/circle.png">$INFO[ListItem.Property(tile_icon)]</texture>
+							<animation effect="fade" start="100" end="65" time="150" condition="Control.HasFocus(301)">Conditional</animation>
+						</control>
+						<control type="label">
+							<left>0</left>
+							<top>174</top>
+							<width>196</width>
+							<height>36</height>
+							<align>center</align>
+							<font>f_small</font>
+							<textcolor>text2</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+							<visible>$EXP[backlot_labels_all]</visible>
+						</control>
+					</itemlayout>
+					<focusedlayout width="196" height="220">
+						<control type="group">
+							<left>23</left>
+							<top>12</top>
+							<width>150</width>
+							<height>150</height>
+							<animation effect="zoom" end="112" center="auto" time="200" tween="cubic" easing="out" condition="Control.HasFocus(301)">Conditional</animation>
+							<control type="image">
+								<left>0</left>
+								<top>0</top>
+								<width>150</width>
+								<height>150</height>
+								<texture colordiffuse="$INFO[ListItem.Property(tint)]">masks/circle.png</texture>
+								<visible>String.IsEmpty(ListItem.Property(tile_icon))</visible>
+							</control>
+							<control type="label">
+								<left>0</left>
+								<top>0</top>
+								<width>150</width>
+								<height>150</height>
+								<align>center</align>
+								<aligny>center</aligny>
+								<font>f_small</font>
+								<label>$INFO[ListItem.Label]</label>
+								<visible>String.IsEmpty(ListItem.Property(tile_icon)) + String.IsEmpty(ListItem.Property(logo))</visible>
+							</control>
+							<control type="image">
+								<left>22</left>
+								<top>35</top>
+								<width>106</width>
+								<height>80</height>
+								<aspectratio>keep</aspectratio>
+								<texture>$INFO[ListItem.Property(logo)]</texture>
+								<visible>String.IsEmpty(ListItem.Property(tile_icon))</visible>
+							</control>
+							<control type="image">
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<texture diffuse="masks/circle.png">$INFO[ListItem.Property(tile_icon)]</texture>
+							</control>
+							<control type="image">
+								<left>-8</left>
+								<top>-8</top>
+								<right>-8</right>
+								<bottom>-8</bottom>
+								<texture colordiffuse="ring">frame/ring_circle.png</texture>
+								<visible>Control.HasFocus(301)</visible>
+							</control>
+						</control>
+						<control type="label">
+							<left>-30</left>
+							<top>180</top>
+							<width>256</width>
+							<height>36</height>
+							<align>center</align>
+							<font>f_body_m</font>
+							<label>$INFO[ListItem.Label]</label>
+							<visible>[Control.HasFocus(301) + !$EXP[backlot_labels_none]] | $EXP[backlot_labels_all]</visible>
+						</control>
+					</focusedlayout>
+					<content>
+						<include>ServiceItems</include>
+					</content>
+				</control>
+			</control>
+
+			<!-- row 1 -->
+			<include content="HomeRow">
+				<param name="id">410</param>
+				<param name="top">1036</param>
+				<param name="label">$VAR[Home_row1_label]</param>
+				<param name="path">$VAR[Home_row1_path]</param>
+				<param name="onup_circles">301</param>
+				<param name="onup">300</param>
+				<param name="ondown">420</param>
+			</include>
+			<!-- row 2 -->
+			<include content="HomeRow">
+				<param name="id">420</param>
+				<param name="top">1340</param>
+				<param name="label">$VAR[Home_row2_label]</param>
+				<param name="path">$VAR[Home_row2_path]</param>
+				<param name="onup_circles">410</param>
+				<param name="onup">410</param>
+				<param name="ondown">420</param>
+			</include>
+		</control>
+	</controls>
+</window>

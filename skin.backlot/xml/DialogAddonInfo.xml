@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">9000</defaultcontrol>
+	<include>Anim_DialogPop</include>
+	<controls>
+		<include>DimBehind</include>
+		<control type="group">
+			<left>130</left>
+			<top>110</top>
+			<width>1660</width>
+			<height>860</height>
+			<include>DialogFrame</include>
+			<control type="image">
+				<left>56</left>
+				<top>56</top>
+				<width>220</width>
+				<height>220</height>
+				<aspectratio>keep</aspectratio>
+				<texture background="true">$INFO[ListItem.Icon]</texture>
+			</control>
+			<control type="label">
+				<left>320</left>
+				<top>60</top>
+				<width>1280</width>
+				<height>70</height>
+				<font>f_title</font>
+				<label>$INFO[ListItem.AddonName]</label>
+			</control>
+			<control type="label">
+				<left>320</left>
+				<top>136</top>
+				<width>1280</width>
+				<height>40</height>
+				<font>f_body_m</font>
+				<textcolor>text2</textcolor>
+				<label>$INFO[ListItem.AddonVersion,v]$INFO[ListItem.AddonCreator,  •  ,]$INFO[ListItem.AddonOrigin,  •  ,]</label>
+			</control>
+			<control type="label">
+				<left>320</left>
+				<top>180</top>
+				<width>1280</width>
+				<height>40</height>
+				<font>f_small</font>
+				<textcolor>accent</textcolor>
+				<label>$INFO[ListItem.Property(Addon.Status)]</label>
+			</control>
+			<control type="textbox">
+				<left>56</left>
+				<top>310</top>
+				<width>1548</width>
+				<height>380</height>
+				<font>f_body</font>
+				<autoscroll delay="6000" time="3000" repeat="8000">true</autoscroll>
+				<label>$INFO[ListItem.AddonSummary,[B],[/B][CR][CR]]$INFO[ListItem.AddonDescription]$INFO[ListItem.AddonDisclaimer,[CR][CR][I],[/I]]</label>
+			</control>
+			<control type="grouplist" id="9000">
+				<left>56</left>
+				<top>740</top>
+				<width>1548</width>
+				<height>80</height>
+				<orientation>horizontal</orientation>
+				<itemgap>14</itemgap>
+				<onleft>9000</onleft>
+				<onright>9000</onright>
+				<include content="DialogButton">
+					<param name="id">12</param>
+					<param name="width">250</param>
+					<param name="label">$LOCALIZE[518]</param>
+					<param name="visible">Control.IsEnabled(12)</param>
+				</include>
+				<include content="DialogButton">
+					<param name="id">9</param>
+					<param name="width">250</param>
+					<param name="label">$LOCALIZE[24020]</param>
+					<param name="visible">Control.IsEnabled(9)</param>
+				</include>
+				<include content="DialogButton">
+					<param name="id">10</param>
+					<param name="width">250</param>
+					<param name="label">$LOCALIZE[39024]</param>
+					<param name="visible">Control.IsEnabled(10)</param>
+				</include>
+				<include content="DialogButton">
+					<param name="id">7</param>
+					<param name="width">250</param>
+					<param name="label"></param>
+					<param name="visible">Control.IsEnabled(7)</param>
+				</include>
+				<include content="DialogButton">
+					<param name="id">8</param>
+					<param name="width">250</param>
+					<param name="label">$LOCALIZE[24138]</param>
+					<param name="visible">Control.IsEnabled(8)</param>
+				</include>
+				<include content="DialogButton">
+					<param name="id">14</param>
+					<param name="width">250</param>
+					<param name="label">$LOCALIZE[24069]</param>
+					<param name="visible">Control.IsEnabled(14)</param>
+				</include>
+				<include content="DialogButton">
+					<param name="id">6</param>
+					<param name="width">250</param>
+					<param name="label"></param>
+					<param name="visible">Control.IsEnabled(6)</param>
+				</include>
+				<control type="radiobutton" id="13">
+					<width>300</width>
+					<height>76</height>
+					<font>f_body_m</font>
+					<texturefocus border="38" colordiffuse="focus">frame/pill.png</texturefocus>
+					<texturenofocus border="38" colordiffuse="surface2">frame/pill.png</texturenofocus>
+					<visible>Control.IsEnabled(13)</visible>
+				</control>
+			</control>
+		</control>
+	</controls>
+</window>

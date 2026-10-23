@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">9000</defaultcontrol>
+	<backgroundcolor>bg</backgroundcolor>
+	<include>Anim_WindowFade</include>
+	<controls>
+		<include>Background</include>
+		<control type="label">
+			<left>120</left>
+			<top>50</top>
+			<width>1200</width>
+			<height>70</height>
+			<font>f_title</font>
+			<label>$LOCALIZE[5]</label>
+		</control>
+		<include>Clock</include>
+		<control type="panel" id="9000">
+			<left>108</left>
+			<top>170</top>
+			<width>1704</width>
+			<height>840</height>
+			<orientation>vertical</orientation>
+			<onleft>9000</onleft>
+			<onright>9000</onright>
+			<onup>9000</onup>
+			<ondown>9000</ondown>
+			<itemlayout width="568" height="210">
+						<control type="image">
+							<left>12</left>
+							<top>12</top>
+							<width>536</width>
+							<height>176</height>
+							<texture border="24" colordiffuse="surface2">frame/rounded24.png</texture>
+						</control>
+						<control type="image">
+							<left>52</left>
+							<top>68</top>
+							<width>64</width>
+							<height>64</height>
+							<texture colordiffuse="text">$INFO[ListItem.Icon]</texture>
+						</control>
+						<control type="label">
+							<left>148</left>
+							<top>12</top>
+							<width>380</width>
+							<height>176</height>
+							<aligny>center</aligny>
+							<font>f_sub</font>
+							<textcolor>text</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+			</itemlayout>
+			<focusedlayout width="568" height="210">
+				<control type="group">
+					<animation effect="zoom" end="104" center="auto" time="180" tween="cubic" easing="out" condition="Control.HasFocus(9000)">Conditional</animation>
+						<control type="image">
+							<left>12</left>
+							<top>12</top>
+							<width>536</width>
+							<height>176</height>
+							<texture border="24" colordiffuse="focus">frame/rounded24.png</texture>
+						</control>
+						<control type="image">
+							<left>52</left>
+							<top>68</top>
+							<width>64</width>
+							<height>64</height>
+							<texture colordiffuse="on_focus">$INFO[ListItem.Icon]</texture>
+						</control>
+						<control type="label">
+							<left>148</left>
+							<top>12</top>
+							<width>380</width>
+							<height>176</height>
+							<aligny>center</aligny>
+							<font>f_sub</font>
+							<textcolor>on_focus</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+				</control>
+			</focusedlayout>
+			<content>
+					<item>
+						<label>Player</label>
+						<icon>icons/play.png</icon>
+						<onclick>ActivateWindow(PlayerSettings)</onclick>
+					</item>
+					<item>
+						<label>Media</label>
+						<icon>icons/film.png</icon>
+						<onclick>ActivateWindow(MediaSettings)</onclick>
+					</item>
+					<item>
+						<label>Interface</label>
+						<icon>icons/tv.png</icon>
+						<onclick>ActivateWindow(InterfaceSettings)</onclick>
+					</item>
+					<item>
+						<label>Backlot skin</label>
+						<icon>icons/star.png</icon>
+						<onclick>ActivateWindow(SkinSettings)</onclick>
+					</item>
+					<item>
+						<label>Add-ons</label>
+						<icon>icons/addons.png</icon>
+						<onclick>ActivateWindow(AddonBrowser)</onclick>
+					</item>
+					<item>
+						<label>Services</label>
+						<icon>icons/network.png</icon>
+						<onclick>ActivateWindow(ServiceSettings)</onclick>
+					</item>
+					<item>
+						<label>System</label>
+						<icon>icons/settings.png</icon>
+						<onclick>ActivateWindow(SystemSettings)</onclick>
+					</item>
+					<item>
+						<label>PVR &amp; Live TV</label>
+						<icon>icons/tv.png</icon>
+						<onclick>ActivateWindow(PVRSettings)</onclick>
+					</item>
+					<item>
+						<label>Games</label>
+						<icon>icons/addons.png</icon>
+						<onclick>ActivateWindow(GameSettings)</onclick>
+						<visible>System.GetBool(gamesgeneral.enable)</visible>
+					</item>
+					<item>
+						<label>System info</label>
+						<icon>icons/info.png</icon>
+						<onclick>ActivateWindow(SystemInfo)</onclick>
+					</item>
+			</content>
+		</control>
+	</controls>
+</window>

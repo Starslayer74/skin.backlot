@@ -1,0 +1,1240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<!-- ============================================================ OSD button -->
+	<include name="OSDButton">
+		<param name="left" />
+		<param name="right" />
+		<param name="size">84</param>
+		<param name="visible">true</param>
+		<param name="icon_alt"></param>
+		<param name="alt_condition">false</param>
+		<definition>
+			<control type="group">
+				<width>$PARAM[size]</width>
+				<height>$PARAM[size]</height>
+				<visible>$PARAM[visible]</visible>
+				<control type="button" id="$PARAM[id]">
+					<width>$PARAM[size]</width>
+					<height>$PARAM[size]</height>
+					<label />
+					<texturefocus colordiffuse="focus">masks/circle.png</texturefocus>
+					<texturenofocus />
+					<onclick>$PARAM[onclick]</onclick>
+					<onleft>$PARAM[left]</onleft>
+					<onright>$PARAM[right]</onright>
+				</control>
+				<control type="image">
+					<left>20</left>
+					<top>20</top>
+					<width>44</width>
+					<height>44</height>
+					<texture colordiffuse="text">$PARAM[icon]</texture>
+					<visible>!Control.HasFocus($PARAM[id]) + !$PARAM[alt_condition]</visible>
+				</control>
+				<control type="image">
+					<left>20</left>
+					<top>20</top>
+					<width>44</width>
+					<height>44</height>
+					<texture colordiffuse="on_focus">$PARAM[icon]</texture>
+					<visible>Control.HasFocus($PARAM[id]) + !$PARAM[alt_condition]</visible>
+				</control>
+				<control type="image">
+					<left>20</left>
+					<top>20</top>
+					<width>44</width>
+					<height>44</height>
+					<texture colordiffuse="text">$PARAM[icon_alt]</texture>
+					<visible>!Control.HasFocus($PARAM[id]) + $PARAM[alt_condition]</visible>
+				</control>
+				<control type="image">
+					<left>20</left>
+					<top>20</top>
+					<width>44</width>
+					<height>44</height>
+					<texture colordiffuse="on_focus">$PARAM[icon_alt]</texture>
+					<visible>Control.HasFocus($PARAM[id]) + $PARAM[alt_condition]</visible>
+				</control>
+			</control>
+		</definition>
+	</include>
+
+	<!-- ============================================================ top bar icon -->
+	<include name="TopIcon">
+		<param name="onclick"></param>
+		<param name="left" />
+		<param name="right" />
+		<definition>
+			<control type="group">
+				<width>72</width>
+				<height>72</height>
+				<control type="button" id="$PARAM[id]">
+					<width>72</width>
+					<height>72</height>
+					<label />
+					<texturefocus colordiffuse="focus">masks/circle.png</texturefocus>
+					<texturenofocus colordiffuse="26FFFFFF">masks/circle.png</texturenofocus>
+					<onclick>$PARAM[onclick]</onclick>
+					<onleft>$PARAM[left]</onleft>
+					<onright>$PARAM[right]</onright>
+					<onup>$PARAM[id]</onup>
+					<ondown condition="Skin.HasSetting(backlot.circles)">301</ondown>
+					<ondown condition="!Skin.HasSetting(backlot.circles)">300</ondown>
+				</control>
+				<control type="image">
+					<left>18</left>
+					<top>18</top>
+					<width>36</width>
+					<height>36</height>
+					<texture colordiffuse="text">$PARAM[icon]</texture>
+					<visible>!Control.HasFocus($PARAM[id])</visible>
+				</control>
+				<control type="image">
+					<left>18</left>
+					<top>18</top>
+					<width>36</width>
+					<height>36</height>
+					<texture colordiffuse="on_focus">$PARAM[icon]</texture>
+					<visible>Control.HasFocus($PARAM[id])</visible>
+				</control>
+			</control>
+		</definition>
+	</include>
+
+	<!-- ============================================================ landscape card -->
+	<include name="LandscapeItem">
+		<param name="cid" />
+		<definition>
+			<control type="group">
+				<left>14</left>
+				<top>14</top>
+				<width>320</width>
+				<height>180</height>
+				<animation effect="fade" start="100" end="60" time="150" condition="Control.HasFocus($PARAM[cid])">Conditional</animation>
+				<control type="image">
+					<texture border="16" colordiffuse="surface2">frame/rounded16.png</texture>
+				</control>
+				<control type="label">
+					<left>20</left>
+					<right>20</right>
+					<align>center</align>
+					<aligny>center</aligny>
+					<font>f_body_m</font>
+					<label>$INFO[ListItem.Label]</label>
+					<visible>String.IsEmpty(ListItem.Art(landscape)) + String.IsEmpty(ListItem.Art(fanart)) + String.IsEmpty(ListItem.Art(thumb)) + String.IsEmpty(ListItem.Art(tvshow.fanart))</visible>
+				</control>
+				<control type="image">
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture background="true" diffuse="masks/thumb.png">$VAR[LandscapeArt]</texture>
+				</control>
+				<include>WatchedBadge</include>
+				<include>ResumeBar</include>
+			</control>
+		</definition>
+	</include>
+	<include name="LandscapeItemFocused">
+		<param name="cid" />
+		<definition>
+			<control type="group">
+				<left>14</left>
+				<top>14</top>
+				<width>320</width>
+				<height>180</height>
+				<animation effect="zoom" end="108" center="auto" time="200" tween="cubic" easing="out" condition="Control.HasFocus($PARAM[cid])">Conditional</animation>
+				<control type="image">
+					<left>-40</left>
+					<top>-40</top>
+					<right>-40</right>
+					<bottom>-40</bottom>
+					<texture border="64">frame/shadow.png</texture>
+					<visible>Control.HasFocus($PARAM[cid])</visible>
+				</control>
+				<control type="image">
+					<texture border="16" colordiffuse="surface2">frame/rounded16.png</texture>
+				</control>
+				<control type="label">
+					<left>20</left>
+					<right>20</right>
+					<align>center</align>
+					<aligny>center</aligny>
+					<font>f_body_m</font>
+					<label>$INFO[ListItem.Label]</label>
+					<visible>String.IsEmpty(ListItem.Art(landscape)) + String.IsEmpty(ListItem.Art(fanart)) + String.IsEmpty(ListItem.Art(thumb)) + String.IsEmpty(ListItem.Art(tvshow.fanart))</visible>
+				</control>
+				<control type="image">
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture background="true" diffuse="masks/thumb.png">$VAR[LandscapeArt]</texture>
+				</control>
+				<include>WatchedBadge</include>
+				<include>ResumeBar</include>
+				<control type="image">
+					<left>-6</left>
+					<top>-6</top>
+					<right>-6</right>
+					<bottom>-6</bottom>
+					<texture border="20" colordiffuse="ring">frame/ring16.png</texture>
+					<visible>Control.HasFocus($PARAM[cid])</visible>
+				</control>
+			</control>
+			<control type="label">
+				<left>14</left>
+				<top>206</top>
+				<width>320</width>
+				<height>34</height>
+				<font>f_body_m</font>
+				<scroll>true</scroll>
+				<label>$INFO[ListItem.Label]</label>
+				<visible>Control.HasFocus($PARAM[cid])</visible>
+			</control>
+		</definition>
+	</include>
+
+	<!-- ============================================================ poster card -->
+	<include name="PosterItem">
+		<param name="cid" />
+		<param name="width">200</param>
+		<param name="height">300</param>
+		<definition>
+			<control type="group">
+				<left>14</left>
+				<top>14</top>
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<animation effect="fade" start="100" end="70" time="150" condition="Control.HasFocus($PARAM[cid])">Conditional</animation>
+				<control type="image">
+					<texture border="16" colordiffuse="surface2">frame/rounded16.png</texture>
+				</control>
+				<control type="textbox">
+					<left>16</left>
+					<right>16</right>
+					<align>center</align>
+					<aligny>center</aligny>
+					<font>f_body_m</font>
+					<textcolor>text</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+					<visible>String.IsEmpty(ListItem.Art(poster)) + String.IsEmpty(ListItem.Art(thumb)) + String.IsEmpty(ListItem.Art(tvshow.poster))</visible>
+				</control>
+				<control type="image">
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture background="true" diffuse="masks/poster.png">$VAR[PosterArt]</texture>
+				</control>
+				<include>WatchedBadge</include>
+				<include>ResumeBar</include>
+			</control>
+		</definition>
+	</include>
+	<include name="PosterItemFocused">
+		<param name="cid" />
+		<param name="width">200</param>
+		<param name="height">300</param>
+		<definition>
+			<control type="group">
+				<left>14</left>
+				<top>14</top>
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<animation effect="zoom" end="108" center="auto" time="200" tween="cubic" easing="out" condition="Control.HasFocus($PARAM[cid])">Conditional</animation>
+				<control type="image">
+					<left>-40</left>
+					<top>-40</top>
+					<right>-40</right>
+					<bottom>-40</bottom>
+					<texture border="64">frame/shadow.png</texture>
+					<visible>Control.HasFocus($PARAM[cid])</visible>
+				</control>
+				<control type="image">
+					<texture border="16" colordiffuse="surface2">frame/rounded16.png</texture>
+				</control>
+				<control type="textbox">
+					<left>16</left>
+					<right>16</right>
+					<align>center</align>
+					<aligny>center</aligny>
+					<font>f_body_m</font>
+					<textcolor>text</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+					<visible>String.IsEmpty(ListItem.Art(poster)) + String.IsEmpty(ListItem.Art(thumb)) + String.IsEmpty(ListItem.Art(tvshow.poster))</visible>
+				</control>
+				<control type="image">
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture background="true" diffuse="masks/poster.png">$VAR[PosterArt]</texture>
+				</control>
+				<include>WatchedBadge</include>
+				<include>ResumeBar</include>
+				<control type="image">
+					<left>-6</left>
+					<top>-6</top>
+					<right>-6</right>
+					<bottom>-6</bottom>
+					<texture border="20" colordiffuse="ring">frame/ring16.png</texture>
+					<visible>Control.HasFocus($PARAM[cid])</visible>
+				</control>
+			</control>
+		</definition>
+	</include>
+
+	<!-- ============================================================ home row -->
+	<include name="HomeRow">
+		<definition>
+			<control type="group">
+				<top>$PARAM[top]</top>
+				<control type="label">
+					<left>120</left>
+					<top>0</top>
+					<width>1400</width>
+					<height>40</height>
+					<font>f_sub</font>
+					<label>$PARAM[label]</label>
+				</control>
+				<control type="label">
+					<left>120</left>
+					<top>60</top>
+					<width>1400</width>
+					<height>60</height>
+					<font>f_body</font>
+					<textcolor>text3</textcolor>
+					<label>Nothing here yet.</label>
+					<visible>!Integer.IsGreater(Container($PARAM[id]).NumItems,0) + !Container($PARAM[id]).IsUpdating</visible>
+				</control>
+				<control type="list" id="$PARAM[id]">
+					<left>106</left>
+					<top>40</top>
+					<width>1814</width>
+					<height>250</height>
+					<orientation>horizontal</orientation>
+					<onleft>$PARAM[id]</onleft>
+					<onright>$PARAM[id]</onright>
+					<onup condition="!Skin.HasSetting(backlot.circles)">$PARAM[onup]</onup>
+					<onup condition="Skin.HasSetting(backlot.circles)">$PARAM[onup_circles]</onup>
+					<ondown>$PARAM[ondown]</ondown>
+					<itemlayout width="348" height="250">
+						<include content="LandscapeItem">
+							<param name="cid">$PARAM[id]</param>
+						</include>
+					</itemlayout>
+					<focusedlayout width="348" height="250">
+						<include content="LandscapeItemFocused">
+							<param name="cid">$PARAM[id]</param>
+						</include>
+					</focusedlayout>
+					<content target="videos">$PARAM[path]</content>
+				</control>
+			</control>
+		</definition>
+	</include>
+
+	<!-- ============================================================ hub row -->
+	<include name="HubRow">
+		<definition>
+			<control type="list" id="$PARAM[id]">
+				<left>106</left>
+				<top>40</top>
+				<width>1814</width>
+				<height>250</height>
+				<orientation>horizontal</orientation>
+				<onleft>$PARAM[id]</onleft>
+				<onright>$PARAM[id]</onright>
+				<onup>10$PARAM[tab]</onup>
+				<ondown>$PARAM[id]</ondown>
+				<visible>$PARAM[visible]</visible>
+				<itemlayout width="348" height="250">
+					<include content="LandscapeItem">
+						<param name="cid">$PARAM[id]</param>
+					</include>
+				</itemlayout>
+				<focusedlayout width="348" height="250">
+					<include content="LandscapeItemFocused">
+						<param name="cid">$PARAM[id]</param>
+					</include>
+				</focusedlayout>
+				<content target="videos">$PARAM[path]</content>
+			</control>
+		</definition>
+	</include>
+
+	<!-- ============================================================ library chrome -->
+	<include name="LibraryHeader">
+		<control type="group">
+			<left>120</left>
+			<top>40</top>
+			<width>1300</width>
+			<height>90</height>
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<width>420</width>
+				<height>90</height>
+				<aspectratio align="left">keep</aspectratio>
+				<texture>$VAR[HeaderLogo]</texture>
+			</control>
+			<control type="label">
+				<left>0</left>
+				<top>0</top>
+				<width>1300</width>
+				<height>90</height>
+				<aligny>center</aligny>
+				<font>f_head</font>
+				<label>$VAR[BrowseHeader]</label>
+				<visible>String.IsEmpty(Container.Art(tvshow.clearlogo)) + String.IsEmpty(Container.Art(set.clearlogo))</visible>
+				<visible>![Container.Content(seasons) | Container.Content(episodes)] | String.IsEmpty(Container.Art(tvshow.clearlogo))</visible>
+			</control>
+		</control>
+		<control type="label">
+			<right>80</right>
+			<top>92</top>
+			<width>500</width>
+			<height>36</height>
+			<align>right</align>
+			<font>f_small</font>
+			<textcolor>text2</textcolor>
+			<label>$INFO[Container.CurrentItem]$INFO[Container.NumItems, of ,]</label>
+			<visible>Integer.IsGreater(Container.NumItems,0)</visible>
+		</control>
+		<control type="label">
+			<right>80</right>
+			<top>1028</top>
+			<width>1200</width>
+			<height>36</height>
+			<align>right</align>
+			<font>f_small</font>
+			<textcolor>text3</textcolor>
+			<label>Press left for view and sort options</label>
+			<visible>!ControlGroup(9000).HasFocus()</visible>
+			<animation effect="fade" start="100" end="0" time="400" delay="4000">WindowOpen</animation>
+		</control>
+	</include>
+
+	<!-- focused item details used above the poster and episode views -->
+	<include name="FocusedItemInfo">
+		<param name="top">150</param>
+		<definition>
+			<control type="group">
+				<left>120</left>
+				<top>$PARAM[top]</top>
+				<width>1200</width>
+				<height>300</height>
+				<visible>!ListItem.IsParentFolder</visible>
+				<control type="image">
+					<left>0</left>
+					<top>0</top>
+					<width>520</width>
+					<height>150</height>
+					<aspectratio align="left" aligny="bottom">keep</aspectratio>
+					<fadetime>200</fadetime>
+					<texture>$VAR[ClearLogoVar]</texture>
+					<!-- seasons: the show's logo is already in the header -->
+					<visible>!String.IsEqual(ListItem.DBType,episode) + !String.IsEqual(ListItem.DBType,season)</visible>
+				</control>
+				<control type="label">
+					<left>0</left>
+					<top>60</top>
+					<width>1200</width>
+					<height>90</height>
+					<aligny>bottom</aligny>
+					<font>f_title</font>
+					<label>$INFO[ListItem.Title]</label>
+					<visible>String.IsEmpty(ListItem.Art(clearlogo)) | String.IsEqual(ListItem.DBType,episode)</visible>
+					<visible>String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,season)</visible>
+				</control>
+				<control type="label">
+					<left>0</left>
+					<top>164</top>
+					<width>1200</width>
+					<height>40</height>
+					<font>f_body_m</font>
+					<textcolor>text2</textcolor>
+					<label>$VAR[ItemMeta]</label>
+				</control>
+				<control type="textbox">
+					<left>0</left>
+					<top>212</top>
+					<width>1000</width>
+					<height>76</height>
+					<label>$INFO[ListItem.Plot]</label>
+				</control>
+			</control>
+		</definition>
+	</include>
+
+	<!-- ============================================================ view 50: list -->
+	<include name="View_50_List">
+		<control type="group">
+			<visible>Control.IsVisible(50)</visible>
+			<include>Anim_WindowFade</include>
+			<control type="list" id="50">
+				<left>110</left>
+				<top>160</top>
+				<width>1060</width>
+				<height>860</height>
+				<onleft>9000</onleft>
+				<onright>60</onright>
+				<onup>50</onup>
+				<ondown>50</ondown>
+				<pagecontrol>60</pagecontrol>
+				<viewtype label="List">list</viewtype>
+				<visible>!Container.Content(movies) + !Container.Content(sets) + !Container.Content(tvshows) + !Container.Content(seasons) + !Container.Content(episodes) + !Container.Content(musicvideos)</visible>
+				<itemlayout width="1060" height="86">
+					<control type="image">
+						<left>24</left>
+						<top>13</top>
+						<width>60</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<texture background="true">$INFO[ListItem.Icon]</texture>
+					</control>
+					<control type="label">
+						<left>108</left>
+						<top>0</top>
+						<right>200</right>
+						<height>86</height>
+						<aligny>center</aligny>
+						<font>f_body_m</font>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<control type="label">
+						<right>28</right>
+						<top>0</top>
+						<width>300</width>
+						<height>86</height>
+						<align>right</align>
+						<aligny>center</aligny>
+						<font>f_small</font>
+						<textcolor>text2</textcolor>
+						<label>$INFO[ListItem.Label2]</label>
+					</control>
+				</itemlayout>
+				<focusedlayout width="1060" height="86">
+					<control type="image">
+						<texture border="16" colordiffuse="focus">frame/rounded16.png</texture>
+						<visible>Control.HasFocus(50)</visible>
+					</control>
+					<control type="image">
+						<texture border="16" colordiffuse="surface2">frame/rounded16.png</texture>
+						<visible>!Control.HasFocus(50)</visible>
+					</control>
+					<control type="image">
+						<left>24</left>
+						<top>13</top>
+						<width>60</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<texture background="true">$INFO[ListItem.Icon]</texture>
+					</control>
+					<control type="label">
+						<left>108</left>
+						<top>0</top>
+						<right>200</right>
+						<height>86</height>
+						<aligny>center</aligny>
+						<font>f_body_m</font>
+						<textcolor>on_focus</textcolor>
+						<scroll>true</scroll>
+						<label>$INFO[ListItem.Label]</label>
+						<visible>Control.HasFocus(50)</visible>
+					</control>
+					<control type="label">
+						<left>108</left>
+						<top>0</top>
+						<right>200</right>
+						<height>86</height>
+						<aligny>center</aligny>
+						<font>f_body_m</font>
+						<label>$INFO[ListItem.Label]</label>
+						<visible>!Control.HasFocus(50)</visible>
+					</control>
+					<control type="label">
+						<right>28</right>
+						<top>0</top>
+						<width>300</width>
+						<height>86</height>
+						<align>right</align>
+						<aligny>center</aligny>
+						<font>f_small</font>
+						<textcolor>on_focus</textcolor>
+						<label>$INFO[ListItem.Label2]</label>
+						<visible>Control.HasFocus(50)</visible>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="scrollbar" id="60">
+				<left>1196</left>
+				<top>160</top>
+				<width>8</width>
+				<height>860</height>
+				<onleft>50</onleft>
+				<onright>50</onright>
+			</control>
+			<!-- preview of the focused entry -->
+			<control type="group">
+				<left>1280</left>
+				<top>160</top>
+				<width>520</width>
+				<control type="image">
+					<left>0</left>
+					<top>0</top>
+					<width>520</width>
+					<height>420</height>
+					<aspectratio aligny="top">keep</aspectratio>
+					<texture background="true">$VAR[PosterArt]</texture>
+				</control>
+				<control type="label">
+					<left>0</left>
+					<top>450</top>
+					<width>520</width>
+					<height>40</height>
+					<font>f_body_m</font>
+					<label>$INFO[ListItem.Title]</label>
+				</control>
+				<control type="label">
+					<left>0</left>
+					<top>494</top>
+					<width>520</width>
+					<height>36</height>
+					<font>f_small</font>
+					<textcolor>text2</textcolor>
+					<label>$VAR[ItemMeta]</label>
+				</control>
+				<control type="textbox">
+					<left>0</left>
+					<top>540</top>
+					<width>520</width>
+					<height>300</height>
+					<font>f_small</font>
+					<label>$INFO[ListItem.Plot]</label>
+				</control>
+			</control>
+		</control>
+	</include>
+
+	<!-- ============================================================ view 51: posters -->
+	<include name="View_51_Posters">
+		<control type="group">
+			<visible>Control.IsVisible(51)</visible>
+			<include>Anim_WindowFade</include>
+			<include content="FocusedItemInfo">
+				<param name="top">140</param>
+			</include>
+			<!-- showcase: one row of large posters, artwork and details above -->
+			<control type="fixedlist" id="51">
+				<left>92</left>
+				<top>436</top>
+				<width>1828</width>
+				<height>644</height>
+				<onleft>51</onleft>
+				<onright>51</onright>
+				<onup>9000</onup>
+				<ondown>51</ondown>
+				<orientation>horizontal</orientation>
+				<focusposition>0</focusposition>
+				<movement>3</movement>
+				<scrolltime tween="cubic" easing="out">260</scrolltime>
+				<preloaditems>2</preloaditems>
+				<viewtype label="Posters">icon</viewtype>
+				<visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(musicvideos)</visible>
+				<itemlayout width="404" height="600">
+					<include content="PosterItem">
+						<param name="cid">51</param>
+						<param name="width">360</param>
+						<param name="height">540</param>
+					</include>
+				</itemlayout>
+				<focusedlayout width="404" height="600">
+					<include content="PosterItemFocused">
+						<param name="cid">51</param>
+						<param name="width">360</param>
+						<param name="height">540</param>
+					</include>
+				</focusedlayout>
+			</control>
+		</control>
+	</include>
+
+	<!-- ============================================================ view 54: episodes, seasons left / episode rows right -->
+	<include name="EpisodeRowText">
+		<param name="titlefont">f_body_m</param>
+		<param name="titlecolor">text2</param>
+		<definition>
+			<control type="label">
+				<left>416</left>
+				<top>18</top>
+				<width>780</width>
+				<height>44</height>
+				<font>$PARAM[titlefont]</font>
+				<textcolor>$PARAM[titlecolor]</textcolor>
+				<label>$INFO[ListItem.Episode,,. ]$INFO[ListItem.Title]</label>
+			</control>
+			<control type="label">
+				<left>416</left>
+				<top>64</top>
+				<width>780</width>
+				<height>32</height>
+				<font>f_small</font>
+				<textcolor>text3</textcolor>
+				<label>$VAR[EpisodeRowMeta]</label>
+			</control>
+			<control type="textbox">
+				<left>416</left>
+				<top>104</top>
+				<width>780</width>
+				<height>108</height>
+				<font>f_small</font>
+				<textcolor>text2</textcolor>
+				<label>$INFO[ListItem.Plot]</label>
+			</control>
+		</definition>
+	</include>
+	<include name="View_54_EpisodeRows">
+		<control type="group">
+			<visible>Control.IsVisible(54)</visible>
+			<include>Anim_WindowFade</include>
+			<control type="image">
+				<include>FullScreen</include>
+				<texture colordiffuse="bg_dim">colors/white.png</texture>
+			</control>
+			<!-- seasons -->
+			<control type="list" id="541">
+				<left>110</left>
+				<top>180</top>
+				<width>420</width>
+				<height>860</height>
+				<orientation>vertical</orientation>
+				<onleft>9000</onleft>
+				<onright>54</onright>
+				<onup>541</onup>
+				<ondown>541</ondown>
+				<visible>Control.IsVisible(54)</visible>
+				<itemlayout width="420" height="76">
+					<control type="image">
+						<left>0</left>
+						<top>6</top>
+						<width>400</width>
+						<height>64</height>
+						<texture border="32" colordiffuse="surface3">frame/pill.png</texture>
+						<visible>String.IsEqual(ListItem.Season,Container(54).ListItem.Season)</visible>
+					</control>
+					<control type="label">
+						<left>32</left>
+						<top>6</top>
+						<width>340</width>
+						<height>64</height>
+						<aligny>center</aligny>
+						<font>f_body_m</font>
+						<textcolor>text2</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</itemlayout>
+				<focusedlayout width="420" height="76">
+					<control type="image">
+						<left>0</left>
+						<top>6</top>
+						<width>400</width>
+						<height>64</height>
+						<texture border="32" colordiffuse="focus">frame/pill.png</texture>
+						<visible>Control.HasFocus(541)</visible>
+					</control>
+					<control type="image">
+						<left>0</left>
+						<top>6</top>
+						<width>400</width>
+						<height>64</height>
+						<texture border="32" colordiffuse="surface3">frame/pill.png</texture>
+						<visible>!Control.HasFocus(541) + String.IsEqual(ListItem.Season,Container(54).ListItem.Season)</visible>
+					</control>
+					<control type="label">
+						<left>32</left>
+						<top>6</top>
+						<width>340</width>
+						<height>64</height>
+						<aligny>center</aligny>
+						<font>f_body_m</font>
+						<textcolor>on_focus</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+						<visible>Control.HasFocus(541)</visible>
+					</control>
+					<control type="label">
+						<left>32</left>
+						<top>6</top>
+						<width>340</width>
+						<height>64</height>
+						<aligny>center</aligny>
+						<font>f_body_m</font>
+						<textcolor>text2</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+						<visible>!Control.HasFocus(541)</visible>
+					</control>
+				</focusedlayout>
+				<content target="videos" sortby="season" sortorder="ascending">videodb://tvshows/titles/$INFO[Container(54).ListItem.TvShowDBID]/</content>
+			</control>
+			<!-- episodes -->
+			<control type="list" id="54">
+				<left>580</left>
+				<top>150</top>
+				<width>1260</width>
+				<height>930</height>
+				<orientation>vertical</orientation>
+				<onleft>541</onleft>
+				<onright>54</onright>
+				<onup>54</onup>
+				<ondown>54</ondown>
+				<preloaditems>2</preloaditems>
+				<scrolltime tween="cubic" easing="out">240</scrolltime>
+				<viewtype label="Episodes">list</viewtype>
+				<visible>Container.Content(episodes) + !Skin.HasSetting(backlot.episodes_classic)</visible>
+				<itemlayout width="1260" height="244">
+					<control type="group">
+						<left>14</left>
+						<top>14</top>
+						<width>384</width>
+						<height>216</height>
+						<animation effect="fade" start="100" end="55" time="150" condition="Control.HasFocus(54)">Conditional</animation>
+						<control type="image">
+							<texture border="16" colordiffuse="surface2">frame/rounded16.png</texture>
+						</control>
+						<control type="image">
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<texture background="true" diffuse="masks/thumb.png">$VAR[LandscapeArt]</texture>
+						</control>
+						<include>WatchedBadge</include>
+						<include>ResumeBar</include>
+					</control>
+					<control type="group">
+						<animation effect="fade" start="100" end="55" time="150" condition="Control.HasFocus(54)">Conditional</animation>
+						<include>EpisodeRowText</include>
+					</control>
+				</itemlayout>
+				<focusedlayout width="1260" height="244">
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>1240</width>
+						<height>244</height>
+						<texture border="16" colordiffuse="surface2">frame/rounded16.png</texture>
+						<visible>Control.HasFocus(54)</visible>
+					</control>
+					<control type="group">
+						<left>14</left>
+						<top>14</top>
+						<width>384</width>
+						<height>216</height>
+						<control type="image">
+							<texture border="16" colordiffuse="surface2">frame/rounded16.png</texture>
+						</control>
+						<control type="image">
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<texture background="true" diffuse="masks/thumb.png">$VAR[LandscapeArt]</texture>
+						</control>
+						<include>WatchedBadge</include>
+						<include>ResumeBar</include>
+						<control type="image">
+							<left>-6</left>
+							<top>-6</top>
+							<right>-6</right>
+							<bottom>-6</bottom>
+							<texture border="20" colordiffuse="ring">frame/ring16.png</texture>
+							<visible>Control.HasFocus(54)</visible>
+						</control>
+					</control>
+					<include content="EpisodeRowText">
+						<param name="titlefont">f_sub</param>
+						<param name="titlecolor">text</param>
+					</include>
+				</focusedlayout>
+			</control>
+		</control>
+	</include>
+
+	<!-- ============================================================ view 52: TV banners -->
+	<include name="View_52_Banners">
+		<control type="group">
+			<visible>Control.IsVisible(52)</visible>
+			<include>Anim_WindowFade</include>
+			<control type="label">
+				<left>120</left>
+				<top>132</top>
+				<width>1400</width>
+				<height>40</height>
+				<font>f_body_m</font>
+				<textcolor>text2</textcolor>
+				<label>$INFO[ListItem.Title]$INFO[ListItem.Year,  •  ,]$INFO[ListItem.Property(TotalSeasons),  •  , seasons]$INFO[ListItem.Property(UnWatchedEpisodes),  •  , unwatched]</label>
+				<visible>!ListItem.IsParentFolder</visible>
+			</control>
+			<control type="panel" id="52">
+				<left>106</left>
+				<top>190</top>
+				<width>1708</width>
+				<height>870</height>
+				<orientation>vertical</orientation>
+				<onleft>9000</onleft>
+				<onright>52</onright>
+				<onup>52</onup>
+				<ondown>52</ondown>
+				<preloaditems>2</preloaditems>
+				<viewtype label="Banners">banner</viewtype>
+				<visible>Container.Content(tvshows)</visible>
+				<itemlayout width="854" height="178">
+			<control type="group">
+				<left>14</left>
+				<top>14</top>
+				<width>812</width>
+				<height>150</height>
+				<animation effect="fade" start="100" end="65" time="150" condition="Control.HasFocus(52)">Conditional</animation>
+				<control type="image">
+					<texture border="16" colordiffuse="surface2">frame/rounded16.png</texture>
+				</control>
+				<control type="label">
+					<left>40</left>
+					<right>40</right>
+					<align>center</align>
+					<aligny>center</aligny>
+					<font>f_head</font>
+					<label>$INFO[ListItem.Label]</label>
+					<visible>String.IsEmpty(ListItem.Art(banner))</visible>
+				</control>
+				<control type="image">
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture background="true" diffuse="masks/thumb.png">$INFO[ListItem.Art(banner)]</texture>
+				</control>
+				<include>WatchedBadge</include>
+			</control>
+				</itemlayout>
+				<focusedlayout width="854" height="178">
+			<control type="group">
+				<left>14</left>
+				<top>14</top>
+				<width>812</width>
+				<height>150</height>
+				<animation effect="zoom" end="104" center="auto" time="200" tween="cubic" easing="out" condition="Control.HasFocus(52)">Conditional</animation>
+				<control type="image">
+					<left>-40</left>
+					<top>-40</top>
+					<right>-40</right>
+					<bottom>-40</bottom>
+					<texture border="64">frame/shadow.png</texture>
+					<visible>Control.HasFocus(52)</visible>
+				</control>
+				<control type="image">
+					<texture border="16" colordiffuse="surface2">frame/rounded16.png</texture>
+				</control>
+				<control type="label">
+					<left>40</left>
+					<right>40</right>
+					<align>center</align>
+					<aligny>center</aligny>
+					<font>f_head</font>
+					<label>$INFO[ListItem.Label]</label>
+					<visible>String.IsEmpty(ListItem.Art(banner))</visible>
+				</control>
+				<control type="image">
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture background="true" diffuse="masks/thumb.png">$INFO[ListItem.Art(banner)]</texture>
+				</control>
+				<include>WatchedBadge</include>
+				<control type="image">
+					<left>-6</left>
+					<top>-6</top>
+					<right>-6</right>
+					<bottom>-6</bottom>
+					<texture border="20" colordiffuse="ring">frame/ring16.png</texture>
+					<visible>Control.HasFocus(52)</visible>
+				</control>
+			</control>
+				</focusedlayout>
+			</control>
+		</control>
+	</include>
+
+	<!-- ============================================================ view 53: episodes -->
+	<include name="View_53_Episodes">
+		<control type="group">
+			<visible>Control.IsVisible(53)</visible>
+			<include>Anim_WindowFade</include>
+			<include content="FocusedItemInfo">
+				<param name="top">170</param>
+			</include>
+			<!-- season switcher -->
+			<control type="list" id="531">
+				<left>110</left>
+				<top>478</top>
+				<width>1700</width>
+				<height>64</height>
+				<orientation>horizontal</orientation>
+				<onleft>9000</onleft>
+				<onright>531</onright>
+				<ondown>53</ondown>
+				<onup>531</onup>
+				<visible>Container.Content(episodes) + Skin.HasSetting(backlot.episodes_classic) + Integer.IsGreater(Container(531).NumItems,1)</visible>
+				<itemlayout width="214" height="64">
+					<control type="image">
+						<left>4</left>
+						<width>200</width>
+						<height>60</height>
+						<texture border="30" colordiffuse="surface3">frame/pill.png</texture>
+						<visible>String.IsEqual(ListItem.Season,Container(53).ListItem.Season)</visible>
+					</control>
+					<control type="label">
+						<left>4</left>
+						<width>200</width>
+						<height>60</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>f_body_m</font>
+						<textcolor>text2</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</itemlayout>
+				<focusedlayout width="214" height="64">
+					<control type="image">
+						<left>4</left>
+						<width>200</width>
+						<height>60</height>
+						<texture border="30" colordiffuse="focus">frame/pill.png</texture>
+						<visible>Control.HasFocus(531)</visible>
+					</control>
+					<control type="image">
+						<left>4</left>
+						<width>200</width>
+						<height>60</height>
+						<texture border="30" colordiffuse="surface3">frame/pill.png</texture>
+						<visible>!Control.HasFocus(531) + String.IsEqual(ListItem.Season,Container(53).ListItem.Season)</visible>
+					</control>
+					<control type="label">
+						<left>4</left>
+						<width>200</width>
+						<height>60</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>f_body_m</font>
+						<textcolor>on_focus</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+						<visible>Control.HasFocus(531)</visible>
+					</control>
+					<control type="label">
+						<left>4</left>
+						<width>200</width>
+						<height>60</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>f_body_m</font>
+						<textcolor>text2</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+						<visible>!Control.HasFocus(531)</visible>
+					</control>
+				</focusedlayout>
+				<content target="videos" sortby="season" sortorder="ascending">videodb://tvshows/titles/$INFO[Container(53).ListItem.TvShowDBID]/</content>
+			</control>
+			<control type="list" id="53">
+				<left>106</left>
+				<top>560</top>
+				<width>1814</width>
+				<height>400</height>
+				<orientation>horizontal</orientation>
+				<onleft>9000</onleft>
+				<onright>53</onright>
+				<onup condition="Integer.IsGreater(Container(531).NumItems,1)">531</onup>
+				<onup condition="!Integer.IsGreater(Container(531).NumItems,1)">53</onup>
+				<ondown>53</ondown>
+				<preloaditems>2</preloaditems>
+				<viewtype label="Episodes (classic)">wide</viewtype>
+				<visible>Container.Content(episodes) + Skin.HasSetting(backlot.episodes_classic)</visible>
+				<itemlayout width="516" height="400">
+					<control type="group">
+						<left>14</left>
+						<top>14</top>
+						<width>480</width>
+						<height>270</height>
+						<animation effect="fade" start="100" end="60" time="150" condition="Control.HasFocus(53)">Conditional</animation>
+						<control type="image">
+							<texture border="16" colordiffuse="surface2">frame/rounded16.png</texture>
+						</control>
+						<control type="image">
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<texture background="true" diffuse="masks/thumb.png">$VAR[LandscapeArt]</texture>
+						</control>
+						<include>WatchedBadge</include>
+						<include>ResumeBar</include>
+					</control>
+					<control type="label">
+						<left>14</left>
+						<top>298</top>
+						<width>480</width>
+						<height>36</height>
+						<font>f_body_m</font>
+						<textcolor>text2</textcolor>
+						<label>$INFO[ListItem.Episode,,. ]$INFO[ListItem.Title]</label>
+					</control>
+				</itemlayout>
+				<focusedlayout width="516" height="400">
+					<control type="group">
+						<left>14</left>
+						<top>14</top>
+						<width>480</width>
+						<height>270</height>
+						<animation effect="zoom" end="106" center="auto" time="200" tween="cubic" easing="out" condition="Control.HasFocus(53)">Conditional</animation>
+						<control type="image">
+							<left>-40</left>
+							<top>-40</top>
+							<right>-40</right>
+							<bottom>-40</bottom>
+							<texture border="64">frame/shadow.png</texture>
+						</control>
+						<control type="image">
+							<texture border="16" colordiffuse="surface2">frame/rounded16.png</texture>
+						</control>
+						<control type="image">
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<texture background="true" diffuse="masks/thumb.png">$VAR[LandscapeArt]</texture>
+						</control>
+						<include>WatchedBadge</include>
+						<include>ResumeBar</include>
+						<control type="image">
+							<left>-6</left>
+							<top>-6</top>
+							<right>-6</right>
+							<bottom>-6</bottom>
+							<texture border="20" colordiffuse="ring">frame/ring16.png</texture>
+							<visible>Control.HasFocus(53)</visible>
+						</control>
+					</control>
+					<control type="label">
+						<left>14</left>
+						<top>304</top>
+						<width>480</width>
+						<height>36</height>
+						<font>f_body_m</font>
+						<scroll>true</scroll>
+						<label>$INFO[ListItem.Episode,,. ]$INFO[ListItem.Title]</label>
+					</control>
+					<control type="label">
+						<left>14</left>
+						<top>342</top>
+						<width>480</width>
+						<height>32</height>
+						<font>f_small</font>
+						<textcolor>text2</textcolor>
+						<label>$VAR[EpisodeRowMeta]</label>
+					</control>
+				</focusedlayout>
+			</control>
+		</control>
+	</include>
+
+	<!-- ============================================================ side options menu -->
+	<include name="OptionsMenuItem">
+		<width>500</width>
+		<height>76</height>
+		<textoffsetx>32</textoffsetx>
+		<aligny>center</aligny>
+		<font>f_body_m</font>
+		<textcolor>text</textcolor>
+		<focusedcolor>on_focus</focusedcolor>
+		<texturefocus border="16" colordiffuse="focus">frame/rounded16.png</texturefocus>
+		<texturenofocus />
+		<alttexturefocus border="16" colordiffuse="focus">frame/rounded16.png</alttexturefocus>
+		<alttexturenofocus />
+	</include>
+	<include name="OptionsMenu">
+		<definition>
+			<control type="button" id="3">
+				<description>Sort by (Kodi)</description>
+				<include>HiddenObject</include>
+			</control>
+			<control type="button" id="4">
+				<description>Sort order (Kodi)</description>
+				<include>HiddenObject</include>
+			</control>
+			<control type="group">
+				<left>-600</left>
+				<animation effect="slide" end="600,0" time="260" tween="cubic" easing="out" condition="ControlGroup(9000).HasFocus()" reversible="true">Conditional</animation>
+				<control type="image">
+					<left>600</left>
+					<top>0</top>
+					<width>1920</width>
+					<height>1080</height>
+					<texture colordiffuse="99000000">colors/white.png</texture>
+					<visible>ControlGroup(9000).HasFocus()</visible>
+				</control>
+				<control type="image">
+					<left>0</left>
+					<top>0</top>
+					<width>600</width>
+					<height>1080</height>
+					<texture colordiffuse="surface">colors/white.png</texture>
+				</control>
+				<control type="label">
+					<left>50</left>
+					<top>60</top>
+					<width>500</width>
+					<height>60</height>
+					<font>f_head</font>
+					<label>Options</label>
+				</control>
+				<control type="grouplist" id="9000">
+					<left>50</left>
+					<top>150</top>
+					<width>500</width>
+					<height>880</height>
+					<itemgap>8</itemgap>
+					<onleft>9000</onleft>
+					<onright condition="Control.IsVisible(52)">52</onright>
+					<onright condition="Control.IsVisible(51)">51</onright>
+					<onright condition="Control.IsVisible(53)">53</onright>
+					<onright condition="Control.IsVisible(54)">541</onright>
+					<onright condition="Control.IsVisible(50)">50</onright>
+					<onup>9000</onup>
+					<ondown>9000</ondown>
+					<onback condition="Control.IsVisible(52)">52</onback>
+					<onback condition="Control.IsVisible(51)">51</onback>
+					<onback condition="Control.IsVisible(53)">53</onback>
+					<onback condition="Control.IsVisible(54)">54</onback>
+					<onback condition="Control.IsVisible(50)">50</onback>
+					<control type="button" id="6051">
+						<include>OptionsMenuItem</include>
+						<label>View</label>
+						<label2>$INFO[Container.Viewmode]</label2>
+						<onclick>Container.NextViewMode</onclick>
+						<visible>Integer.IsGreater(Container.ViewCount,1)</visible>
+					</control>
+					<control type="button" id="6053">
+						<include>OptionsMenuItem</include>
+						<label>Sort by</label>
+						<label2>$INFO[Container.SortMethod]</label2>
+						<onclick>SendClick(3)</onclick>
+						<visible>Control.IsEnabled(3)</visible>
+					</control>
+					<control type="button" id="6052">
+						<include>OptionsMenuItem</include>
+						<label>Order</label>
+						<label2>$INFO[Container.SortOrder]</label2>
+						<onclick>SendClick(4)</onclick>
+						<visible>Control.IsEnabled(4)</visible>
+					</control>
+					<control type="button" id="19">
+						<include>OptionsMenuItem</include>
+						<label>$LOCALIZE[587]</label>
+						<visible>Container.CanFilter + !Container.CanFilterAdvanced</visible>
+					</control>
+					<control type="button" id="199">
+						<include>OptionsMenuItem</include>
+						<label>$LOCALIZE[587]</label>
+						<onclick>Filter</onclick>
+						<visible>Container.CanFilterAdvanced</visible>
+					</control>
+					<control type="togglebutton" id="619">
+						<include>OptionsMenuItem</include>
+						<label>$LOCALIZE[653]</label>
+						<altlabel>$LOCALIZE[13353]</altlabel>
+						<usealttexture>Library.IsScanningVideo</usealttexture>
+						<onclick>UpdateLibrary(video)</onclick>
+						<visible>Window.IsActive(videos) + String.IsEmpty(Container.PluginName) + !Container.Content(addons)</visible>
+					</control>
+					<control type="button" id="624">
+						<include>OptionsMenuItem</include>
+						<label>$LOCALIZE[10140]</label>
+						<onclick>Addon.OpenSettings($INFO[Container.PluginName])</onclick>
+						<visible>!String.IsEmpty(Container.PluginName)</visible>
+					</control>
+				</control>
+			</control>
+		</definition>
+	</include>
+</includes>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Info key during playback: DialogSeekBar shows the details; this window
+     only has to catch OK so it opens the OSD. -->
+<window>
+	<defaultcontrol always="true">999</defaultcontrol>
+	<controls>
+		<control type="button" id="999">
+			<include>HiddenObject</include>
+			<onclick>OSD</onclick>
+		</control>
+	</controls>
+</window>

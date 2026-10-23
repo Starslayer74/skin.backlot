@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Backlot setup: one question, a list of choices on the left and a large
+     preview of the focused choice on the right. Uses the Backlot skin's
+     fonts, colors and textures. -->
+<window>
+	<defaultcontrol always="true">100</defaultcontrol>
+	<animation effect="fade" start="0" end="100" time="200">WindowOpen</animation>
+	<animation effect="fade" start="100" end="0" time="150">WindowClose</animation>
+	<controls>
+		<control type="image">
+			<left>0</left>
+			<top>0</top>
+			<width>1920</width>
+			<height>1080</height>
+			<texture colordiffuse="E6000000">colors/white.png</texture>
+		</control>
+		<control type="group">
+			<left>60</left>
+			<top>60</top>
+			<width>1800</width>
+			<height>960</height>
+			<control type="image">
+				<texture border="24" colordiffuse="surface">frame/rounded24.png</texture>
+			</control>
+			<control type="label">
+				<left>64</left>
+				<top>48</top>
+				<width>760</width>
+				<height>40</height>
+				<font>f_small</font>
+				<textcolor>accent</textcolor>
+				<label>$INFO[Window.Property(step)]</label>
+			</control>
+			<control type="textbox">
+				<left>64</left>
+				<top>92</top>
+				<width>760</width>
+				<height>140</height>
+				<font>f_head</font>
+				<textcolor>text</textcolor>
+				<label>$INFO[Window.Property(heading)]</label>
+			</control>
+			<control type="textbox">
+				<left>64</left>
+				<top>236</top>
+				<width>760</width>
+				<height>90</height>
+				<font>f_body</font>
+				<textcolor>text2</textcolor>
+				<label>$INFO[Window.Property(question)]</label>
+			</control>
+			<control type="list" id="100">
+				<left>48</left>
+				<top>340</top>
+				<width>792</width>
+				<height>580</height>
+				<orientation>vertical</orientation>
+				<onleft>100</onleft>
+				<onright>100</onright>
+				<onup>100</onup>
+				<ondown>100</ondown>
+				<scrolltime tween="cubic" easing="out">200</scrolltime>
+				<itemlayout width="792" height="96">
+					<control type="label">
+						<left>32</left>
+						<top>8</top>
+						<width>730</width>
+						<height>80</height>
+						<aligny>center</aligny>
+						<font>f_body_m</font>
+						<textcolor>text2</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<control type="image">
+						<left>712</left>
+						<top>32</top>
+						<width>32</width>
+						<height>32</height>
+						<texture colordiffuse="accent">icons/check.png</texture>
+						<visible>ListItem.Property(current)</visible>
+					</control>
+				</itemlayout>
+				<focusedlayout width="792" height="96">
+					<control type="image">
+						<left>0</left>
+						<top>8</top>
+						<width>776</width>
+						<height>80</height>
+						<texture border="38" colordiffuse="focus">frame/pill.png</texture>
+						<visible>Control.HasFocus(100)</visible>
+					</control>
+					<control type="label">
+						<left>32</left>
+						<top>8</top>
+						<width>700</width>
+						<height>80</height>
+						<aligny>center</aligny>
+						<font>f_body_m</font>
+						<textcolor>on_focus</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<control type="image">
+						<left>712</left>
+						<top>32</top>
+						<width>32</width>
+						<height>32</height>
+						<texture colordiffuse="on_focus">icons/check.png</texture>
+						<visible>ListItem.Property(current)</visible>
+					</control>
+				</focusedlayout>
+			</control>
+			<!-- preview of the focused choice -->
+			<control type="image">
+				<left>880</left>
+				<top>64</top>
+				<width>864</width>
+				<height>486</height>
+				<texture border="16" colordiffuse="surface2">frame/rounded16.png</texture>
+				<visible>!String.IsEmpty(Container(100).ListItem.Art(thumb))</visible>
+			</control>
+			<control type="image">
+				<left>880</left>
+				<top>64</top>
+				<width>864</width>
+				<height>486</height>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<fadetime>150</fadetime>
+				<texture diffuse="masks/thumb.png">$INFO[Container(100).ListItem.Art(thumb)]</texture>
+			</control>
+			<control type="group">
+				<animation effect="slide" end="0,-516" time="0" condition="String.IsEmpty(Container(100).ListItem.Art(thumb))">Conditional</animation>
+			<control type="label">
+				<left>880</left>
+				<top>580</top>
+				<width>864</width>
+				<height>52</height>
+				<font>f_sub</font>
+				<textcolor>text</textcolor>
+				<label>$INFO[Container(100).ListItem.Label]</label>
+			</control>
+			<control type="textbox">
+				<left>880</left>
+				<top>640</top>
+				<width>864</width>
+				<height>260</height>
+				<font>f_body</font>
+				<textcolor>text2</textcolor>
+				<label>$INFO[Container(100).ListItem.Label2]</label>
+			</control>
+			</control>
+		</control>
+	</controls>
+</window>

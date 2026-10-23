@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Backlot: arrange the service tiles. OK picks a tile up, left/right moves it,
+     OK drops it, Back saves. -->
+<window>
+	<defaultcontrol always="true">200</defaultcontrol>
+	<animation effect="fade" start="0" end="100" time="200">WindowOpen</animation>
+	<animation effect="fade" start="100" end="0" time="150">WindowClose</animation>
+	<controls>
+		<control type="image">
+			<left>0</left>
+			<top>0</top>
+			<width>1920</width>
+			<height>1080</height>
+			<texture colordiffuse="bg">colors/white.png</texture>
+		</control>
+		<control type="label">
+			<left>120</left>
+			<top>150</top>
+			<width>1680</width>
+			<height>70</height>
+			<font>f_head</font>
+			<textcolor>text</textcolor>
+			<label>Arrange your services</label>
+		</control>
+		<control type="label">
+			<left>120</left>
+			<top>230</top>
+			<width>1680</width>
+			<height>44</height>
+			<font>f_body</font>
+			<textcolor>text2</textcolor>
+			<label>$INFO[Window.Property(hint)]</label>
+		</control>
+		<control type="list" id="200">
+			<left>110</left>
+			<top>400</top>
+			<width>1810</width>
+			<height>300</height>
+			<orientation>horizontal</orientation>
+			<onup>200</onup>
+			<ondown>200</ondown>
+			<scrolltime tween="cubic" easing="out">200</scrolltime>
+			<itemlayout width="352" height="300">
+				<control type="group">
+					<left>10</left>
+					<top>40</top>
+					<width>320</width>
+					<height>180</height>
+					<animation effect="fade" start="100" end="55" time="150" condition="true">Conditional</animation>
+					<control type="image">
+						<texture border="24" colordiffuse="$INFO[ListItem.Property(tint)]">frame/rounded24.png</texture>
+					</control>
+					<control type="image">
+						<left>40</left>
+						<top>30</top>
+						<width>240</width>
+						<height>120</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$INFO[ListItem.Art(logo)]</texture>
+					</control>
+					<control type="label">
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>f_sub</font>
+						<label>$INFO[ListItem.Label]</label>
+						<visible>String.IsEmpty(ListItem.Art(logo))</visible>
+					</control>
+				</control>
+				<control type="label">
+					<left>10</left>
+					<top>236</top>
+					<width>320</width>
+					<height>36</height>
+					<align>center</align>
+					<font>f_small</font>
+					<textcolor>text3</textcolor>
+					<label>$INFO[ListItem.Property(position)]</label>
+				</control>
+			</itemlayout>
+			<focusedlayout width="352" height="300">
+				<control type="group">
+					<left>10</left>
+					<top>40</top>
+					<width>320</width>
+					<height>180</height>
+					<animation effect="slide" end="0,-28" time="160" tween="cubic" easing="out" condition="String.IsEqual(ListItem.Property(moving),true)">Conditional</animation>
+					<animation effect="zoom" end="108" center="auto" time="160" condition="true">Conditional</animation>
+					<control type="image">
+						<left>-40</left>
+						<top>-40</top>
+						<right>-40</right>
+						<bottom>-40</bottom>
+						<texture border="64">frame/shadow.png</texture>
+					</control>
+					<control type="image">
+						<texture border="24" colordiffuse="$INFO[ListItem.Property(tint)]">frame/rounded24.png</texture>
+					</control>
+					<control type="image">
+						<left>40</left>
+						<top>30</top>
+						<width>240</width>
+						<height>120</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$INFO[ListItem.Art(logo)]</texture>
+					</control>
+					<control type="label">
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>f_sub</font>
+						<label>$INFO[ListItem.Label]</label>
+						<visible>String.IsEmpty(ListItem.Art(logo))</visible>
+					</control>
+					<control type="image">
+						<left>-7</left>
+						<top>-7</top>
+						<right>-7</right>
+						<bottom>-7</bottom>
+						<texture border="24" colordiffuse="ring">frame/ring24.png</texture>
+						<visible>!String.IsEqual(ListItem.Property(moving),true)</visible>
+					</control>
+					<control type="image">
+						<left>-7</left>
+						<top>-7</top>
+						<right>-7</right>
+						<bottom>-7</bottom>
+						<texture border="24" colordiffuse="accent">frame/ring24.png</texture>
+						<visible>String.IsEqual(ListItem.Property(moving),true)</visible>
+					</control>
+				</control>
+				<control type="label">
+					<left>-20</left>
+					<top>236</top>
+					<width>380</width>
+					<height>40</height>
+					<align>center</align>
+					<font>f_body_m</font>
+					<textcolor>text</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+			</focusedlayout>
+		</control>
+		<control type="label">
+			<left>120</left>
+			<top>900</top>
+			<width>1680</width>
+			<height>40</height>
+			<font>f_small</font>
+			<textcolor>text3</textcolor>
+			<label>OK picks a tile up or drops it  •  Left and right move it  •  Back saves</label>
+		</control>
+	</controls>
+</window>

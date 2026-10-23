@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Background tasks such as library scans. -->
+<window>
+	<zorder>2</zorder>
+	<animation effect="fade" start="0" end="100" time="200">WindowOpen</animation>
+	<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+	<controls>
+		<control type="group">
+			<right>60</right>
+			<top>150</top>
+			<width>620</width>
+			<height>124</height>
+			<visible>!Window.IsActive(fullscreenvideo)</visible>
+			<include>DialogFrame</include>
+			<control type="label" id="30">
+				<left>28</left>
+				<top>18</top>
+				<width>564</width>
+				<height>36</height>
+				<font>f_body_m</font>
+			</control>
+			<control type="label" id="31">
+				<left>28</left>
+				<top>54</top>
+				<width>564</width>
+				<height>32</height>
+				<font>f_small</font>
+				<textcolor>text2</textcolor>
+			</control>
+			<control type="progress" id="32">
+				<left>28</left>
+				<top>96</top>
+				<width>564</width>
+				<height>8</height>
+			</control>
+		</control>
+	</controls>
+</window>

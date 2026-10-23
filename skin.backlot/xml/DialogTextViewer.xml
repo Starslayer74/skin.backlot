@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">60</defaultcontrol>
+	<include>Anim_DialogPop</include>
+	<controls>
+		<include>DimBehind</include>
+		<control type="group">
+			<left>260</left>
+			<top>110</top>
+			<width>1400</width>
+			<height>860</height>
+			<include>DialogFrame</include>
+			<include content="DialogHeader">
+				<param name="id">1</param>
+			</include>
+			<control type="textbox" id="5">
+				<left>56</left>
+				<top>116</top>
+				<width>1260</width>
+				<height>700</height>
+				<font>f_body</font>
+				<pagecontrol>60</pagecontrol>
+			</control>
+			<control type="scrollbar" id="60">
+				<left>1340</left>
+				<top>116</top>
+				<width>8</width>
+				<height>700</height>
+				<onleft>60</onleft>
+				<onright>60</onright>
+			</control>
+		</control>
+	</controls>
+</window>

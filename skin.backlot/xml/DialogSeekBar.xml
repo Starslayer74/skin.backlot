@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Bottom info strip shown while seeking, paused, with the info key, or under
+     the OSD. The OSD itself only adds the transport buttons. -->
+<window>
+	<visible>Window.IsActive(fullscreenvideo)</visible>
+	<visible>!Window.IsActive(sliderdialog)</visible>
+	<visible>Player.Seeking | Player.HasPerformedSeek(3) | [Player.Paused + !Player.Caching] | Player.Forwarding | Player.Rewinding | Player.ShowInfo | Window.IsActive(fullscreeninfo) | Player.ShowTime | Window.IsActive(videoosd) | !String.IsEmpty(Player.SeekNumeric)</visible>
+	<zorder>0</zorder>
+	<animation type="WindowOpen" reversible="false">
+		<effect type="fade" start="0" end="100" time="200" />
+		<effect type="slide" start="0,80" end="0,0" time="240" tween="cubic" easing="out" />
+	</animation>
+	<animation type="WindowClose" reversible="false">
+		<effect type="fade" start="100" end="0" time="160" />
+	</animation>
+	<controls>
+		<control type="image">
+			<left>0</left>
+			<top>560</top>
+			<width>1920</width>
+			<height>520</height>
+			<texture colordiffuse="F2000000">frame/grad_bottom.png</texture>
+		</control>
+		<control type="group">
+			<left>120</left>
+			<top>0</top>
+			<width>1680</width>
+			<!-- title -->
+			<control type="image">
+				<left>0</left>
+				<top>700</top>
+				<width>440</width>
+				<height>120</height>
+				<aspectratio align="left" aligny="bottom">keep</aspectratio>
+				<texture>$VAR[PlayerLogo]</texture>
+			</control>
+			<control type="label">
+				<left>0</left>
+				<top>740</top>
+				<width>1400</width>
+				<height>80</height>
+				<aligny>bottom</aligny>
+				<font>f_title</font>
+				<label>$VAR[PlayerTitle]</label>
+				<visible>String.IsEmpty(Player.Art(clearlogo)) + String.IsEmpty(Player.Art(tvshow.clearlogo))</visible>
+			</control>
+			<control type="label">
+				<left>0</left>
+				<top>828</top>
+				<width>1400</width>
+				<height>40</height>
+				<font>f_body_m</font>
+				<textcolor>text2</textcolor>
+				<label>$VAR[PlayerSubtitle]</label>
+			</control>
+			<!-- progress -->
+			<control type="progress">
+				<left>0</left>
+				<top>896</top>
+				<width>1680</width>
+				<height>8</height>
+				<info>Player.ProgressCache</info>
+				<texturebg border="4" colordiffuse="progress_track">frame/rounded8.png</texturebg>
+				<midtexture border="4" colordiffuse="50FFFFFF">frame/rounded8.png</midtexture>
+			</control>
+			<control type="progress">
+				<left>0</left>
+				<top>896</top>
+				<width>1680</width>
+				<height>8</height>
+				<info>Player.Progress</info>
+				<texturebg border="4" colordiffuse="clear">frame/rounded8.png</texturebg>
+				<midtexture border="4" colordiffuse="accent">frame/rounded8.png</midtexture>
+			</control>
+			<control type="slider" id="401">
+				<description>invisible: lets a mouse/touch seek on the bar</description>
+				<left>0</left>
+				<top>880</top>
+				<width>1680</width>
+				<height>40</height>
+				<texturesliderbar>colors/clear.png</texturesliderbar>
+				<textureslidernib>colors/clear.png</textureslidernib>
+				<textureslidernibfocus>colors/clear.png</textureslidernibfocus>
+				<visible>Player.SeekEnabled</visible>
+			</control>
+			<control type="label">
+				<left>0</left>
+				<top>924</top>
+				<width>400</width>
+				<height>40</height>
+				<font>f_body_m</font>
+				<label>$VAR[SeekTime]</label>
+			</control>
+			<control type="label">
+				<right>0</right>
+				<top>924</top>
+				<width>600</width>
+				<height>40</height>
+				<align>right</align>
+				<font>f_body_m</font>
+				<textcolor>text2</textcolor>
+				<label>$INFO[Player.Duration]$INFO[Player.FinishTime,  •  Ends ,]</label>
+			</control>
+			<control type="label">
+				<left>440</left>
+				<top>924</top>
+				<width>800</width>
+				<height>40</height>
+				<align>center</align>
+				<font>f_body_m</font>
+				<textcolor>accent</textcolor>
+				<label>$INFO[Player.SeekStepSize]$INFO[Player.SeekNumeric]</label>
+			</control>
+			<!-- paused / speed badge -->
+			<control type="label">
+				<right>0</right>
+				<top>780</top>
+				<width>400</width>
+				<height>40</height>
+				<align>right</align>
+				<font>f_sub</font>
+				<label>$INFO[Player.PlaySpeed,,x]</label>
+				<visible>Player.Forwarding | Player.Rewinding</visible>
+			</control>
+			<control type="label">
+				<right>0</right>
+				<top>780</top>
+				<width>400</width>
+				<height>40</height>
+				<align>right</align>
+				<font>f_sub</font>
+				<label>$LOCALIZE[112]</label>
+				<visible>Player.Paused + !Player.Forwarding + !Player.Rewinding</visible>
+			</control>
+		</control>
+		<control type="label">
+			<right>80</right>
+			<top>44</top>
+			<width>300</width>
+			<height>44</height>
+			<align>right</align>
+			<font>f_clock</font>
+			<shadowcolor>shadow</shadowcolor>
+			<label>$INFO[System.Time]</label>
+			<visible>Window.IsActive(videoosd) | Player.ShowInfo | Window.IsActive(fullscreeninfo)</visible>
+		</control>
+	</controls>
+</window>

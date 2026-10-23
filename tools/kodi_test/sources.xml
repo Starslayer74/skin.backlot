@@ -1,0 +1,7 @@
+<sources>
+	<video>
+		<default pathversion="1"></default>
+		<source><name>Movies</name><path pathversion="1">/srv/media/Movies/</path><allowsharing>true</allowsharing></source>
+		<source><name>Television</name><path pathversion="1">/srv/media/Television/</path><allowsharing>true</allowsharing></source>
+	</video>
+</sources>

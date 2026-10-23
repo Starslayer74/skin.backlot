@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">450</defaultcontrol>
+	<include>Anim_DialogPop</include>
+	<controls>
+		<include>DimBehind</include>
+		<control type="group">
+			<left>260</left>
+			<top>110</top>
+			<width>1400</width>
+			<height>860</height>
+			<include>DialogFrame</include>
+			<include content="DialogHeader">
+				<param name="id">411</param>
+			</include>
+			<control type="panel" id="450">
+				<left>36</left>
+				<top>112</top>
+				<width>980</width>
+				<height>684</height>
+				<onleft>9000</onleft>
+				<onright>60</onright>
+				<onup>450</onup>
+				<ondown>450</ondown>
+				<pagecontrol>60</pagecontrol>
+				<include content="SimpleListLayouts">
+					<param name="id">450</param>
+					<param name="width">980</param>
+				</include>
+			</control>
+			<control type="panel" id="451">
+				<left>36</left>
+				<top>112</top>
+				<width>980</width>
+				<height>684</height>
+				<onleft>9000</onleft>
+				<onright>60</onright>
+				<onup>451</onup>
+				<ondown>451</ondown>
+				<pagecontrol>60</pagecontrol>
+				<include content="SimpleListLayouts">
+					<param name="id">451</param>
+					<param name="width">980</param>
+				</include>
+			</control>
+			<control type="scrollbar" id="60">
+				<left>1030</left>
+				<top>112</top>
+				<width>8</width>
+				<height>684</height>
+				<onleft>450</onleft>
+				<onright>9000</onright>
+			</control>
+			<control type="grouplist" id="9000">
+				<left>1070</left>
+				<top>112</top>
+				<width>294</width>
+				<height>400</height>
+				<itemgap>16</itemgap>
+				<onleft>450</onleft>
+				<onright>450</onright>
+				<onup>9000</onup>
+				<ondown>9000</ondown>
+				<include content="DialogButton">
+					<param name="id">413</param>
+					<param name="width">294</param>
+					<param name="label">$LOCALIZE[186]</param>
+				</include>
+				<include content="DialogButton">
+					<param name="id">414</param>
+					<param name="width">294</param>
+					<param name="label">$LOCALIZE[222]</param>
+				</include>
+				<include content="DialogButton">
+					<param name="id">415</param>
+					<param name="width">294</param>
+					<param name="label">$LOCALIZE[119]</param>
+					<param name="visible">Control.IsEnabled(415)</param>
+				</include>
+				<include content="DialogButton">
+					<param name="id">416</param>
+					<param name="width">294</param>
+					<param name="label">$LOCALIZE[749]</param>
+					<param name="visible">Control.IsEnabled(416)</param>
+				</include>
+			</control>
+			<control type="label" id="412">
+				<left>56</left>
+				<top>808</top>
+				<width>1288</width>
+				<height>36</height>
+				<haspath>true</haspath>
+				<font>f_small</font>
+				<textcolor>text3</textcolor>
+			</control>
+		</control>
+	</controls>
+</window>

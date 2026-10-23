@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">3</defaultcontrol>
+	<include>Anim_DialogPop</include>
+	<controls>
+		<include>DimBehind</include>
+		<control type="group">
+			<left>310</left>
+			<top>140</top>
+			<width>1300</width>
+			<height>800</height>
+			<include>DialogFrame</include>
+			<include content="DialogHeader">
+				<param name="id">1</param>
+			</include>
+			<!-- simple list -->
+			<control type="list" id="3">
+				<left>40</left>
+				<top>112</top>
+				<width>900</width>
+				<height>650</height>
+				<onup>3</onup>
+				<ondown>3</ondown>
+				<onleft>9001</onleft>
+				<onright>9001</onright>
+				<pagecontrol>61</pagecontrol>
+				<itemlayout width="900" height="80">
+					<control type="label">
+						<left>32</left>
+						<right>140</right>
+						<height>80</height>
+						<aligny>center</aligny>
+						<font>f_body_m</font>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<control type="label">
+						<right>32</right>
+						<width>400</width>
+						<height>80</height>
+						<align>right</align>
+						<aligny>center</aligny>
+						<font>f_small</font>
+						<textcolor>text2</textcolor>
+						<label>$INFO[ListItem.Label2]</label>
+					</control>
+					<control type="image">
+						<right>28</right>
+						<top>24</top>
+						<width>32</width>
+						<height>32</height>
+						<texture colordiffuse="accent">icons/check.png</texture>
+						<visible>ListItem.IsSelected</visible>
+					</control>
+				</itemlayout>
+				<focusedlayout width="900" height="80">
+					<control type="image">
+						<texture border="16" colordiffuse="focus">frame/rounded16.png</texture>
+						<visible>Control.HasFocus(3)</visible>
+					</control>
+					<control type="image">
+						<texture border="16" colordiffuse="surface2">frame/rounded16.png</texture>
+						<visible>!Control.HasFocus(3)</visible>
+					</control>
+					<control type="label">
+						<left>32</left>
+						<right>140</right>
+						<height>80</height>
+						<aligny>center</aligny>
+						<font>f_body_m</font>
+						<scroll>true</scroll>
+						<textcolor>on_focus</textcolor>
+						<selectedcolor>on_focus</selectedcolor>
+						<label>$INFO[ListItem.Label]</label>
+						<visible>Control.HasFocus(3)</visible>
+					</control>
+					<control type="label">
+						<left>32</left>
+						<right>140</right>
+						<height>80</height>
+						<aligny>center</aligny>
+						<font>f_body_m</font>
+						<label>$INFO[ListItem.Label]</label>
+						<visible>!Control.HasFocus(3)</visible>
+					</control>
+					<control type="label">
+						<right>32</right>
+						<width>400</width>
+						<height>80</height>
+						<align>right</align>
+						<aligny>center</aligny>
+						<font>f_small</font>
+						<textcolor>text3</textcolor>
+						<label>$INFO[ListItem.Label2]</label>
+					</control>
+					<control type="image">
+						<right>28</right>
+						<top>24</top>
+						<width>32</width>
+						<height>32</height>
+						<texture colordiffuse="on_focus">icons/check.png</texture>
+						<visible>ListItem.IsSelected</visible>
+					</control>
+				</focusedlayout>
+			</control>
+			<!-- detailed list (icon + two lines) -->
+			<control type="list" id="6">
+				<left>40</left>
+				<top>112</top>
+				<width>900</width>
+				<height>650</height>
+				<onup>6</onup>
+				<ondown>6</ondown>
+				<onleft>9001</onleft>
+				<onright>9001</onright>
+				<pagecontrol>61</pagecontrol>
+				<itemlayout width="900" height="130">
+					<control type="image">
+						<left>20</left>
+						<top>15</top>
+						<width>100</width>
+						<height>100</height>
+						<aspectratio>keep</aspectratio>
+						<texture background="true">$INFO[ListItem.Icon]</texture>
+					</control>
+					<control type="label">
+						<left>140</left>
+						<top>14</top>
+						<right>24</right>
+						<height>44</height>
+						<font>f_body_m</font>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<control type="textbox">
+						<left>140</left>
+						<top>58</top>
+						<right>24</right>
+						<height>62</height>
+						<font>f_small</font>
+						<label>$INFO[ListItem.Label2]</label>
+					</control>
+				</itemlayout>
+				<focusedlayout width="900" height="130">
+					<control type="image">
+						<texture border="16" colordiffuse="surface3">frame/rounded16.png</texture>
+					</control>
+					<control type="image">
+						<left>-4</left>
+						<top>-4</top>
+						<right>-4</right>
+						<bottom>-4</bottom>
+						<texture border="20" colordiffuse="ring">frame/ring16.png</texture>
+						<visible>Control.HasFocus(6)</visible>
+					</control>
+					<control type="image">
+						<left>20</left>
+						<top>15</top>
+						<width>100</width>
+						<height>100</height>
+						<aspectratio>keep</aspectratio>
+						<texture background="true">$INFO[ListItem.Icon]</texture>
+					</control>
+					<control type="label">
+						<left>140</left>
+						<top>14</top>
+						<right>24</right>
+						<height>44</height>
+						<font>f_body_m</font>
+						<scroll>true</scroll>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<control type="textbox">
+						<left>140</left>
+						<top>58</top>
+						<right>24</right>
+						<height>62</height>
+						<font>f_small</font>
+						<label>$INFO[ListItem.Label2]</label>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="scrollbar" id="61">
+				<left>952</left>
+				<top>112</top>
+				<width>8</width>
+				<height>650</height>
+				<onleft condition="Control.IsVisible(3)">3</onleft>
+				<onleft condition="Control.IsVisible(6)">6</onleft>
+				<onright>9001</onright>
+			</control>
+			<control type="grouplist" id="9001">
+				<left>990</left>
+				<top>112</top>
+				<width>270</width>
+				<height>400</height>
+				<itemgap>16</itemgap>
+				<onleft condition="Control.IsVisible(3)">3</onleft>
+				<onleft condition="Control.IsVisible(6)">6</onleft>
+				<onright condition="Control.IsVisible(3)">3</onright>
+				<onright condition="Control.IsVisible(6)">6</onright>
+				<include content="DialogButton">
+					<param name="id">5</param>
+					<param name="width">270</param>
+				</include>
+				<include content="DialogButton">
+					<param name="id">8</param>
+					<param name="width">270</param>
+				</include>
+				<include content="DialogButton">
+					<param name="id">7</param>
+					<param name="width">270</param>
+					<param name="label">$LOCALIZE[222]</param>
+				</include>
+			</control>
+			<control type="label">
+				<left>990</left>
+				<bottom>36</bottom>
+				<width>270</width>
+				<height>36</height>
+				<align>right</align>
+				<font>f_small</font>
+				<textcolor>text3</textcolor>
+				<label>$INFO[Container(3).NumItems,, items]</label>
+				<visible>Control.IsVisible(3)</visible>
+			</control>
+		</control>
+	</controls>
+</window>

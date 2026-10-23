@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol>996</defaultcontrol>
+	<include>Anim_DialogPop</include>
+	<coordinates>
+		<left>0</left>
+		<top>0</top>
+	</coordinates>
+	<controls>
+		<control type="image">
+			<left>-1920</left>
+			<top>-1080</top>
+			<width>5760</width>
+			<height>3240</height>
+			<texture colordiffuse="99000000">colors/white.png</texture>
+		</control>
+		<control type="button">
+			<left>-1920</left>
+			<top>-1080</top>
+			<width>5760</width>
+			<height>3240</height>
+			<label />
+			<texturefocus />
+			<texturenofocus />
+			<onclick>Action(close)</onclick>
+		</control>
+		<control type="image" id="999">
+			<description>background, Kodi sizes it to the menu</description>
+			<left>-16</left>
+			<top>-16</top>
+			<width>532</width>
+			<height>780</height>
+			<texture border="24" colordiffuse="surface">frame/rounded24.png</texture>
+		</control>
+		<control type="grouplist" id="996">
+			<left>0</left>
+			<top>0</top>
+			<width>500</width>
+			<height max="760">auto</height>
+			<itemgap>4</itemgap>
+			<usecontrolcoords>true</usecontrolcoords>
+		</control>
+		<control type="button" id="1000">
+			<description>button template</description>
+			<width>500</width>
+			<height>76</height>
+			<textoffsetx>32</textoffsetx>
+			<texturefocus border="16" colordiffuse="focus">frame/rounded16.png</texturefocus>
+			<texturenofocus />
+		</control>
+	</controls>
+</window>

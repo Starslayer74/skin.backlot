@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Backlot color theme: Royal (overrides colors/defaults.xml) -->
+<colors>
+	<color name="bg">FF100D1A</color>
+	<color name="bg_veil">F2100D1A</color>
+	<color name="bg_dim">CC100D1A</color>
+	<color name="surface">FF1C1730</color>
+	<color name="surface2">FF28204A</color>
+	<color name="surface3">FF342A5C</color>
+	<color name="focus">FFECE7FF</color>
+	<color name="on_focus">FF100D1A</color>
+	<color name="accent">FFB39DFF</color>
+	<color name="selected">FFB39DFF</color>
+	<color name="text2">FFBDB6D6</color>
+</colors>

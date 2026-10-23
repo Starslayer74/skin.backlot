@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Template controls Kodi clones to build every settings list. -->
+<includes>
+	<include name="SettingTemplates">
+		<param name="width">1100</param>
+		<definition>
+			<control type="button" id="7">
+				<description>Default Button</description>
+				<width>$PARAM[width]</width>
+				<include>SettingRow</include>
+			</control>
+			<control type="radiobutton" id="8">
+				<description>Default RadioButton</description>
+				<width>$PARAM[width]</width>
+				<include>SettingRow</include>
+			</control>
+			<control type="spincontrolex" id="9">
+				<description>Default SpinControlEx</description>
+				<width>$PARAM[width]</width>
+				<include>SettingRow</include>
+			</control>
+			<control type="image" id="11">
+				<description>Separator</description>
+				<width>$PARAM[width]</width>
+				<height>2</height>
+				<texture colordiffuse="20FFFFFF">colors/white.png</texture>
+			</control>
+			<control type="edit" id="12">
+				<description>Default Edit</description>
+				<width>$PARAM[width]</width>
+				<include>SettingRow</include>
+			</control>
+			<control type="sliderex" id="13">
+				<description>Default Slider</description>
+				<width>$PARAM[width]</width>
+				<include>SettingRow</include>
+			</control>
+			<control type="label" id="14">
+				<description>Default Label (group title)</description>
+				<width>$PARAM[width]</width>
+				<height>64</height>
+				<textoffsetx>32</textoffsetx>
+				<aligny>bottom</aligny>
+				<font>f_small</font>
+				<textcolor>accent</textcolor>
+			</control>
+			<control type="colorbutton" id="15">
+				<description>Default ColorButton</description>
+				<width>$PARAM[width]</width>
+				<include>SettingRow</include>
+			</control>
+		</definition>
+	</include>
+	<include name="SettingsLevelButton">
+		<param name="left">0</param>
+		<param name="top">0</param>
+		<param name="width">400</param>
+		<definition>
+			<control type="button" id="20">
+				<left>$PARAM[left]</left>
+				<top>$PARAM[top]</top>
+				<width>$PARAM[width]</width>
+				<height>76</height>
+				<font>f_small</font>
+				<textoffsetx>32</textoffsetx>
+				<onclick>SettingsLevelChange</onclick>
+				<texturefocus border="16" colordiffuse="focus">frame/rounded16.png</texturefocus>
+				<texturenofocus border="16" colordiffuse="surface2">frame/rounded16.png</texturenofocus>
+			</control>
+		</definition>
+	</include>
+</includes>
