@@ -5,6 +5,7 @@
 	<defaultcontrol always="false">9100</defaultcontrol>
 	<onload condition="Skin.HasSetting(backlot.circles) + !Control.HasFocus(301) + !Control.HasFocus(410) + !Control.HasFocus(420)">SetFocus(301)</onload>
 	<onload condition="!Skin.HasSetting(backlot.circles) + !Control.HasFocus(300) + !Control.HasFocus(410) + !Control.HasFocus(420)">SetFocus(300)</onload>
+	<onload>ClearProperty(backlot.libnav,home)</onload>
 	<onload condition="String.IsEmpty(Window(Home).Property(backlot.ready)) + String.IsEmpty(Window(Home).Property(backlot.service)) + System.HasAddon(script.backlot.helper)">RunScript(script.backlot.helper,startup)</onload>
 	<onload condition="!Skin.HasSetting(backlot.setup_done) + System.HasAddon(script.backlot.helper)">AlarmClock(backlotsetup,RunScript(script.backlot.helper,setup),00:02,silent)</onload>
 	<backgroundcolor>bg</backgroundcolor>

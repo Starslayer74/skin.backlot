@@ -36,6 +36,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.1.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.1.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.1.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.1.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.1.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.1.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.1.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.1.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.1.id))</visible>
 		</item>
@@ -73,6 +74,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.2.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.2.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.2.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.2.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.2.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.2.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.2.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.2.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.2.id))</visible>
 		</item>
@@ -110,6 +112,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.3.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.3.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.3.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.3.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.3.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.3.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.3.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.3.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.3.id))</visible>
 		</item>
@@ -147,6 +150,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.4.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.4.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.4.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.4.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.4.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.4.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.4.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.4.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.4.id))</visible>
 		</item>
@@ -184,6 +188,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.5.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.5.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.5.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.5.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.5.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.5.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.5.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.5.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.5.id))</visible>
 		</item>
@@ -221,6 +226,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.6.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.6.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.6.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.6.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.6.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.6.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.6.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.6.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.6.id))</visible>
 		</item>
@@ -258,6 +264,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.7.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.7.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.7.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.7.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.7.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.7.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.7.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.7.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.7.id))</visible>
 		</item>
@@ -295,6 +302,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.8.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.8.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.8.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.8.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.8.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.8.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.8.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.8.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.8.id))</visible>
 		</item>
@@ -332,6 +340,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.9.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.9.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.9.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.9.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.9.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.9.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.9.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.9.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.9.id))</visible>
 		</item>
@@ -369,6 +378,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.10.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.10.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.10.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.10.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.10.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.10.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.10.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.10.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.10.id))</visible>
 		</item>
@@ -406,6 +416,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.11.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.11.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.11.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.11.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.11.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.11.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.11.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.11.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.11.id))</visible>
 		</item>
@@ -443,6 +454,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.12.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.12.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.12.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.12.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.12.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.12.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.12.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.12.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.12.id))</visible>
 		</item>
@@ -480,6 +492,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.13.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.13.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.13.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.13.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.13.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.13.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.13.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.13.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.13.id))</visible>
 		</item>
@@ -517,6 +530,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.14.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.14.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.14.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.14.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.14.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.14.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.14.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.14.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.14.id))</visible>
 		</item>
@@ -554,6 +568,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.15.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.15.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.15.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.15.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.15.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.15.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.15.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.15.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.15.id))</visible>
 		</item>
@@ -591,6 +606,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.16.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.16.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.16.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.16.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.16.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.16.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.16.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.16.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.16.id))</visible>
 		</item>
@@ -628,6 +644,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.17.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.17.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.17.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.17.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.17.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.17.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.17.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.17.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.17.id))</visible>
 		</item>
@@ -665,6 +682,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.18.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.18.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.18.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.18.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.18.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.18.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.18.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.18.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.18.id))</visible>
 		</item>
@@ -702,6 +720,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.19.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.19.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.19.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.19.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.19.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.19.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.19.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.19.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.19.id))</visible>
 		</item>
@@ -739,6 +758,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.20.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.20.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.20.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.20.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.20.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.20.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.20.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.20.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.20.id))</visible>
 		</item>
@@ -776,6 +796,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.21.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.21.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.21.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.21.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.21.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.21.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.21.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.21.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.21.id))</visible>
 		</item>
@@ -813,6 +834,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.22.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.22.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.22.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.22.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.22.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.22.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.22.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.22.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.22.id))</visible>
 		</item>
@@ -850,6 +872,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.23.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.23.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.23.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.23.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.23.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.23.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.23.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.23.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.23.id))</visible>
 		</item>
@@ -887,6 +910,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.24.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.24.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.24.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.24.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.24.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.24.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.24.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.24.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.24.id))</visible>
 		</item>
@@ -924,6 +948,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.25.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.25.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.25.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.25.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.25.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.25.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.25.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.25.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.25.id))</visible>
 		</item>
@@ -961,6 +986,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.26.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.26.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.26.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.26.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.26.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.26.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.26.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.26.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.26.id))</visible>
 		</item>
@@ -998,6 +1024,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.27.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.27.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.27.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.27.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.27.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.27.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.27.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.27.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.27.id))</visible>
 		</item>
@@ -1035,6 +1062,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.28.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.28.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.28.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.28.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.28.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.28.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.28.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.28.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.28.id))</visible>
 		</item>
@@ -1072,6 +1100,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.29.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.29.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.29.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.29.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.29.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.29.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.29.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.29.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.29.id))</visible>
 		</item>
@@ -1109,6 +1138,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.30.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.30.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.30.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.30.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.30.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.30.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.30.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.30.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.30.id))</visible>
 		</item>
@@ -1146,6 +1176,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.31.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.31.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.31.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.31.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.31.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.31.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.31.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.31.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.31.id))</visible>
 		</item>
@@ -1183,6 +1214,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.32.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.32.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.32.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.32.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.32.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.32.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.32.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.32.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.32.id))</visible>
 		</item>
@@ -1220,6 +1252,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.33.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.33.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.33.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.33.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.33.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.33.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.33.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.33.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.33.id))</visible>
 		</item>
@@ -1257,6 +1290,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.34.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.34.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.34.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.34.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.34.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.34.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.34.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.34.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.34.id))</visible>
 		</item>
@@ -1294,6 +1328,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.35.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.35.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.35.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.35.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.35.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.35.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.35.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.35.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.35.id))</visible>
 		</item>
@@ -1331,6 +1366,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.36.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.36.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.36.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.36.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.36.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.36.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.36.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.36.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.36.id))</visible>
 		</item>
@@ -1368,6 +1404,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.37.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.37.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.37.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.37.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.37.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.37.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.37.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.37.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.37.id))</visible>
 		</item>
@@ -1405,6 +1442,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.38.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.38.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.38.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.38.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.38.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.38.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.38.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.38.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.38.id))</visible>
 		</item>
@@ -1442,6 +1480,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.39.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.39.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.39.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.39.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.39.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.39.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.39.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.39.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.39.id))</visible>
 		</item>
@@ -1479,6 +1518,7 @@
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.40.direct))">SetProperty(hub.row2_label,$ESCINFO[Window(Home).Property(backlot.svc.40.row2_label)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.40.direct))">SetProperty(hub.row2_path,$ESCINFO[Window(Home).Property(backlot.svc.40.row2_path)],home)</onclick>
 			<onclick condition="String.IsEmpty(Window(Home).Property(backlot.svc.40.direct))">ActivateWindow(1100)</onclick>
+			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.40.direct))">SetProperty(backlot.libnav,1,home)</onclick>
 			<onclick condition="!String.IsEmpty(Window(Home).Property(backlot.svc.40.direct))">ActivateWindow(Videos,$INFO[Window(Home).Property(backlot.svc.40.direct)],return)</onclick>
 			<visible>!String.IsEmpty(Window(Home).Property(backlot.svc.40.id))</visible>
 		</item>

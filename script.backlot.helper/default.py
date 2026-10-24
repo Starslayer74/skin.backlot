@@ -34,6 +34,7 @@ elif action == "open" and len(sys.argv) > 3:
     if dbtype == "movie" and dbid.isdigit():
         backlot._rpc("Player.Open", {"item": {"movieid": int(dbid)}})
     elif dbtype == "tvshow" and dbid.isdigit():
+        xbmc.executebuiltin("SetProperty(backlot.libnav,1,home)")
         xbmc.executebuiltin("ActivateWindow(Videos,videodb://tvshows/titles/%s/,return)" % dbid)
 elif action == "info" and len(sys.argv) > 3:
     # open the info screen for another library title (from "More like this")

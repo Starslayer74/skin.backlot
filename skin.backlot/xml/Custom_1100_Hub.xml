@@ -127,6 +127,7 @@
 					<texturefocus border="38" colordiffuse="focus">frame/pill.png</texturefocus>
 					<texturenofocus border="38" colordiffuse="surface2">frame/pill.png</texturenofocus>
 					<onfocus>SetProperty(tab,1)</onfocus>
+					<onclick>SetProperty(backlot.libnav,1,home)</onclick>
 					<onclick>ActivateWindow(Videos,$INFO[Window(Home).Property(hub.tab1_path)],return)</onclick>
 				</control>
 				<control type="button" id="102">
@@ -138,6 +139,7 @@
 					<texturefocus border="38" colordiffuse="focus">frame/pill.png</texturefocus>
 					<texturenofocus border="38" colordiffuse="surface2">frame/pill.png</texturenofocus>
 					<onfocus>SetProperty(tab,2)</onfocus>
+					<onclick>SetProperty(backlot.libnav,1,home)</onclick>
 					<onclick>ActivateWindow(Videos,$INFO[Window(Home).Property(hub.tab2_path)],return)</onclick>
 				</control>
 				<control type="button" id="103">

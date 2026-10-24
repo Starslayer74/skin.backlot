@@ -60,7 +60,7 @@ Kodi installs **Backlot Helper**, **Backlot Sounds** and Kodi's official **Studi
 - **Collections:** movie sets show as a single tile and open to their movies. Collection art is read from tinyMediaManager's `movieset-poster.jpg`, `movieset-clearlogo.png` and other `movieset-*` files next to your movies. Kodi ignores those files on its own.
 - **Episodes, modern (default):** seasons down the left, episodes on the right with a thumbnail, date, runtime and description, like Netflix today.
 - **Episodes, classic (option):** one row of large thumbnails with a season switcher above it.
-- Android TV-style list defaults: no `..` parent item, no "All seasons" entry, and Back always ends on the home screen, never Kodi's Videos menu.
+- Android TV-style list defaults: no `..` parent item, no "All seasons" entry, and Back from a Backlot library view always ends on the home screen, never Kodi's Videos menu (opening Videos yourself to add sources or browse files still works normally).
 
 ### Info screens
 - Clearlogo, details, director/studio/rating line, tagline and plot over full-screen fanart.
