@@ -69,11 +69,15 @@ Kodi installs **Backlot Helper**, **Backlot Sounds** and Kodi's official **Studi
 - **PreShow Experience** support. A **PreShow** button sits next to Play, with an option to make PreShow the default. Backlot can install PreShow Experience from preshowmedia.com for you.
 
 ### Playback
-- A clean seek bar and OSD with title art, a progress bar, the end time and a transport row.
+- **Paused info screen.** Three seconds after you pause, the picture dims and the clearlogo, episode or tagline, details, plot and time left take over the screen, like Netflix and Google TV. It can be turned off in settings.
+- **Chapters on the progress bar.** Chapter marks on the bar and the current chapter's name next to the time.
+- **Subtitle and audio on the controls.** The OSD shows what's on now (for example "Off" and "ENG 5.1") on those buttons, plus time left and the end time.
+- **Up Next card.** Near the end of an episode, a Backlot-styled card shows the next one with a countdown, Play now and Close. Uses the Up Next add-on, which Backlot can install for you.
 
 ### Setup and settings
-- **First-run walkthrough** of 12 steps. Each choice shows a preview picture: tile style, names, color theme, services, Hulu/Discovery+, episode layout, collections, Movies/TV tiles, TMDb Helper, PreShow, similar titles, weather and sounds.
+- **First-run walkthrough** of 13 steps. Each choice shows a preview picture: tile style, names, color theme, services, Hulu/Discovery+, episode layout, collections, Movies/TV tiles, TMDb Helper, PreShow, Up Next, similar titles, weather and sounds.
 - **Backlot settings screen** (Settings > Backlot skin). Every setup answer can be changed here, with a help panel for each option.
+- **File manager** in Settings for adding sources and copying, moving, renaming or deleting files.
 - **Original navigation sounds**, with an option to use Kodi's sounds or none.
 - **Check for Backlot updates** button.
 
@@ -113,7 +117,8 @@ Captured from a test Kodi with a real library. Click any thumbnail for full size
 ### Playback
 | | |
 |---|---|
-| [![](screenshots/thumbs/95-playback-paused.jpg)](screenshots/full/95-playback-paused.jpg)<br>Paused | [![](screenshots/thumbs/96-playback-osd.jpg)](screenshots/full/96-playback-osd.jpg)<br>OSD |
+| [![](screenshots/thumbs/95-playback-paused.jpg)](screenshots/full/95-playback-paused.jpg)<br>Paused info screen | [![](screenshots/thumbs/95c-episode-paused.jpg)](screenshots/full/95c-episode-paused.jpg)<br>Paused, episode |
+| [![](screenshots/thumbs/96b-playback-osd-audio.jpg)](screenshots/full/96b-playback-osd-audio.jpg)<br>Controls, chapters and audio | [![](screenshots/thumbs/97-playback-upnext.jpg)](screenshots/full/97-playback-upnext.jpg)<br>Up Next card |
 
 ### Setup walkthrough
 | | | |
@@ -122,11 +127,13 @@ Captured from a test Kodi with a real library. Click any thumbnail for full size
 | [![](screenshots/thumbs/03-setup-theme.jpg)](screenshots/full/03-setup-theme.jpg)<br>2. Color theme | [![](screenshots/thumbs/04-setup-services.jpg)](screenshots/full/04-setup-services.jpg)<br>3. Services | [![](screenshots/thumbs/05-setup-hulu.jpg)](screenshots/full/05-setup-hulu.jpg)<br>4. Hulu |
 | [![](screenshots/thumbs/06-setup-discovery.jpg)](screenshots/full/06-setup-discovery.jpg)<br>4. Discovery+ | [![](screenshots/thumbs/07-setup-episodes.jpg)](screenshots/full/07-setup-episodes.jpg)<br>5. Episodes | [![](screenshots/thumbs/08-setup-collections.jpg)](screenshots/full/08-setup-collections.jpg)<br>6. Collections |
 | [![](screenshots/thumbs/09-setup-fallbacks.jpg)](screenshots/full/09-setup-fallbacks.jpg)<br>7. Movies / TV tiles | [![](screenshots/thumbs/10-setup-tmdbhelper.jpg)](screenshots/full/10-setup-tmdbhelper.jpg)<br>8. TMDb Helper | [![](screenshots/thumbs/11-setup-preshow.jpg)](screenshots/full/11-setup-preshow.jpg)<br>9. PreShow |
-| [![](screenshots/thumbs/12-setup-similar.jpg)](screenshots/full/12-setup-similar.jpg)<br>10. More like this | [![](screenshots/thumbs/13-setup-weather.jpg)](screenshots/full/13-setup-weather.jpg)<br>11. Weather | [![](screenshots/thumbs/14-setup-sounds.jpg)](screenshots/full/14-setup-sounds.jpg)<br>12. Sounds |
+| [![](screenshots/thumbs/11b-setup-upnext.jpg)](screenshots/full/11b-setup-upnext.jpg)<br>10. Up Next | [![](screenshots/thumbs/12-setup-similar.jpg)](screenshots/full/12-setup-similar.jpg)<br>11. More like this | [![](screenshots/thumbs/13-setup-weather.jpg)](screenshots/full/13-setup-weather.jpg)<br>12. Weather |
+| [![](screenshots/thumbs/14-setup-sounds.jpg)](screenshots/full/14-setup-sounds.jpg)<br>13. Sounds | [![](screenshots/thumbs/15-setup-done.jpg)](screenshots/full/15-setup-done.jpg)<br>Done | |
 
 ### Settings and service management
 | | | |
 |---|---|---|
+| [![](screenshots/thumbs/68-settings-hub.jpg)](screenshots/full/68-settings-hub.jpg)<br>Settings | [![](screenshots/thumbs/69-file-manager.jpg)](screenshots/full/69-file-manager.jpg)<br>File manager | [![](screenshots/thumbs/71c-settings-player.jpg)](screenshots/full/71c-settings-player.jpg)<br>Player settings |
 | [![](screenshots/thumbs/70-settings.jpg)](screenshots/full/70-settings.jpg)<br>Backlot settings | [![](screenshots/thumbs/71-settings-lower.jpg)](screenshots/full/71-settings-lower.jpg)<br>More settings | [![](screenshots/thumbs/81b-arrange-services-moving.jpg)](screenshots/full/81b-arrange-services-moving.jpg)<br>Arrange services |
 | [![](screenshots/thumbs/82-manage-services.jpg)](screenshots/full/82-manage-services.jpg)<br>Manage services | [![](screenshots/thumbs/84-edit-service-max.jpg)](screenshots/full/84-edit-service-max.jpg)<br>Edit a service | [![](screenshots/thumbs/85-edit-studios.jpg)](screenshots/full/85-edit-studios.jpg)<br>Studios and networks |
 | [![](screenshots/thumbs/86-edit-open-button.jpg)](screenshots/full/86-edit-open-button.jpg)<br>Open button | [![](screenshots/thumbs/89-studios-report.jpg)](screenshots/full/89-studios-report.jpg)<br>Studios report | [![](screenshots/thumbs/90-studios-report-assign.jpg)](screenshots/full/90-studios-report-assign.jpg)<br>Give a studio a home |

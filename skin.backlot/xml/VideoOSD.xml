@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Transport controls; the title, progress bar and times come from
-     DialogSeekBar, which stays visible while the OSD is open. -->
+<!-- Playback controls. The title, progress bar and times come from
+     DialogSeekBar, which stays visible while the OSD is open.
+     Left: transport. Right: subtitle and audio pills showing what's on now,
+     then picture settings, chapters / bookmarks and info. -->
 <window>
 	<defaultcontrol always="true">602</defaultcontrol>
 	<animation type="WindowOpen" reversible="false">
@@ -10,15 +12,14 @@
 		<effect type="fade" start="100" end="0" time="160" />
 	</animation>
 	<controls>
-		<!-- transport, centered -->
+		<!-- transport, left under the progress bar -->
 		<control type="grouplist" id="200">
-			<left>0</left>
-			<top>978</top>
-			<width>1920</width>
+			<left>108</left>
+			<top>974</top>
+			<width>720</width>
 			<height>84</height>
 			<orientation>horizontal</orientation>
-			<align>center</align>
-			<itemgap>20</itemgap>
+			<itemgap>12</itemgap>
 			<onleft>300</onleft>
 			<onright>300</onright>
 			<include content="OSDButton">
@@ -68,27 +69,33 @@
 		</control>
 		<!-- settings, right -->
 		<control type="grouplist" id="300">
-			<right>110</right>
-			<top>978</top>
-			<width>560</width>
+			<right>108</right>
+			<top>974</top>
+			<width>1000</width>
 			<height>84</height>
 			<orientation>horizontal</orientation>
 			<align>right</align>
 			<itemgap>12</itemgap>
 			<onleft>200</onleft>
 			<onright>200</onright>
-			<include content="OSDButton">
+			<include content="OSDPill">
 				<param name="id">70046</param>
 				<param name="left">603</param>
 				<param name="right">70049</param>
+				<param name="width">180</param>
+				<param name="labelwidth">100</param>
 				<param name="icon">icons/subtitles.png</param>
+				<param name="label">$VAR[OSDSubtitleLabel]</param>
 				<param name="onclick">ActivateWindow(osdsubtitlesettings)</param>
 			</include>
-			<include content="OSDButton">
+			<include content="OSDPill">
 				<param name="id">70049</param>
 				<param name="left">70046</param>
 				<param name="right">70050</param>
+				<param name="width">230</param>
+				<param name="labelwidth">150</param>
 				<param name="icon">icons/audio.png</param>
+				<param name="label">$VAR[OSDAudioLabel]</param>
 				<param name="onclick">ActivateWindow(osdaudiosettings)</param>
 			</include>
 			<include content="OSDButton">

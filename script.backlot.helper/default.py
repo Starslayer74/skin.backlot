@@ -43,6 +43,8 @@ elif action == "setup":
     manage.setup()
 elif action == "launch" and len(sys.argv) > 2:
     backlot.launch(sys.argv[2])
+elif action == "upnext":
+    manage.install_upnext()
 elif action == "preshow":
     manage.install_preshow()
 elif action == "sounds":

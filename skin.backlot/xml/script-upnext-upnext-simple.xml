@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Up Next (service.upnext): card in the bottom-right corner near the end of
+     an episode. Contract: 3012 = play the next episode, 3013 = close (the
+     add-on sets its label to Stop or Close), 3014 = countdown progress. -->
+<window>
+	<defaultcontrol always="true">3012</defaultcontrol>
+	<onload>Dialog.Close(fullscreeninfo,true)</onload>
+	<onload>Dialog.Close(videoosd,true)</onload>
+	<include content="UpNextCard">
+		<param name="kicker">Up next</param>
+		<param name="playlabel">Play now</param>
+	</include>
+</window>

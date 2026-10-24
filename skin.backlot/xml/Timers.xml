@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<timers />
+<timers>
+	<!-- runs while playback is paused; the paused info screen appears after 3 seconds -->
+	<timer>
+		<name>backlot_paused</name>
+		<description>Time since playback was paused</description>
+		<start reset="true">Player.Paused + Window.IsActive(fullscreenvideo)</start>
+		<stop>!Player.Paused | !Window.IsActive(fullscreenvideo)</stop>
+	</timer>
+</timers>

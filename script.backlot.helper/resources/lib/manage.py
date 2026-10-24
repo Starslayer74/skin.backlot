@@ -425,6 +425,25 @@ def install_tmdbhelper(ask=True):
         DIALOG.ok(HEADING, "TMDb Helper didn't finish installing. Try again from Backlot settings, or install it from the jurialmunkey repository.")
 
 
+UPNEXT = "service.upnext"
+
+
+def install_upnext(ask=True):
+    """Up Next (Kodi's official repository) shows the next-episode card near
+    the end of an episode. Backlot skins its card."""
+    if xbmc.getCondVisibility("System.HasAddon(%s)" % UPNEXT):
+        if ask:
+            DIALOG.ok(HEADING, "Up Next is already installed. The next-episode card appears near the end of each episode.")
+        return
+    if ask and not DIALOG.yesno(HEADING, "Up Next shows a card with the next episode and a countdown near the end of each episode, like Netflix.[CR][CR]Install it now from Kodi's official repository?",
+                                yeslabel="Install", nolabel="Not now"):
+        return
+    if install_and_wait(UPNEXT, 180):
+        DIALOG.ok(HEADING, "Up Next is installed. Its options are in Backlot settings > Up Next settings.")
+    else:
+        DIALOG.ok(HEADING, "Up Next didn't finish installing. Try again from Backlot settings, or install it from Add-ons > Install from repository > Services.")
+
+
 PSE = "script.preshowexperience"
 PSE_REPO_URL = "https://preshowmedia.com/repo/"
 
@@ -585,7 +604,7 @@ def setup():
         skin_bool("backlot.setup_done", True)
 
 
-TOTAL_STEPS = 12
+TOTAL_STEPS = 13
 
 
 def _step(n):
@@ -718,12 +737,21 @@ def _setup():
         if j == 0:
             install_preshow(ask=False)
 
+    # 9b. Up Next
+    if not xbmc.getCondVisibility("System.HasAddon(%s)" % UPNEXT):
+        j = choose("Up Next", [
+            ("Install it", "Near the end of an episode, a card shows the next one with a countdown, like Netflix. Comes from Kodi's official repository.", ""),
+            ("Not now", "You can install it later from Backlot settings.", "")],
+            step=_step(10))
+        if j == 0:
+            install_upnext(ask=False)
+
     # 9. similar titles
     allsim = xbmc.getCondVisibility("Skin.HasSetting(backlot.similar_all)")
     j = choose("'More like this' and filmographies", [
         ("Only what's in my library", "Suggestions come from your own movies and shows, so everything can be played.", ""),
         ("Everything", "Shows everything from TMDb and marks what you own. Needs TMDb Helper.", "")],
-        step=_step(10), preselect=1 if allsim else 0, current=1 if allsim else 0)
+        step=_step(11), preselect=1 if allsim else 0, current=1 if allsim else 0)
     if j >= 0:
         skin_bool("backlot.similar_all", j == 1)
 
@@ -732,13 +760,13 @@ def _setup():
     j = choose("Weather on the home screen", [
         ("Show it", "Temperature and conditions in the top-left corner. Next you'll pick a weather source and your location.", ""),
         ("Leave it off", "", "")],
-        step=_step(11), preselect=1 if hide else 0, current=1 if hide else 0)
+        step=_step(12), preselect=1 if hide else 0, current=1 if hide else 0)
     if j == 0:
         skin_bool("backlot.hide_weather", False)
         setup_weather(ask=False)
     elif j == 1:
         skin_bool("backlot.hide_weather", True)
-    choose_sounds(step=_step(12))
+    choose_sounds(step=_step(13))
     DIALOG.ok("All set", "Backlot is ready. Change any of these answers in Settings > Backlot skin, or run setup again from there.")
 
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Up Next (service.upnext): "Are you still watching?" after several episodes
+     in a row. Same contract as the Up Next card. -->
+<window>
+	<defaultcontrol always="true">3012</defaultcontrol>
+	<onload>Dialog.Close(fullscreeninfo,true)</onload>
+	<onload>Dialog.Close(videoosd,true)</onload>
+	<include content="UpNextCard">
+		<param name="kicker">Still watching?</param>
+		<param name="playlabel">Keep watching</param>
+	</include>
+</window>

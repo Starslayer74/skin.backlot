@@ -127,6 +127,27 @@
 				<onclick>RunScript(script.backlot.helper,preshow)</onclick>
 				<visible>!System.HasAddon(script.preshowexperience)</visible>
 			</control>
+			<control type="radiobutton" id="118">
+				<width>1100</width>
+				<include>SettingRow</include>
+				<label>Paused info screen</label>
+				<selected>!Skin.HasSetting(backlot.no_pausescreen)</selected>
+				<onclick>Skin.ToggleSetting(backlot.no_pausescreen)</onclick>
+			</control>
+			<control type="button" id="119">
+				<width>1100</width>
+				<include>SettingRow</include>
+				<label>Install Up Next (next-episode card)</label>
+				<onclick>RunScript(script.backlot.helper,upnext)</onclick>
+				<visible>!System.HasAddon(service.upnext)</visible>
+			</control>
+			<control type="button" id="120">
+				<width>1100</width>
+				<include>SettingRow</include>
+				<label>Up Next settings</label>
+				<onclick>Addon.OpenSettings(service.upnext)</onclick>
+				<visible>System.HasAddon(service.upnext)</visible>
+			</control>
 			<control type="button" id="116">
 				<width>1100</width>
 				<include>SettingRow</include>

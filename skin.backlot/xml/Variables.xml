@@ -118,6 +118,43 @@
 		<value condition="!String.IsEmpty(Window(Home).Property(hub.label)) + String.StartsWith(Container.FolderPath,special://skin/playlists/)">$INFO[Window(Home).Property(hub.label)]$INFO[Container.FolderName,  ›  ,]</value>
 		<value>$INFO[Container.FolderName]</value>
 	</variable>
+	<variable name="PauseKicker">
+		<value condition="VideoPlayer.Content(episodes)">Paused  •  $INFO[VideoPlayer.TVShowTitle]</value>
+		<value>Paused</value>
+	</variable>
+	<variable name="PausedHeadline">
+		<value condition="VideoPlayer.Content(episodes)">$INFO[VideoPlayer.Season,Season , ]$INFO[VideoPlayer.Episode,Episode ,  •  ]$INFO[VideoPlayer.Title]</value>
+		<value condition="!String.IsEmpty(VideoPlayer.Tagline)">[I]$INFO[VideoPlayer.Tagline][/I]</value>
+	</variable>
+	<variable name="PausedMeta">
+		<value condition="VideoPlayer.Content(episodes)">$INFO[VideoPlayer.Premiered]$INFO[VideoPlayer.Duration,  •  ,]$INFO[VideoPlayer.MPAA,  •  ,]</value>
+		<value>$INFO[VideoPlayer.Year]$INFO[VideoPlayer.Genre,  •  ,]$INFO[VideoPlayer.Duration,  •  ,]$INFO[VideoPlayer.MPAA,  •  ,]</value>
+	</variable>
+	<variable name="ChapterInfo">
+		<value condition="Integer.IsGreater(Player.ChapterCount,1) + !String.IsEmpty(Player.ChapterName)">$INFO[Player.ChapterName,   •   ,]</value>
+		<value condition="Integer.IsGreater(Player.ChapterCount,1)">$INFO[Player.Chapter,   •   Chapter ,]$INFO[Player.ChapterCount, of ,]</value>
+	</variable>
+	<variable name="OSDSubtitleLabel">
+		<value condition="VideoPlayer.SubtitlesEnabled + !String.IsEmpty(VideoPlayer.SubtitlesLanguage)">[UPPERCASE]$INFO[VideoPlayer.SubtitlesLanguage][/UPPERCASE]</value>
+		<value condition="VideoPlayer.SubtitlesEnabled">On</value>
+		<value condition="VideoPlayer.HasSubtitles">Off</value>
+		<value>None</value>
+	</variable>
+	<variable name="OSDAudioLabel">
+		<value>[UPPERCASE]$INFO[VideoPlayer.AudioLanguage,, ][/UPPERCASE]$VAR[OSDAudioChannels]</value>
+	</variable>
+	<variable name="OSDAudioChannels">
+		<value condition="String.IsEqual(VideoPlayer.AudioChannels,1)">Mono</value>
+		<value condition="String.IsEqual(VideoPlayer.AudioChannels,2)">Stereo</value>
+		<value condition="String.IsEqual(VideoPlayer.AudioChannels,6)">5.1</value>
+		<value condition="String.IsEqual(VideoPlayer.AudioChannels,8)">7.1</value>
+		<value>$INFO[VideoPlayer.AudioChannels,,ch]</value>
+	</variable>
+	<variable name="UpNextThumb">
+		<value condition="!String.IsEmpty(Window.Property(thumb))">$INFO[Window.Property(thumb)]</value>
+		<value condition="!String.IsEmpty(Window.Property(landscape))">$INFO[Window.Property(landscape)]</value>
+		<value>$INFO[Window.Property(fanart)]</value>
+	</variable>
 	<variable name="SeekTime">
 		<value condition="Player.Seeking | Player.HasPerformedSeek(3) | !String.IsEmpty(Player.SeekNumeric)">$INFO[Player.SeekTime]</value>
 		<value>$INFO[Player.Time]</value>
@@ -172,6 +209,9 @@
 		<value condition="Control.HasFocus(114)">Put your services in any order. Pick a tile up with OK, move it with left and right, and drop it with OK.</value>
 		<value condition="Control.HasFocus(115)">Adds trailers, intros and ratings before your movie. Downloads the PreShow repository from preshowmedia.com and installs the add-on.</value>
 		<value condition="Control.HasFocus(116)">Backlot's own soft navigation sounds, your current Kodi sounds, or none.</value>
+		<value condition="Control.HasFocus(118)">A few seconds after you pause, the picture dims and the title, episode, plot and time left fill the screen, like Netflix and Google TV.</value>
+		<value condition="Control.HasFocus(119)">Installs Up Next from Kodi's official repository. Near the end of an episode it shows the next one with a countdown.</value>
+		<value condition="Control.HasFocus(120)">When the Up Next card appears, how long it counts down, and whether it plays the next episode on its own.</value>
 		<value condition="Control.HasFocus(117)">Asks every add-on repository, including Backlot's, for new versions right now. Kodi installs them on its own; the repository window has to be open.</value>
 		<value condition="Control.HasFocus(103)">Reloads the skin files. Useful after updating Backlot or its service presets.</value>
 	</variable>

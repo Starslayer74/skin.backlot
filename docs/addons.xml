@@ -17,7 +17,7 @@
 		</assets>
 	</extension>
 </addon>
-<addon id="script.backlot.helper" name="Backlot Helper" version="0.4.7" provider-name="starslayer74">
+<addon id="script.backlot.helper" name="Backlot Helper" version="0.4.8" provider-name="starslayer74">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0"/>
 		<import addon="resource.images.studios.coloured" version="0.0.20"/>
@@ -37,13 +37,13 @@
 		<assets>
 			<icon>resources/backlot-helper-icon.png</icon>
 		</assets>
-		<news>v0.4.6 - Fuller studio lists per service, Discovery+ inside Max, one-step services from the studios report.</news>
+		<news>v0.4.8 - Up Next install from Backlot settings and setup (step 10 of 13). v0.4.6 - Fuller studio lists per service, Discovery+ inside Max, one-step services from the studios report.</news>
 	</extension>
 </addon>
-<addon id="skin.backlot" version="0.4.9" name="Backlot" provider-name="starslayer74">
+<addon id="skin.backlot" version="0.5.0" name="Backlot" provider-name="starslayer74">
 	<requires>
 		<import addon="xbmc.gui" version="5.17.0"/>
-		<import addon="script.backlot.helper" version="0.4.7"/>
+		<import addon="script.backlot.helper" version="0.4.8"/>
 		<import addon="resource.uisounds.backlot" version="1.0.0"/>
 	</requires>
 	<extension point="xbmc.gui.skin" debugging="false">
@@ -58,7 +58,7 @@
 			<icon>resources/backlot-icon.png</icon>
 			<fanart>resources/backlot-fanart.jpg</fanart>
 		</assets>
-		<news>v0.4.9 - File manager is back in Settings (add sources, copy, move, rename, delete). v0.4.8 - Info screens and episode lists no longer start a line with a stray dot when a director or runtime is missing. v0.4.7 - Check for Backlot updates button in settings. v0.4.6 - Services now include the studios their companies own (Paramount Pictures in Paramount+, MGM in Prime Video and more). Discovery+ inside Max option. Clearer studios report with one-step new services.</news>
+		<news>v0.5.0 - New player: paused info screen, chapter marks and names on the progress bar, current subtitle and audio on the OSD, Backlot-styled Up Next card (install it from Backlot settings or setup), and the progress bar no longer shows a solid white track. v0.4.9 - File manager is back in Settings (add sources, copy, move, rename, delete). v0.4.8 - Info screens and episode lists no longer start a line with a stray dot when a director or runtime is missing. v0.4.7 - Check for Backlot updates button in settings. v0.4.6 - Services now include the studios their companies own (Paramount Pictures in Paramount+, MGM in Prime Video and more). Discovery+ inside Max option. Clearer studios report with one-step new services.</news>
 	</extension>
 </addon>
 <addon id="resource.uisounds.backlot" version="1.0.0" name="Backlot Sounds" provider-name="starslayer74">

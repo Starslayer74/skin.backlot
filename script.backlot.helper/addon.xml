@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.backlot.helper" name="Backlot Helper" version="0.4.7" provider-name="starslayer74">
+<addon id="script.backlot.helper" name="Backlot Helper" version="0.4.8" provider-name="starslayer74">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0"/>
 		<import addon="resource.images.studios.coloured" version="0.0.20"/>
@@ -19,6 +19,6 @@
 		<assets>
 			<icon>resources/backlot-helper-icon.png</icon>
 		</assets>
-		<news>v0.4.6 - Fuller studio lists per service, Discovery+ inside Max, one-step services from the studios report.</news>
+		<news>v0.4.8 - Up Next install from Backlot settings and setup (step 10 of 13). v0.4.6 - Fuller studio lists per service, Discovery+ inside Max, one-step services from the studios report.</news>
 	</extension>
 </addon>

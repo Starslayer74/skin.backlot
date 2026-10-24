@@ -11,6 +11,7 @@
 	<expression name="backlot_labels_none">[String.IsEqual(Skin.String(backlot.labels),none)]</expression>
 	<expression name="hero_logo_empty">[[Control.HasFocus(420) + String.IsEmpty(Container(420).ListItem.Art(clearlogo))] | [Control.HasFocus(410) + String.IsEmpty(Container(410).ListItem.Art(clearlogo))] | [$EXP[backlot_cycle] + String.IsEmpty(Container(9200).ListItem.Art(clearlogo))] | [!Control.HasFocus(410) + !Control.HasFocus(420) + !$EXP[backlot_cycle] + String.IsEmpty(Container(410).ListItem.Art(clearlogo))]]</expression>
 	<expression name="hero_title_empty">[[Control.HasFocus(420) + String.IsEmpty(Container(420).ListItem.Title)] | [Control.HasFocus(410) + String.IsEmpty(Container(410).ListItem.Title)] | [$EXP[backlot_cycle] + String.IsEmpty(Container(9200).ListItem.Title)] | [!Control.HasFocus(410) + !Control.HasFocus(420) + !$EXP[backlot_cycle] + String.IsEmpty(Container(410).ListItem.Title)]]</expression>
+	<expression name="backlot_pausescreen">[Player.Paused + Skin.TimerIsRunning(backlot_paused) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(backlot_paused),3) + !Player.Seeking + !Player.HasPerformedSeek(3) + !Player.Forwarding + !Player.Rewinding + !Player.Caching + !Window.IsActive(videoosd) + !Window.IsActive(fullscreeninfo) + String.IsEmpty(Player.SeekNumeric) + !Skin.HasSetting(backlot.no_pausescreen)]</expression>
 	<expression name="backlot_cycle">[!Control.HasFocus(410) + !Control.HasFocus(420) + Integer.IsGreater(Container(9200).NumItems,0)]</expression>
 	<expression name="backlot_tmdb_rows">[[System.HasAddon(plugin.video.themoviedb.helper) + [!String.IsEmpty(ListItem.Property(tmdb_id)) | !String.IsEmpty(ListItem.UniqueID(tmdb))] + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.Property(tmdb_type),movie) | String.IsEqual(ListItem.Property(tmdb_type),tv)]]]</expression>
 
@@ -368,6 +369,114 @@
 					<visible>!Control.HasFocus($PARAM[id])</visible>
 				</control>
 			</focusedlayout>
+		</definition>
+	</include>
+
+	<!-- ============================================================ Up Next card -->
+	<include name="UpNextCard">
+		<param name="kicker">Up next</param>
+		<param name="playlabel">Play now</param>
+		<definition>
+			<controls>
+				<control type="group">
+					<right>80</right>
+					<top>744</top>
+					<width>900</width>
+					<height>262</height>
+					<animation type="WindowOpen" reversible="false">
+						<effect type="fade" start="0" end="100" time="300" />
+						<effect type="slide" start="120,0" end="0,0" time="360" tween="cubic" easing="out" />
+					</animation>
+					<animation type="WindowClose" reversible="false">
+						<effect type="fade" start="100" end="0" time="240" />
+						<effect type="slide" start="0,0" end="120,0" time="240" tween="cubic" easing="in" />
+					</animation>
+					<control type="image">
+						<left>-24</left>
+						<top>-24</top>
+						<width>948</width>
+						<height>310</height>
+						<texture border="48" colordiffuse="99000000">frame/shadow.png</texture>
+					</control>
+					<control type="image">
+						<texture border="24" colordiffuse="F21A1D24">frame/rounded24.png</texture>
+					</control>
+					<!-- next episode picture + countdown bar -->
+					<control type="image">
+						<left>20</left>
+						<top>20</top>
+						<width>396</width>
+						<height>222</height>
+						<aspectratio>scale</aspectratio>
+						<texture diffuse="masks/thumb.png" background="true">$VAR[UpNextThumb]</texture>
+					</control>
+					<control type="progress" id="3014">
+						<left>36</left>
+						<top>222</top>
+						<width>364</width>
+						<height>6</height>
+						<reveal>true</reveal>
+						<texturebg border="3" colordiffuse="66000000">frame/rounded8.png</texturebg>
+						<midtexture border="3" colordiffuse="accent">frame/rounded8.png</midtexture>
+					</control>
+					<!-- text -->
+					<control type="label">
+						<left>444</left>
+						<top>22</top>
+						<width>436</width>
+						<height>32</height>
+						<font>f_small</font>
+						<textcolor>accent</textcolor>
+						<label>[UPPERCASE]$PARAM[kicker][/UPPERCASE]$INFO[Window.Property(remaining),  •  ,s]</label>
+					</control>
+					<control type="label">
+						<left>444</left>
+						<top>58</top>
+						<width>436</width>
+						<height>44</height>
+						<font>f_sub</font>
+						<label>$INFO[Window.Property(tvshowtitle)]</label>
+					</control>
+					<control type="label">
+						<left>444</left>
+						<top>104</top>
+						<width>436</width>
+						<height>36</height>
+						<font>f_body</font>
+						<textcolor>text2</textcolor>
+						<label>$INFO[Window.Property(season),S, ]$INFO[Window.Property(episode),E,  •  ]$INFO[Window.Property(title)]</label>
+					</control>
+					<control type="label">
+						<left>444</left>
+						<top>138</top>
+						<width>436</width>
+						<height>30</height>
+						<font>f_caption</font>
+						<textcolor>text3</textcolor>
+						<label>$INFO[Window.Property(endtime),Ends at ,]</label>
+					</control>
+					<control type="grouplist">
+						<left>444</left>
+						<top>176</top>
+						<width>436</width>
+						<height>66</height>
+						<orientation>horizontal</orientation>
+						<itemgap>12</itemgap>
+						<include content="DialogButton">
+							<param name="id">3012</param>
+							<param name="width">228</param>
+							<param name="height">66</param>
+							<param name="label">$PARAM[playlabel]</param>
+						</include>
+						<include content="DialogButton">
+							<param name="id">3013</param>
+							<param name="width">176</param>
+							<param name="height">66</param>
+							<param name="label">$LOCALIZE[15067]</param>
+						</include>
+					</control>
+				</control>
+			</controls>
 		</definition>
 	</include>
 
