@@ -115,7 +115,11 @@
 		<value>$INFO[Container(510).ListItem.Year]$INFO[Container(510).ListItem.Genre,  •  ,]$INFO[Container(510).ListItem.Mpaa,  •  ,]</value>
 	</variable>
 	<variable name="BrowseHeader">
-		<value condition="!String.IsEmpty(Window(Home).Property(hub.label)) + String.StartsWith(Container.FolderPath,special://skin/playlists/)">$INFO[Window(Home).Property(hub.label)]$INFO[Container.FolderName,  ›  ,]</value>
+		<value condition="!String.IsEmpty(Window(Home).Property(hub.label)) + String.StartsWith(Container.FolderPath,special://profile/addon_data/script.backlot.helper/)">$INFO[Window(Home).Property(hub.label)]$INFO[Container.FolderName,  ›  ,]</value>
+		<value condition="!String.IsEmpty(Window(Home).Property(hub.label)) + String.StartsWith(Container.FolderPath,videodb://movies/titles/?xsp=)">$INFO[Window(Home).Property(hub.label)]  ›  Movies</value>
+		<value condition="String.StartsWith(Container.FolderPath,videodb://movies/sets/) + Container.Content(sets)">Collections</value>
+		<value condition="String.IsEqual(Container.FolderPath,videodb://movies/titles/)">Movies</value>
+		<value condition="String.IsEqual(Container.FolderPath,videodb://tvshows/titles/)">TV Shows</value>
 		<value>$INFO[Container.FolderName]</value>
 	</variable>
 	<variable name="PauseKicker">

@@ -16,4 +16,13 @@
 		<onstart>Dialog.Close(videoosd)</onstart>
 		<stop>!Window.IsActive(videoosd)</stop>
 	</timer>
+	<!-- Backlot has no Videos menu: if Back ever lands on the Videos root
+	     (sources or library nodes), go home instead -->
+	<timer>
+		<name>backlot_videos_root</name>
+		<description>Sends the Videos root back to Home</description>
+		<start reset="true">Window.IsActive(videos) + !Container.IsUpdating + [String.IsEqual(Container.FolderPath,sources://video/) | String.IsEqual(Container.FolderPath,library://video/) | String.IsEqual(Container.FolderPath,videodb://) | String.IsEqual(Container.FolderPath,videodb://movies/) | String.IsEqual(Container.FolderPath,videodb://tvshows/) | String.IsEqual(Container.FolderPath,library://video/movies/) | String.IsEqual(Container.FolderPath,library://video/tvshows/)]</start>
+		<onstart>ReplaceWindow(Home)</onstart>
+		<stop>!Window.IsActive(videos)</stop>
+	</timer>
 </timers>

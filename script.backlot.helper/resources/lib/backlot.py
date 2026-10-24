@@ -92,6 +92,8 @@ def load():
     for _child, (_parent, key, default) in MERGES.items():
         cfg.setdefault(key, default)
     cfg.setdefault("group_sets", True)
+    cfg.setdefault("keep_sets_together", True)
+    cfg.setdefault("show_collections", True)
     return cfg
 
 
@@ -290,9 +292,9 @@ def tint(color, amount=0.32):
 
 
 # ------------------------------------------------------------------ playlists
-def _playlist(fname, ptype, name, rules, order=("ascending", "sorttitle"), limit=None, group_sets=False):
+def _playlist(fname, ptype, name, rules, order=("ascending", "sorttitle"), limit=None, group_sets=False, match="all"):
     lines = ['<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>',
-             '<smartplaylist type="%s">' % ptype, "    <name>%s</name>" % escape(name), "    <match>all</match>"]
+             '<smartplaylist type="%s">' % ptype, "    <name>%s</name>" % escape(name), "    <match>%s</match>" % match]
     for field, op, values in rules:
         lines.append('    <rule field="%s" operator="%s">' % (field, op))
         lines += ["        <value>%s</value>" % escape(v) for v in values]
@@ -319,21 +321,29 @@ def build_slots(cfg):
         if f.endswith(".xsp"):
             os.remove(os.path.join(PLAYLISTS, f))
     slots, used_values = [], []
-    for svc in active_services(cfg):
+    active = active_services(cfg)
+    fixes = set_fixes(active) if cfg.get("keep_sets_together", True) else {}
+    for svc in active:
         sid, name, rule = svc["id"], svc["name"], [("studio", "contains", svc["matches"])]
         used_values += svc["matches"]
+        mine, theirs = fixes.get(sid, ([], []))
+        if mine or theirs:
+            mpath = _movies_url(svc["matches"], mine, theirs, ("ascending", "sorttitle"))
+            rpath = _movies_url(svc["matches"], mine, theirs, RECENT, 20)
+        else:
+            mpath = _playlist("%s_movies.xsp" % sid, "movies", "Movies", rule, group_sets=cfg.get("group_sets", True))
+            rpath = _playlist("%s_movies_recent.xsp" % sid, "movies", "New %s movies" % name, rule, RECENT, 20)
         slots.append({
             "id": sid, "label": name, "color": svc.get("color") or FALLBACK_COLOR,
             "banner": art_for(svc, "banner"), "icon": art_for(svc, "icon"), "logo": logo_for(svc),
             "tint": tint(svc.get("color") or FALLBACK_COLOR),
             "can_launch": "true" if all(launch_target(svc)) else "",
             "tab1_label": "TV Shows", "tab1_path": _playlist("%s_tvshows.xsp" % sid, "tvshows", "TV Shows", rule),
-            "tab2_label": "Movies", "tab2_path": _playlist("%s_movies.xsp" % sid, "movies", "Movies", rule,
-                                                                   group_sets=cfg.get("group_sets", True)),
+            "tab2_label": "Movies", "tab2_path": mpath,
             "row1_label": "New %s shows" % name,
             "row1_path": _playlist("%s_tvshows_recent.xsp" % sid, "tvshows", "New %s shows" % name, rule, RECENT, 20),
             "row2_label": "New %s movies" % name,
-            "row2_path": _playlist("%s_movies_recent.xsp" % sid, "movies", "New %s movies" % name, rule, RECENT, 20),
+            "row2_path": rpath,
         })
     if cfg.get("show_fallbacks", True):
         # Movies / TV Shows open the whole library directly (no hub)
@@ -347,6 +357,14 @@ def build_slots(cfg):
                           row2_label="Continue watching",
                           row2_path=_playlist("all_movies_inprogress.xsp", "movies", "Continue watching",
                                               [("inprogress", "true", [])], ("descending", "lastplayed"), 20)))
+        if cfg.get("show_collections", True):
+            slots.append(dict(fb, id="collections", label="Collections",
+                              logo=ART_URL + "collections_logo.png",
+                              direct="videodb://movies/sets/",
+                              tab1_label="Collections", tab1_path="videodb://movies/sets/",
+                              row1_label="Collections",
+                              row1_path="videodb://movies/sets/",
+                              row2_label="", row2_path=""))
         slots.append(dict(fb, id="tvshows", label="TV Shows",
                           logo=ART_URL + "tvshows_logo.png",
                           direct="videodb://tvshows/titles/",
@@ -357,6 +375,52 @@ def build_slots(cfg):
                           row2_path=_playlist("all_tvshows_inprogress.xsp", "tvshows", "Shows in progress",
                                               [("inprogress", "true", [])], ("descending", "lastplayed"), 20)))
     return slots[:MAX_SLOTS]
+
+
+def set_fixes(active):
+    """Keep each movie collection under one service: the one holding most of
+    its movies (ties go to the service listed first), so every Blade or Alien
+    film sits together even when their studios differ.
+    Returns {service id: (collections to pull in, collections to leave out)},
+    listing only collections that actually need moving."""
+    order = [s["id"] for s in active]
+    members = {}
+    for m in _rpc("VideoLibrary.GetMovies", {"properties": ["set", "studio"]}).get("movies", []):
+        if m.get("set"):
+            studios = m.get("studio", []) or []
+            members.setdefault(m["set"], []).append({s["id"] for s in active if matches_any(studios, s["matches"])})
+    fixes = {}
+    for name, ms in members.items():
+        counts = {}
+        for hit in ms:
+            for sid in hit:
+                counts[sid] = counts.get(sid, 0) + 1
+        if not counts:
+            continue
+        owner = sorted(counts, key=lambda sid: (-counts[sid], order.index(sid)))[0]
+        if any(owner not in hit for hit in ms):
+            fixes.setdefault(owner, ([], []))[0].append(name)
+        for sid in counts:
+            if sid != owner:
+                fixes.setdefault(sid, ([], []))[1].append(name)
+    return fixes
+
+
+def _movies_url(matches, mine, theirs, order, limit=None):
+    """A library movie list for a service as a videodb URL with a JSON filter
+    (smart playlist files can't say "this studio OR this collection, but not
+    those collections")."""
+    from urllib.parse import quote
+    anyof = [{"field": "studio", "operator": "contains", "value": list(matches)}]
+    if mine:
+        anyof.append({"field": "set", "operator": "is", "value": sorted(mine)})
+    rules = [{"or": anyof} if len(anyof) > 1 else anyof[0]]
+    if theirs:
+        rules.append({"field": "set", "operator": "isnot", "value": sorted(theirs)})
+    xsp = {"type": "movies", "rules": {"and": rules}, "order": {"direction": order[0], "method": order[1]}}
+    if limit:
+        xsp["limit"] = limit
+    return "videodb://movies/titles/?xsp=" + quote(json.dumps(xsp, separators=(",", ":"), ensure_ascii=False), safe="")
 
 
 SLOT_KEYS = ("id", "label", "color", "tint", "logo", "banner", "icon", "direct", "can_launch", "tab1_label", "tab1_path", "tab2_label", "tab2_path",

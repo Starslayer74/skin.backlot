@@ -48,6 +48,8 @@ def main():
             ("Studios not in any service", unmatched_report),
             ("Movies and TV Shows tiles: %s" % fb, toggle_fallbacks),
             ("Group collections into one tile: %s" % ("on" if cfg.get("group_sets", True) else "off"), toggle_sets),
+            ("Keep each collection under one service: %s" % ("on" if cfg.get("keep_sets_together", True) else "off"), toggle_keep_sets),
+            ("Collections tile (after Movies): %s" % ("on" if cfg.get("show_collections", True) else "off"), toggle_collections_tile),
             ("Hulu: %s" % merge_label(cfg, "hulu"), lambda: choose_merge("hulu")),
             ("Discovery+: %s" % merge_label(cfg, "discovery"), lambda: choose_merge("discovery")),
             ("Reload collection artwork from movie folders", reload_set_art),
@@ -366,6 +368,18 @@ def reload_set_art():
     n = backlot.collection_art(overwrite=True)
     DIALOG.ok(HEADING, "Updated artwork for %d collection%s." % (n, "" if n == 1 else "s") if n else
               "No collection artwork files (movieset-poster.jpg and so on) were found next to your movies.")
+
+
+def toggle_keep_sets():
+    cfg = backlot.load()
+    cfg["keep_sets_together"] = not cfg.get("keep_sets_together", True)
+    commit(cfg, "Collections %s" % ("kept under one service" if cfg["keep_sets_together"] else "split by studio"))
+
+
+def toggle_collections_tile():
+    cfg = backlot.load()
+    cfg["show_collections"] = not cfg.get("show_collections", True)
+    commit(cfg, "Collections tile %s" % ("on" if cfg["show_collections"] else "off"))
 
 
 def toggle_sets():
@@ -709,13 +723,15 @@ def _setup():
         cfg["group_sets"] = j == 0
 
     # 7. leftovers
-    cur = 0 if cfg.get("show_fallbacks", True) else 1
-    j = choose("Movies and TV Shows tiles", [
-        ("Add them", "Two extra tiles at the end of your services that open your whole movie and TV library.", "fallbacks_on"),
+    cur = (0 if cfg.get("show_collections", True) else 1) if cfg.get("show_fallbacks", True) else 2
+    j = choose("Movies, Collections and TV Shows tiles", [
+        ("Movies, Collections and TV Shows", "Three tiles after your services: your whole movie library, every collection on its own, and all your TV shows.", "fallbacks_on"),
+        ("Movies and TV Shows only", "No separate Collections tile. Collections still show inside Movies.", "fallbacks_on"),
         ("Leave them off", "Only your services appear on the home screen.", "")],
         step=_step(7), preselect=cur, current=cur)
     if j >= 0:
-        cfg["show_fallbacks"] = j == 0
+        cfg["show_fallbacks"] = j < 2
+        cfg["show_collections"] = j == 0
     backlot.save(cfg)
     backlot.publish(cfg)
 

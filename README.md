@@ -34,7 +34,7 @@ Kodi installs **Backlot Helper**, **Backlot Sounds** and Kodi's official **Studi
 - **Service names** can appear under every tile, under only the focused tile, or not at all.
 - **Background art cycles** through a random mix of that service's shows and movies while a tile is focused.
 - **Two rows per service**, such as *New Peacock shows* and *New Peacock movies*, sorted by date added.
-- **Movies and TV Shows tiles** at the end hold everything no service claims. They have *Recently added* and *Continue watching* / *Shows in progress* rows (optional).
+- **Movies, Collections and TV Shows tiles** at the end. Movies and TV Shows hold your whole library; Collections lists every movie collection on its own and can be turned off. Movies and TV Shows have *Recently added* and *Continue watching* / *Shows in progress* rows (optional).
 - **Weather** in the top-left corner (optional), using Multi Weather, Gismeteo or NOAA.
 - **Top bar** with Manage services, Add-ons, Settings and Power.
 - **Seven color themes:** Midnight (default), Charcoal, Crimson, Forest, Ocean, OLED Black and Royal.
@@ -42,6 +42,7 @@ Kodi installs **Backlot Helper**, **Backlot Sounds** and Kodi's official **Studi
 ### Services
 - **12 presets:** Peacock, HBO Max, Netflix, Paramount+, Disney+, The CW, AMC+, British (BBC/ITV/Channel 4/Sky), Prime Video, Apple TV+, Hulu / FX and Discovery+.
 - **Presets include the studios each company owns.** For example, Paramount Pictures, Nickelodeon and Comedy Central go to Paramount+. Warner Bros., New Line, DC and Adult Swim go to HBO Max. Universal, Focus, DreamWorks and Illumination go to Peacock. MGM and United Artists go to Prime Video.
+- **Collections stay together.** A collection goes under the service that holds most of its movies, so every Blade or Alien film sits in one place even when their studios differ (can be turned off).
 - **Hulu inside Disney+** and **Discovery+ inside HBO Max** are on by default, since that's where those catalogs now live in the US. You can also give either one its own tile or leave it out.
 - **Custom services:** name it, pick its studios and networks from a list of the ones in your library (with title counts) or type them, choose a color, and set a logo or your own full banner or circle art.
 - **Studios report:** lists every studio or network in your library that no service claims, with a title count for each. One click makes that studio its own service or adds it to an existing one.
@@ -58,7 +59,7 @@ Kodi installs **Backlot Helper**, **Backlot Sounds** and Kodi's official **Studi
 - **Collections:** movie sets show as a single tile and open to their movies. Collection art is read from tinyMediaManager's `movieset-poster.jpg`, `movieset-clearlogo.png` and other `movieset-*` files next to your movies. Kodi ignores those files on its own.
 - **Episodes, modern (default):** seasons down the left, episodes on the right with a thumbnail, date, runtime and description, like Netflix today.
 - **Episodes, classic (option):** one row of large thumbnails with a season switcher above it.
-- Android TV-style list defaults: no `..` parent item and no "All seasons" entry.
+- Android TV-style list defaults: no `..` parent item, no "All seasons" entry, and Back always ends on the home screen, never Kodi's Videos menu.
 
 ### Info screens
 - Clearlogo, details, director/studio/rating line, tagline and plot over full-screen fanart.
@@ -94,6 +95,7 @@ Captured from a test Kodi with a real library. Click any thumbnail for full size
 | [![](screenshots/thumbs/23-home-banners-disney.jpg)](screenshots/full/23-home-banners-disney.jpg)<br>Disney+ | [![](screenshots/thumbs/24-home-rows-shows.jpg)](screenshots/full/24-home-rows-shows.jpg)<br>New shows row | [![](screenshots/thumbs/25-home-rows-movies.jpg)](screenshots/full/25-home-rows-movies.jpg)<br>New movies row |
 | [![](screenshots/thumbs/29-home-circles.jpg)](screenshots/full/29-home-circles.jpg)<br>Circles | [![](screenshots/thumbs/30-home-circles-netflix.jpg)](screenshots/full/30-home-circles-netflix.jpg)<br>Circles, Netflix | [![](screenshots/thumbs/31-home-circles-labels-all.jpg)](screenshots/full/31-home-circles-labels-all.jpg)<br>Circles, every name shown |
 | [![](screenshots/thumbs/27-home-labels-all.jpg)](screenshots/full/27-home-labels-all.jpg)<br>Banners, every name shown | [![](screenshots/thumbs/28-home-labels-off.jpg)](screenshots/full/28-home-labels-off.jpg)<br>Names off | [![](screenshots/thumbs/26-home-topbar.jpg)](screenshots/full/26-home-topbar.jpg)<br>Top bar |
+| [![](screenshots/thumbs/25d-home-collections-tile.jpg)](screenshots/full/25d-home-collections-tile.jpg)<br>Collections tile | [![](screenshots/thumbs/52-library-collections.jpg)](screenshots/full/52-library-collections.jpg)<br>Collections | |
 | [![](screenshots/thumbs/25b-home-movies-tile.jpg)](screenshots/full/25b-home-movies-tile.jpg)<br>Movies tile | [![](screenshots/thumbs/25c-home-continue-watching.jpg)](screenshots/full/25c-home-continue-watching.jpg)<br>Continue watching | [![](screenshots/thumbs/23b-home-empty-service.jpg)](screenshots/full/23b-home-empty-service.jpg)<br>A service with nothing yet |
 
 ### Service page
@@ -126,7 +128,7 @@ Captured from a test Kodi with a real library. Click any thumbnail for full size
 | [![](screenshots/thumbs/00-setup-welcome.jpg)](screenshots/full/00-setup-welcome.jpg)<br>Welcome | [![](screenshots/thumbs/01-setup-style.jpg)](screenshots/full/01-setup-style.jpg)<br>1. Tile style | [![](screenshots/thumbs/02-setup-labels.jpg)](screenshots/full/02-setup-labels.jpg)<br>Names under tiles |
 | [![](screenshots/thumbs/03-setup-theme.jpg)](screenshots/full/03-setup-theme.jpg)<br>2. Color theme | [![](screenshots/thumbs/04-setup-services.jpg)](screenshots/full/04-setup-services.jpg)<br>3. Services | [![](screenshots/thumbs/05-setup-hulu.jpg)](screenshots/full/05-setup-hulu.jpg)<br>4. Hulu |
 | [![](screenshots/thumbs/06-setup-discovery.jpg)](screenshots/full/06-setup-discovery.jpg)<br>4. Discovery+ | [![](screenshots/thumbs/07-setup-episodes.jpg)](screenshots/full/07-setup-episodes.jpg)<br>5. Episodes | [![](screenshots/thumbs/08-setup-collections.jpg)](screenshots/full/08-setup-collections.jpg)<br>6. Collections |
-| [![](screenshots/thumbs/09-setup-fallbacks.jpg)](screenshots/full/09-setup-fallbacks.jpg)<br>7. Movies / TV tiles | [![](screenshots/thumbs/10-setup-tmdbhelper.jpg)](screenshots/full/10-setup-tmdbhelper.jpg)<br>8. TMDb Helper | [![](screenshots/thumbs/11-setup-preshow.jpg)](screenshots/full/11-setup-preshow.jpg)<br>9. PreShow |
+| [![](screenshots/thumbs/09-setup-fallbacks.jpg)](screenshots/full/09-setup-fallbacks.jpg)<br>7. Movies / Collections / TV tiles | [![](screenshots/thumbs/10-setup-tmdbhelper.jpg)](screenshots/full/10-setup-tmdbhelper.jpg)<br>8. TMDb Helper | [![](screenshots/thumbs/11-setup-preshow.jpg)](screenshots/full/11-setup-preshow.jpg)<br>9. PreShow |
 | [![](screenshots/thumbs/11b-setup-upnext.jpg)](screenshots/full/11b-setup-upnext.jpg)<br>10. Up Next | [![](screenshots/thumbs/12-setup-similar.jpg)](screenshots/full/12-setup-similar.jpg)<br>11. More like this | [![](screenshots/thumbs/13-setup-weather.jpg)](screenshots/full/13-setup-weather.jpg)<br>12. Weather |
 | [![](screenshots/thumbs/14-setup-sounds.jpg)](screenshots/full/14-setup-sounds.jpg)<br>13. Sounds | [![](screenshots/thumbs/15-setup-done.jpg)](screenshots/full/15-setup-done.jpg)<br>Done | |
 
