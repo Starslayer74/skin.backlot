@@ -2,7 +2,7 @@
 
 **An Android TV / Google TV style skin for Kodi that sorts your own movie and TV library by the streaming service or network that made it.**
 
-Your library ends up under tiles like Peacock, Max, Netflix, Paramount+ and Disney+. Backlot decides where each title goes from the studio and network names already in your library's metadata, so you don't have to tag anything by hand.
+Your library ends up under tiles like Peacock, HBO Max, Netflix, Paramount+ and Disney+. Backlot decides where each title goes from the studio and network names already in your library's metadata, so you don't have to tag anything by hand.
 
 <a href="screenshots/full/20-home-banners-peacock.jpg"><img src="screenshots/full/20-home-banners-peacock.jpg" width="100%"></a>
 
@@ -40,9 +40,9 @@ Kodi installs **Backlot Helper**, **Backlot Sounds** and Kodi's official **Studi
 - **Seven color themes:** Midnight (default), Charcoal, Crimson, Forest, Ocean, OLED Black and Royal.
 
 ### Services
-- **12 presets:** Peacock, Max, Netflix, Paramount+, Disney+, The CW, AMC+, British (BBC/ITV/Channel 4/Sky), Prime Video, Apple TV+, Hulu / FX and Discovery+.
-- **Presets include the studios each company owns.** For example, Paramount Pictures, Nickelodeon and Comedy Central go to Paramount+. Warner Bros., New Line, DC and Adult Swim go to Max. Universal, Focus, DreamWorks and Illumination go to Peacock. MGM and United Artists go to Prime Video.
-- **Hulu inside Disney+** and **Discovery+ inside Max** are on by default, since that's where those catalogs now live in the US. You can also give either one its own tile or leave it out.
+- **12 presets:** Peacock, HBO Max, Netflix, Paramount+, Disney+, The CW, AMC+, British (BBC/ITV/Channel 4/Sky), Prime Video, Apple TV+, Hulu / FX and Discovery+.
+- **Presets include the studios each company owns.** For example, Paramount Pictures, Nickelodeon and Comedy Central go to Paramount+. Warner Bros., New Line, DC and Adult Swim go to HBO Max. Universal, Focus, DreamWorks and Illumination go to Peacock. MGM and United Artists go to Prime Video.
+- **Hulu inside Disney+** and **Discovery+ inside HBO Max** are on by default, since that's where those catalogs now live in the US. You can also give either one its own tile or leave it out.
 - **Custom services:** name it, pick its studios and networks from a list of the ones in your library (with title counts) or type them, choose a color, and set a logo or your own full banner or circle art.
 - **Studios report:** lists every studio or network in your library that no service claims, with a title count for each. One click makes that studio its own service or adds it to an existing one.
 - **Arrange services:** an on-screen reorder screen. Pick a tile up, move it left or right, and drop it.
@@ -90,7 +90,7 @@ Captured from a test Kodi with a real library. Click any thumbnail for full size
 ### Home
 | | | |
 |---|---|---|
-| [![](screenshots/thumbs/20-home-banners-peacock.jpg)](screenshots/full/20-home-banners-peacock.jpg)<br>Banners, Peacock | [![](screenshots/thumbs/21-home-banners-max.jpg)](screenshots/full/21-home-banners-max.jpg)<br>Max | [![](screenshots/thumbs/22-home-banners-netflix.jpg)](screenshots/full/22-home-banners-netflix.jpg)<br>Netflix |
+| [![](screenshots/thumbs/20-home-banners-peacock.jpg)](screenshots/full/20-home-banners-peacock.jpg)<br>Banners, Peacock | [![](screenshots/thumbs/21-home-banners-max.jpg)](screenshots/full/21-home-banners-max.jpg)<br>HBO Max | [![](screenshots/thumbs/22-home-banners-netflix.jpg)](screenshots/full/22-home-banners-netflix.jpg)<br>Netflix |
 | [![](screenshots/thumbs/23-home-banners-disney.jpg)](screenshots/full/23-home-banners-disney.jpg)<br>Disney+ | [![](screenshots/thumbs/24-home-rows-shows.jpg)](screenshots/full/24-home-rows-shows.jpg)<br>New shows row | [![](screenshots/thumbs/25-home-rows-movies.jpg)](screenshots/full/25-home-rows-movies.jpg)<br>New movies row |
 | [![](screenshots/thumbs/29-home-circles.jpg)](screenshots/full/29-home-circles.jpg)<br>Circles | [![](screenshots/thumbs/30-home-circles-netflix.jpg)](screenshots/full/30-home-circles-netflix.jpg)<br>Circles, Netflix | [![](screenshots/thumbs/31-home-circles-labels-all.jpg)](screenshots/full/31-home-circles-labels-all.jpg)<br>Circles, every name shown |
 | [![](screenshots/thumbs/27-home-labels-all.jpg)](screenshots/full/27-home-labels-all.jpg)<br>Banners, every name shown | [![](screenshots/thumbs/28-home-labels-off.jpg)](screenshots/full/28-home-labels-off.jpg)<br>Names off | [![](screenshots/thumbs/26-home-topbar.jpg)](screenshots/full/26-home-topbar.jpg)<br>Top bar |

@@ -75,6 +75,9 @@ def load():
     for s in cfg["services"]:
         if s.get("preset") and s["id"] in by_id and ("logo" not in s or s.get("logo") in OLD_LOGOS.get(s["id"], ())):
             s["logo"] = by_id[s["id"]].get("logo", "")
+        # Max went back to being HBO Max; rename it unless the user renamed it themselves
+        if s.get("preset") and s["id"] == "max" and s.get("name") == "Max":
+            s["name"] = "HBO Max"
         if s.get("preset") and s["id"] in by_id and s.get("matches") == OLD_MATCHES.get(s["id"]):
             s["matches"] = list(by_id[s["id"]].get("matches", []))
         if s.get("preset") and s["id"] in by_id:
@@ -101,7 +104,7 @@ MERGES = {
 
 def active_services(cfg):
     """Enabled services as the home screen uses them. Merged services (Hulu
-    inside Disney+, Discovery+ inside Max) add their studios to the parent
+    inside Disney+, Discovery+ inside HBO Max) add their studios to the parent
     and get no tile of their own."""
     svcs = [dict(s, matches=list(s.get("matches", []))) for s in cfg["services"]]
     for child_id, (parent_id, key, default) in MERGES.items():

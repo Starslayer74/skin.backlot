@@ -324,7 +324,7 @@ def toggle_fallbacks():
 
 MERGE_TEXT = {
     "hulu": ("Hulu", "Disney+", "Hulu's US app is moving into Disney+, so Hulu shows appear there"),
-    "discovery": ("Discovery+", "Max", "Max and Discovery+ are both Warner Bros. Discovery, and Max carries Discovery+ shows"),
+    "discovery": ("Discovery+", "HBO Max", "HBO Max and Discovery+ are both Warner Bros. Discovery, and HBO Max carries Discovery+ shows"),
 }
 
 
@@ -681,7 +681,7 @@ def _setup():
     # 4. Hulu and Discovery+
     cfg = backlot.load()
     for sid, question in (("hulu", "In the US, Hulu is folding into the Disney+ app."),
-                          ("discovery", "Max and Discovery+ are both Warner Bros. Discovery services.")):
+                          ("discovery", "HBO Max and Discovery+ are both Warner Bros. Discovery services.")):
         parent_id, key, default = backlot.MERGES[sid]
         svc = next((s for s in cfg["services"] if s["id"] == sid), {})
         cur = 0 if cfg.get(key, default) else (1 if svc.get("enabled") else 2)
