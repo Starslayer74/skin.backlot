@@ -25,7 +25,9 @@ if __name__ == "__main__":
         backlot.first_run()
         backlot.publish()
         backlot.tune_tmdbhelper()
-        backlot.collection_art()
+        # let Kodi finish starting up before touching the disks
+        if not monitor.waitForAbort(30):
+            backlot.collection_art()
     except Exception as e:  # never take Kodi's service loop down
         backlot.log("publish failed: %s" % e, xbmc.LOGERROR)
     monitor.waitForAbort()

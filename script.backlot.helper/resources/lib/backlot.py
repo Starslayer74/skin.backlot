@@ -433,11 +433,20 @@ def _movie_folder(path):
     return path[:cut + 1] if cut >= 0 else ""
 
 
+SET_ART_CACHE = os.path.join(PROFILE, "setart.json")
+
+
 def collection_art(overwrite=False):
     """Give each movie collection the artwork saved next to its movies
     (movieset-poster.jpg, movieset-clearlogo.png ...). Kodi only looks in a
     separate "movie set information folder", so without this collections
-    show no artwork. Returns how many collections were updated."""
+    show no artwork. Returns how many collections were updated.
+
+    Each collection's folders are remembered once checked, so later runs only
+    look at new or changed collections instead of every file on every disk.
+    overwrite=True (the Manage services button) re-checks everything."""
+    if xbmc.getCondVisibility("Library.IsScanningVideo") and not overwrite:
+        return 0  # runs again when the scan finishes
     sets = _rpc("VideoLibrary.GetMovieSets", {"properties": ["art"]}).get("sets", [])
     if not sets:
         return 0
@@ -445,11 +454,26 @@ def collection_art(overwrite=False):
     for m in _rpc("VideoLibrary.GetMovies", {"properties": ["setid", "file"]}).get("movies", []):
         if m.get("setid"):
             folder = _movie_folder(m.get("file", ""))
-            if folder:
-                folders.setdefault(m["setid"], []).append(folder)
+            if folder and folder not in folders.setdefault(m["setid"], []):
+                folders[m["setid"]].append(folder)
+    cache = {}
+    if not overwrite:
+        try:
+            with open(SET_ART_CACHE, encoding="utf-8") as f:
+                cache = json.load(f)
+        except (OSError, ValueError):
+            cache = {}
+    mon = xbmc.Monitor()
     updated = 0
     for st in sets:
+        if mon.abortRequested():
+            break
+        sid = str(st["setid"])
         have = st.get("art", {}) or {}
+        sig = "|".join(sorted(folders.get(st["setid"], [])))
+        # unchanged collection that already got its poster: nothing to look for
+        if not overwrite and cache.get(sid) == sig and have.get("poster"):
+            continue
         new = {}
         for kind, names in SET_ART_FILES.items():
             if have.get(kind) and not overwrite:
@@ -470,6 +494,13 @@ def collection_art(overwrite=False):
         if new:
             _rpc("VideoLibrary.SetMovieSetDetails", {"setid": st["setid"], "art": new})
             updated += 1
+        cache[sid] = sig
+    try:
+        os.makedirs(PROFILE, exist_ok=True)
+        with open(SET_ART_CACHE, "w", encoding="utf-8") as f:
+            json.dump(cache, f)
+    except OSError:
+        pass
     if updated:
         log("collection artwork added to %d collections" % updated)
     return updated
