@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-"""Arrange the home-screen service tiles: OK picks a tile up, left/right moves
-it, OK drops it, Back saves."""
+"""Arrange the home-screen tiles (services plus Movies, Collections and TV
+Shows): OK picks a tile up, left/right moves it, OK drops it, Back saves."""
 import xbmcgui
 
 import backlot
@@ -22,8 +22,12 @@ class ReorderDialog(xbmcgui.WindowXMLDialog):
         s = self.svcs[idx]
         li = self.lst.getListItem(idx)
         li.setLabel(s["name"])
-        li.setArt({"logo": backlot.logo_for(s) or ""})
-        li.setProperty("tint", backlot.tint(s.get("color") or backlot.FALLBACK_COLOR))
+        if s.get("library"):
+            li.setArt({"logo": s["logo_url"]})
+            li.setProperty("tint", backlot.FALLBACK_COLOR)
+        else:
+            li.setArt({"logo": backlot.logo_for(s) or ""})
+            li.setProperty("tint", backlot.tint(s.get("color") or backlot.FALLBACK_COLOR))
         li.setProperty("position", "%d" % (idx + 1))
         li.setProperty("moving", "true" if idx == self.moving else "")
 
@@ -83,15 +87,19 @@ def arrange(cfg):
     """Returns True if the new order was saved."""
     active_ids = [s["id"] for s in backlot.active_services(cfg)]
     shown = [s for s in cfg["services"] if s["id"] in active_ids]
-    if len(shown) < 2:
+    # start from the current home order so library tiles sit where they are now
+    tiles = backlot.order_slots(cfg, [dict(s) for s in shown] + backlot.library_tiles(cfg))
+    if len(tiles) < 2:
         return False
-    dlg = ReorderDialog("script-backlot-reorder.xml", backlot.ADDON_PATH, "Default", "1080i", services=list(shown))
+    dlg = ReorderDialog("script-backlot-reorder.xml", backlot.ADDON_PATH, "Default", "1080i", services=tiles)
     dlg.doModal()
     if not dlg.saved:
         del dlg
         return False
     new = dlg.svcs
     del dlg
+    by_id = {s["id"]: s for s in shown}
     rest = [s for s in cfg["services"] if s["id"] not in active_ids]
-    cfg["services"] = new + rest
+    cfg["services"] = [by_id[t["id"]] for t in new if t["id"] in by_id] + rest
+    cfg["tile_order"] = [t["id"] for t in new]
     return True

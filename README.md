@@ -47,7 +47,7 @@ Kodi installs **Backlot Helper**, **Backlot Sounds** and Kodi's official **Studi
 - **Hulu inside Disney+** and **Discovery+ inside HBO Max** are on by default, since that's where those catalogs now live in the US. You can also give either one its own tile or leave it out.
 - **Custom services:** name it, pick its studios and networks from a list of the ones in your library (with title counts) or type them, choose a color, and set a logo or your own full banner or circle art.
 - **Studios report:** lists every studio or network in your library that no service claims, with a title count for each. One click makes that studio its own service or adds it to an existing one.
-- **Arrange services:** an on-screen reorder screen. Pick a tile up, move it left or right, and drop it.
+- **Arrange home tiles:** an on-screen reorder screen for the services and the Movies, Collections and TV Shows tiles. Pick a tile up, move it left or right, and drop it.
 - **Open button:** each service page has a button that launches the real service. It opens the Android TV app on Android boxes, the website everywhere else, or a program you choose on a PC.
 - **Export / import** your service setup as `backlot-services.json`, or reset everything to defaults.
 

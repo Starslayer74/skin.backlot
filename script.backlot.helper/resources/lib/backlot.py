@@ -430,7 +430,49 @@ def build_slots(cfg):
                           row2_label="Shows in progress",
                           row2_path=_playlist("all_tvshows_inprogress.xsp", "tvshows", "Shows in progress",
                                               [("inprogress", "true", [])], ("descending", "lastplayed"), 20)))
-    return slots[:MAX_SLOTS]
+    return order_slots(cfg, slots)[:MAX_SLOTS]
+
+
+LIBRARY_TILES = (("movies", "Movies", "movies_logo.png"),
+                 ("collections", "Collections", "collections_logo.png"),
+                 ("tvshows", "TV Shows", "tvshows_logo.png"))
+
+
+def library_tiles(cfg):
+    """The Movies / Collections / TV Shows tiles the home screen shows, as
+    reorder entries."""
+    if not cfg.get("show_fallbacks", True):
+        return []
+    return [{"id": tid, "name": name, "color": FALLBACK_COLOR, "library": True, "logo_url": ART_URL + logo}
+            for tid, name, logo in LIBRARY_TILES
+            if tid != "collections" or cfg.get("show_collections", True)]
+
+
+def order_slots(cfg, slots):
+    """Apply the saved home tile order (services and the Movies / Collections /
+    TV Shows tiles). Tiles the saved order doesn't know yet go right after the
+    service listed before them in the services list (library tiles: the end)."""
+    saved = cfg.get("tile_order") or []
+    if not saved:
+        return slots
+    pos = {tid: n for n, tid in enumerate(saved)}
+    svc_ids = [s["id"] for s in cfg.get("services", [])]
+
+    def key(item):
+        n, slot = item
+        sid = slot["id"]
+        if sid in pos:
+            return (pos[sid], 0, n)
+        anchor = -1
+        if sid in svc_ids:
+            for prev in reversed(svc_ids[:svc_ids.index(sid)]):
+                if prev in pos:
+                    anchor = pos[prev]
+                    break
+        else:
+            anchor = len(saved)
+        return (anchor, 1, n)
+    return [slot for _n, slot in sorted(enumerate(slots), key=key)]
 
 
 def set_fixes(active):

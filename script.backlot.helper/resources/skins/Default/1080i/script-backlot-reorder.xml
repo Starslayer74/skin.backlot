@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Backlot: arrange the service tiles. OK picks a tile up, left/right moves it,
+<!-- Backlot: arrange the home tiles (services, Movies, Collections, TV Shows). OK picks a tile up, left/right moves it,
      OK drops it, Back saves. -->
 <window>
 	<defaultcontrol always="true">200</defaultcontrol>
@@ -20,7 +20,7 @@
 			<height>70</height>
 			<font>f_head</font>
 			<textcolor>text</textcolor>
-			<label>Arrange your services</label>
+			<label>Arrange your home tiles</label>
 		</control>
 		<control type="label">
 			<left>120</left>
