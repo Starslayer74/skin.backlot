@@ -57,6 +57,7 @@ Kodi installs **Backlot Helper**, **Backlot Sounds** and Kodi's official **Studi
 ### Library views
 - **TV shows:** wide banner grid or posters.
 - **Movies:** one row of large posters with the clearlogo, details and fanart above it.
+- **Letter jump:** press Down on the movie row (or Right on the TV banners) for a # / A–Z bar. The focused title's letter is lit; pick a letter to jump straight to it.
 - **Collections:** movie sets show as a single tile and open to their movies. Collection art is read from tinyMediaManager's `movieset-poster.jpg`, `movieset-clearlogo.png` and other `movieset-*` files next to your movies. Kodi ignores those files on its own.
 - **Episodes, modern (default):** seasons down the left, episodes on the right with a thumbnail, date, runtime and description, like Netflix today.
 - **Episodes, classic (option):** one row of large thumbnails with a season switcher above it.

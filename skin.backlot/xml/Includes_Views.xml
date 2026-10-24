@@ -669,6 +669,221 @@
 		</control>
 	</include>
 
+	<!-- ============================================================ letter bar
+	     Quick jump for long library lists: # and A-Z. The letter of the focused
+	     title is lit; OK jumps the list to the first title with that letter. -->
+	<include name="LetterBar">
+		<param name="target">51</param>
+		<param name="id">5110</param>
+		<param name="orientation">horizontal</param>
+		<param name="itemw">64</param>
+		<param name="itemh">40</param>
+		<definition>
+			<control type="list" id="$PARAM[id]">
+				<left>$PARAM[left]</left>
+				<top>$PARAM[top]</top>
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<orientation>$PARAM[orientation]</orientation>
+				<onup>$PARAM[onup]</onup>
+				<ondown>$PARAM[ondown]</ondown>
+				<onleft>$PARAM[onleft]</onleft>
+				<onright>$PARAM[onright]</onright>
+				<scrolltime>0</scrolltime>
+				<visible>$PARAM[visible]</visible>
+				<itemlayout width="$PARAM[itemw]" height="$PARAM[itemh]">
+					<control type="label">
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>f_small</font>
+						<textcolor>text3</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+						<visible>!String.IsEqual(ListItem.Property(letter),Container($PARAM[target]).ListItem.SortLetter)</visible>
+					</control>
+					<control type="label">
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>f_small</font>
+						<textcolor>selected</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+						<visible>String.IsEqual(ListItem.Property(letter),Container($PARAM[target]).ListItem.SortLetter)</visible>
+					</control>
+				</itemlayout>
+				<focusedlayout width="$PARAM[itemw]" height="$PARAM[itemh]">
+					<control type="image">
+						<left>8</left>
+						<top>2</top>
+						<right>8</right>
+						<bottom>2</bottom>
+						<texture border="16" colordiffuse="focus">frame/rounded16.png</texture>
+						<visible>Control.HasFocus($PARAM[id])</visible>
+					</control>
+					<control type="label">
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>f_small</font>
+						<textcolor>on_focus</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+						<visible>Control.HasFocus($PARAM[id])</visible>
+					</control>
+					<control type="label">
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>f_small</font>
+						<textcolor>text3</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+						<visible>!Control.HasFocus($PARAM[id]) + !String.IsEqual(ListItem.Property(letter),Container($PARAM[target]).ListItem.SortLetter)</visible>
+					</control>
+					<control type="label">
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>f_small</font>
+						<textcolor>selected</textcolor>
+						<label>$INFO[ListItem.Label]</label>
+						<visible>!Control.HasFocus($PARAM[id]) + String.IsEqual(ListItem.Property(letter),Container($PARAM[target]).ListItem.SortLetter)</visible>
+					</control>
+				</focusedlayout>
+				<content>
+					<item>
+						<label>#</label>
+						<property name="letter">#</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],0)</onclick>
+					</item>
+					<item>
+						<label>A</label>
+						<property name="letter">A</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],A)</onclick>
+					</item>
+					<item>
+						<label>B</label>
+						<property name="letter">B</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],B)</onclick>
+					</item>
+					<item>
+						<label>C</label>
+						<property name="letter">C</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],C)</onclick>
+					</item>
+					<item>
+						<label>D</label>
+						<property name="letter">D</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],D)</onclick>
+					</item>
+					<item>
+						<label>E</label>
+						<property name="letter">E</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],E)</onclick>
+					</item>
+					<item>
+						<label>F</label>
+						<property name="letter">F</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],F)</onclick>
+					</item>
+					<item>
+						<label>G</label>
+						<property name="letter">G</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],G)</onclick>
+					</item>
+					<item>
+						<label>H</label>
+						<property name="letter">H</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],H)</onclick>
+					</item>
+					<item>
+						<label>I</label>
+						<property name="letter">I</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],I)</onclick>
+					</item>
+					<item>
+						<label>J</label>
+						<property name="letter">J</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],J)</onclick>
+					</item>
+					<item>
+						<label>K</label>
+						<property name="letter">K</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],K)</onclick>
+					</item>
+					<item>
+						<label>L</label>
+						<property name="letter">L</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],L)</onclick>
+					</item>
+					<item>
+						<label>M</label>
+						<property name="letter">M</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],M)</onclick>
+					</item>
+					<item>
+						<label>N</label>
+						<property name="letter">N</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],N)</onclick>
+					</item>
+					<item>
+						<label>O</label>
+						<property name="letter">O</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],O)</onclick>
+					</item>
+					<item>
+						<label>P</label>
+						<property name="letter">P</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],P)</onclick>
+					</item>
+					<item>
+						<label>Q</label>
+						<property name="letter">Q</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],Q)</onclick>
+					</item>
+					<item>
+						<label>R</label>
+						<property name="letter">R</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],R)</onclick>
+					</item>
+					<item>
+						<label>S</label>
+						<property name="letter">S</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],S)</onclick>
+					</item>
+					<item>
+						<label>T</label>
+						<property name="letter">T</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],T)</onclick>
+					</item>
+					<item>
+						<label>U</label>
+						<property name="letter">U</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],U)</onclick>
+					</item>
+					<item>
+						<label>V</label>
+						<property name="letter">V</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],V)</onclick>
+					</item>
+					<item>
+						<label>W</label>
+						<property name="letter">W</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],W)</onclick>
+					</item>
+					<item>
+						<label>X</label>
+						<property name="letter">X</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],X)</onclick>
+					</item>
+					<item>
+						<label>Y</label>
+						<property name="letter">Y</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],Y)</onclick>
+					</item>
+					<item>
+						<label>Z</label>
+						<property name="letter">Z</property>
+						<onclick>RunScript(script.backlot.helper,jump,$PARAM[target],Z)</onclick>
+					</item>
+				</content>
+			</control>
+		</definition>
+	</include>
+
 	<!-- ============================================================ view 51: posters -->
 	<include name="View_51_Posters">
 		<control type="group">
@@ -686,7 +901,35 @@
 				<onleft>51</onleft>
 				<onright>51</onright>
 				<onup>9000</onup>
-				<ondown>51</ondown>
+				<!-- into the letter bar, landing on the focused title's letter -->
+				<ondown condition="Control.IsVisible(5110)">SetFocus(5110,0,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,A)">SetFocus(5110,1,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,B)">SetFocus(5110,2,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,C)">SetFocus(5110,3,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,D)">SetFocus(5110,4,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,E)">SetFocus(5110,5,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,F)">SetFocus(5110,6,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,G)">SetFocus(5110,7,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,H)">SetFocus(5110,8,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,I)">SetFocus(5110,9,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,J)">SetFocus(5110,10,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,K)">SetFocus(5110,11,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,L)">SetFocus(5110,12,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,M)">SetFocus(5110,13,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,N)">SetFocus(5110,14,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,O)">SetFocus(5110,15,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,P)">SetFocus(5110,16,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,Q)">SetFocus(5110,17,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,R)">SetFocus(5110,18,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,S)">SetFocus(5110,19,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,T)">SetFocus(5110,20,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,U)">SetFocus(5110,21,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,V)">SetFocus(5110,22,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,W)">SetFocus(5110,23,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,X)">SetFocus(5110,24,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,Y)">SetFocus(5110,25,absolute)</ondown>
+				<ondown condition="Control.IsVisible(5110) + String.IsEqual(Container(51).ListItem.SortLetter,Z)">SetFocus(5110,26,absolute)</ondown>
+				<ondown condition="!Control.IsVisible(5110)">51</ondown>
 				<orientation>horizontal</orientation>
 				<focusposition>0</focusposition>
 				<movement>3</movement>
@@ -709,6 +952,19 @@
 					</include>
 				</focusedlayout>
 			</control>
+			<include content="LetterBar">
+				<param name="target">51</param>
+				<param name="id">5110</param>
+				<param name="left">142</param>
+				<param name="top">1034</param>
+				<param name="width">1728</param>
+				<param name="height">40</param>
+				<param name="onup">51</param>
+				<param name="ondown">5110</param>
+				<param name="onleft">5110</param>
+				<param name="onright">5110</param>
+				<param name="visible">[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows)] + Integer.IsGreater(Container(51).NumItems,20)</param>
+			</include>
 		</control>
 	</include>
 
@@ -928,7 +1184,35 @@
 				<height>870</height>
 				<orientation>vertical</orientation>
 				<onleft>9000</onleft>
-				<onright>52</onright>
+				<!-- into the letter column, landing on the focused show's letter -->
+				<onright condition="Control.IsVisible(5210)">SetFocus(5210,0,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,A)">SetFocus(5210,1,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,B)">SetFocus(5210,2,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,C)">SetFocus(5210,3,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,D)">SetFocus(5210,4,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,E)">SetFocus(5210,5,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,F)">SetFocus(5210,6,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,G)">SetFocus(5210,7,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,H)">SetFocus(5210,8,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,I)">SetFocus(5210,9,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,J)">SetFocus(5210,10,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,K)">SetFocus(5210,11,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,L)">SetFocus(5210,12,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,M)">SetFocus(5210,13,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,N)">SetFocus(5210,14,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,O)">SetFocus(5210,15,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,P)">SetFocus(5210,16,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,Q)">SetFocus(5210,17,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,R)">SetFocus(5210,18,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,S)">SetFocus(5210,19,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,T)">SetFocus(5210,20,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,U)">SetFocus(5210,21,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,V)">SetFocus(5210,22,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,W)">SetFocus(5210,23,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,X)">SetFocus(5210,24,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,Y)">SetFocus(5210,25,absolute)</onright>
+				<onright condition="Control.IsVisible(5210) + String.IsEqual(Container(52).ListItem.SortLetter,Z)">SetFocus(5210,26,absolute)</onright>
+				<onright condition="!Control.IsVisible(5210)">52</onright>
 				<onup>52</onup>
 				<ondown>52</ondown>
 				<preloaditems>2</preloaditems>
@@ -1003,6 +1287,22 @@
 			</control>
 				</focusedlayout>
 			</control>
+			<include content="LetterBar">
+				<param name="target">52</param>
+				<param name="id">5210</param>
+				<param name="orientation">vertical</param>
+				<param name="itemw">72</param>
+				<param name="itemh">32</param>
+				<param name="left">1830</param>
+				<param name="top">190</param>
+				<param name="width">72</param>
+				<param name="height">864</param>
+				<param name="onup">5210</param>
+				<param name="ondown">5210</param>
+				<param name="onleft">52</param>
+				<param name="onright">5210</param>
+				<param name="visible">Container.Content(tvshows) + Integer.IsGreater(Container(52).NumItems,20)</param>
+			</include>
 		</control>
 	</include>
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """RunScript(script.backlot.helper[,action])
-actions: manage (default), publish, report, add
+actions: manage (default), publish, report, add, jump <container> <letter>
 """
 import os
 import sys
@@ -11,7 +11,11 @@ import backlot  # noqa: E402
 import manage  # noqa: E402
 
 action = sys.argv[1] if len(sys.argv) > 1 else "manage"
-if action == "publish":
+if action == "jump" and len(sys.argv) > 3:
+    # letter bar on the library lists
+    import letterjump  # noqa: E402
+    letterjump.jump(sys.argv[2], sys.argv[3])
+elif action == "publish":
     backlot.publish()
 elif action == "startup":
     # The skin asks for this when it finds no tiles. The helper's service
