@@ -54,7 +54,7 @@ def _preset_service(p):
 
 
 # preset logos replaced in later versions; saved configs still holding these get the new one
-OLD_LOGOS = {"max": ("HBO Max",), "british": ("BBC",), "telemundo": ("",), "pbs": ("",), "crunchyroll": ("",), "mgmplus": ("",)}
+OLD_LOGOS = {"max": ("HBO Max",), "british": ("BBC", "special://home/addons/script.backlot.helper/resources/media/logos/uktv.png"), "telemundo": ("",), "pbs": ("",), "crunchyroll": ("",), "mgmplus": ("",)}
 # preset studio lists from before presets_version 2; saved services still using
 # exactly these get the fuller lists (anything the user customized is left alone)
 OLD_MATCHES = {"peacock": ["NBC", "Universal"], "max": ["HBO", "Cinemax"], "netflix": ["Netflix"], "paramount": ["CBS", "Showtime"], "disney": ["ABC"], "cw": ["The CW", "Paramount Network", "The WB"], "amc": ["AMC", "Shudder"], "british": ["BBC"], "prime": ["Amazon", "MGM"], "appletv": ["Apple TV+", "Apple Studios", "Apple Original Films"], "hulu": ["Hulu", "FX"], "discovery": ["Discovery", "TLC", "HGTV", "Food Network"]}
@@ -81,8 +81,15 @@ def load():
             s["name"] = "HBO Max"
         if s.get("preset") and s["id"] in by_id and s.get("matches") in _old_lists(s["id"]):
             s["matches"] = list(by_id[s["id"]].get("matches", []))
-        if s.get("preset") and s["id"] == "british" and s.get("name") == "British":
-            s["name"] = "UK TV"
+        if s.get("preset") and s["id"] == "british" and s.get("name") in ("British", "UK TV"):
+            # it holds UK films too, so it's just "UK" now
+            s["name"] = "UK"
+        if s.get("preset") and s["id"] in OLD_LAUNCH:
+            # UK is a catch-all with no app of its own; the channels got their apps.
+            # Only values still matching the old preset are replaced.
+            for k, (old_v, new_v) in OLD_LAUNCH[s["id"]].items():
+                if s.get(k, "") == old_v:
+                    s[k] = new_v
         if s.get("preset") and s["id"] in by_id:
             # network presets added later: keep their roll-up parent and auto-hide flag current
             for k in ("network", "auto_hide"):
@@ -104,6 +111,17 @@ def load():
     cfg.setdefault("show_collections", True)
     cfg.setdefault("networks", {})
     return cfg
+
+
+# launch targets from before helper 0.6.5: {id: {key: (old value, new value)}}
+OLD_LAUNCH = {
+    "british": {"android_app": ("uk.co.bbc.iplayer", ""), "website": ("https://www.bbc.co.uk/iplayer", "")},
+    "bbc": {"android_app": ("", "uk.co.bbc.iplayer")},
+    "itv": {"android_app": ("", "air.ITVMobilePlayer"), "website": ("https://www.itv.com", "https://www.itv.com/watch")},
+    "channel4": {"android_app": ("", "com.channel4.ondemand")},
+    "channel5": {"android_app": ("", "com.mobileiq.demand5")},
+    "sky": {"android_app": ("", "com.bskyb.skygo"), "website": ("https://www.sky.com", "https://www.sky.com/watch")},
+}
 
 
 # saved services still holding one of these exact studio lists get the current preset's list

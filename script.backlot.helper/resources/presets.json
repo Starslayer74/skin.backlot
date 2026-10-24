@@ -139,7 +139,7 @@
     },
     {
       "id": "british",
-      "name": "UK TV",
+      "name": "UK",
       "enabled": true,
       "color": "FF7A0019",
       "matches": [
@@ -163,9 +163,7 @@
         "E4",
         "Film4"
       ],
-      "logo": "special://home/addons/script.backlot.helper/resources/media/logos/uktv.png",
-      "android_app": "uk.co.bbc.iplayer",
-      "website": "https://www.bbc.co.uk/iplayer"
+      "logo": "special://home/addons/script.backlot.helper/resources/media/logos/uk.png"
     },
     {
       "id": "prime",
@@ -368,7 +366,8 @@
       "logo": "BBC",
       "website": "https://www.bbc.co.uk/iplayer",
       "network": "british",
-      "auto_hide": true
+      "auto_hide": true,
+      "android_app": "uk.co.bbc.iplayer"
     },
     {
       "id": "itv",
@@ -379,9 +378,10 @@
         "ITV"
       ],
       "logo": "ITV",
-      "website": "https://www.itv.com",
+      "website": "https://www.itv.com/watch",
       "network": "british",
-      "auto_hide": true
+      "auto_hide": true,
+      "android_app": "air.ITVMobilePlayer"
     },
     {
       "id": "channel4",
@@ -396,7 +396,8 @@
       "logo": "Channel 4",
       "website": "https://www.channel4.com",
       "network": "british",
-      "auto_hide": true
+      "auto_hide": true,
+      "android_app": "com.channel4.ondemand"
     },
     {
       "id": "channel5",
@@ -409,7 +410,8 @@
       "logo": "Channel 5",
       "website": "https://www.channel5.com",
       "network": "british",
-      "auto_hide": true
+      "auto_hide": true,
+      "android_app": "com.mobileiq.demand5"
     },
     {
       "id": "sky",
@@ -430,9 +432,10 @@
         "Sky Crime"
       ],
       "logo": "Sky",
-      "website": "https://www.sky.com",
+      "website": "https://www.sky.com/watch",
       "network": "british",
-      "auto_hide": true
+      "auto_hide": true,
+      "android_app": "com.bskyb.skygo"
     },
     {
       "id": "pbs",

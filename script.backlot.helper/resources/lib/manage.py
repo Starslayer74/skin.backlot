@@ -368,9 +368,16 @@ def choose_networks():
             continue
         net = nets[i]
         cur = backlot.NETWORK_MODES.index(backlot.network_mode(cfg, net["id"]))
-        j = DIALOG.select(net["name"], [xbmcgui.ListItem(a, b) for a, b in network_choices(cfg, net)],
+        choices = network_choices(cfg, net) + [("Open button: %s" % launch_label(net),
+                                                 "The app or website the %s tile's Open button starts" % net["name"])]
+        j = DIALOG.select(net["name"], [xbmcgui.ListItem(a, b) for a, b in choices],
                           preselect=cur, useDetails=True)
-        if j >= 0:
+        if j == len(choices) - 1:
+            before = (net.get("launch"), net.get("android_app"), net.get("website"))
+            choose_launch(net)
+            if (net.get("launch"), net.get("android_app"), net.get("website")) != before:
+                commit(cfg, "%s: Open button %s" % (net["name"], launch_label(net)))
+        elif j >= 0:
             cfg["networks"][net["id"]] = backlot.NETWORK_MODES[j]
             commit(cfg, "%s: %s" % (net["name"], network_label(cfg, net)))
 
