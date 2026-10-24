@@ -54,7 +54,7 @@ def _preset_service(p):
 
 
 # preset logos replaced in later versions; saved configs still holding these get the new one
-OLD_LOGOS = {"max": ("HBO Max",), "british": ("BBC",)}
+OLD_LOGOS = {"max": ("HBO Max",), "british": ("BBC",), "telemundo": ("",), "pbs": ("",), "crunchyroll": ("",), "mgmplus": ("",)}
 # preset studio lists from before presets_version 2; saved services still using
 # exactly these get the fuller lists (anything the user customized is left alone)
 OLD_MATCHES = {"peacock": ["NBC", "Universal"], "max": ["HBO", "Cinemax"], "netflix": ["Netflix"], "paramount": ["CBS", "Showtime"], "disney": ["ABC"], "cw": ["The CW", "Paramount Network", "The WB"], "amc": ["AMC", "Shudder"], "british": ["BBC"], "prime": ["Amazon", "MGM"], "appletv": ["Apple TV+", "Apple Studios", "Apple Original Films"], "hulu": ["Hulu", "FX"], "discovery": ["Discovery", "TLC", "HGTV", "Food Network"]}

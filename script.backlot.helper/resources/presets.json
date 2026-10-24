@@ -294,7 +294,7 @@
       "matches": [
         "Telemundo"
       ],
-      "logo": "",
+      "logo": "special://home/addons/script.backlot.helper/resources/media/logos/telemundo.png",
       "website": "https://www.telemundo.com",
       "network": "peacock",
       "auto_hide": true
@@ -352,7 +352,7 @@
         "Epix",
         "EPIX"
       ],
-      "logo": "",
+      "logo": "special://home/addons/script.backlot.helper/resources/media/logos/mgmplus.png",
       "website": "https://www.mgmplus.com",
       "network": "prime",
       "auto_hide": true
@@ -438,11 +438,11 @@
       "id": "pbs",
       "name": "PBS",
       "enabled": true,
-      "color": "FF1A3E8C",
+      "color": "FF1E1E1E",
       "matches": [
         "PBS"
       ],
-      "logo": "",
+      "logo": "special://home/addons/script.backlot.helper/resources/media/logos/pbs.png",
       "website": "https://www.pbs.org/video/",
       "android_app": "com.pbs.video",
       "auto_hide": true
@@ -481,7 +481,7 @@
       "matches": [
         "Crunchyroll"
       ],
-      "logo": "",
+      "logo": "special://home/addons/script.backlot.helper/resources/media/logos/crunchyroll.png",
       "website": "https://www.crunchyroll.com",
       "android_app": "com.crunchyroll.crunchyroid",
       "auto_hide": true
