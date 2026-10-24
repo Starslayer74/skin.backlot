@@ -84,6 +84,10 @@ def load():
         if s.get("preset") and s["id"] == "british" and s.get("name") in ("British", "UK TV"):
             # it holds UK films too, so it's just "UK" now
             s["name"] = "UK"
+        if s.get("preset") and s["id"] in ADDED_MATCHES and cfg.get("matches_added", 0) < 4:
+            # studios added to the presets in helper 0.6.6 (DreamWorks Pictures, Miramax ...);
+            # added once to saved lists, so anything removed afterwards stays removed
+            s["matches"] = list(s.get("matches", [])) + [m for m in ADDED_MATCHES[s["id"]] if m not in s.get("matches", [])]
         if s.get("preset") and s["id"] in OLD_LAUNCH:
             # UK is a catch-all with no app of its own; the channels got their apps.
             # Only values still matching the old preset are replaced.
@@ -99,6 +103,7 @@ def load():
             for k in ("android_app", "website"):
                 s.setdefault(k, by_id[s["id"]].get(k, ""))
         s.setdefault("launch", "")
+    cfg["matches_added"] = 4
     known = {s["id"] for s in cfg["services"]}
     for p in presets:
         if p["id"] not in known:
@@ -112,6 +117,68 @@ def load():
     cfg.setdefault("networks", {})
     return cfg
 
+
+# studios added to presets in presets_version 4 (helper 0.6.6)
+ADDED_MATCHES = {
+    "peacock": [
+        "DreamWorks Pictures",
+        "Blumhouse",
+        "Working Title",
+        "ITC Entertainment",
+        "PolyGram",
+        "Propaganda Films",
+        "Classic Media",
+        "Gramercy Pictures"
+    ],
+    "paramount": [
+        "Dimension Films",
+        "Miramax",
+        "Republic Pictures",
+        "Famous Players"
+    ],
+    "prime": [
+        "American International Pictures",
+        "=PRC",
+        "Producers Releasing Corporation",
+        "Alta Vista",
+        "Sigmund Neufeld",
+        "Eagle-Lion",
+        "Eagle Lion"
+    ],
+    "mgmplus": [
+        "American International Pictures",
+        "=PRC",
+        "Producers Releasing Corporation",
+        "Alta Vista",
+        "Sigmund Neufeld",
+        "Eagle-Lion",
+        "Eagle Lion"
+    ],
+    "disney": [
+        "Hollywood Pictures",
+        "New World Pictures",
+        "New Regency",
+        "Regency Enterprises",
+        "20th Digital Studio",
+        "Caravan Pictures",
+        "Fox Film Corporation"
+    ],
+    "max": [
+        "Hanna-Barbera",
+        "Hanna Barbera",
+        "Allied Artists",
+        "Warner Premiere",
+        "Seven Arts",
+        "NPV Entertainment",
+        "Lorimar"
+    ],
+    "british": [
+        "Big Talk"
+    ],
+    "itv": [
+        "Big Talk"
+    ],
+}
 
 # launch targets from before helper 0.6.5: {id: {key: (old value, new value)}}
 OLD_LAUNCH = {

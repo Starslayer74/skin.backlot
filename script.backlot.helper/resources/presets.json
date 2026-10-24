@@ -18,7 +18,15 @@
         "E!",
         "Oxygen",
         "Telemundo",
-        "Peacock"
+        "Peacock",
+        "DreamWorks Pictures",
+        "Blumhouse",
+        "Working Title",
+        "ITC Entertainment",
+        "PolyGram",
+        "Propaganda Films",
+        "Classic Media",
+        "Gramercy Pictures"
       ],
       "logo": "Peacock",
       "android_app": "com.peacocktv.peacockandroid",
@@ -44,7 +52,14 @@
         "Adult Swim",
         "Cartoon Network",
         "CNN",
-        "Max Original"
+        "Max Original",
+        "Hanna-Barbera",
+        "Hanna Barbera",
+        "Allied Artists",
+        "Warner Premiere",
+        "Seven Arts",
+        "NPV Entertainment",
+        "Lorimar"
       ],
       "logo": "special://home/addons/script.backlot.helper/resources/media/logos/max.png",
       "android_app": "com.wbd.stream",
@@ -80,7 +95,11 @@
         "Comedy Central",
         "BET Networks",
         "Skydance",
-        "BET+"
+        "BET+",
+        "Dimension Films",
+        "Miramax",
+        "Republic Pictures",
+        "Famous Players"
       ],
       "logo": "Paramount+",
       "android_app": "com.cbs.ott",
@@ -101,7 +120,14 @@
         "Searchlight",
         "National Geographic",
         "Touchstone",
-        "Freeform"
+        "Freeform",
+        "Hollywood Pictures",
+        "New World Pictures",
+        "New Regency",
+        "Regency Enterprises",
+        "20th Digital Studio",
+        "Caravan Pictures",
+        "Fox Film Corporation"
       ],
       "logo": "Disney+",
       "android_app": "com.disney.disneyplus",
@@ -161,7 +187,8 @@
         "Sky Documentaries",
         "Sky Crime",
         "E4",
-        "Film4"
+        "Film4",
+        "Big Talk"
       ],
       "logo": "special://home/addons/script.backlot.helper/resources/media/logos/uk.png"
     },
@@ -175,7 +202,14 @@
         "MGM",
         "Metro-Goldwyn-Mayer",
         "United Artists",
-        "Orion Pictures"
+        "Orion Pictures",
+        "American International Pictures",
+        "=PRC",
+        "Producers Releasing Corporation",
+        "Alta Vista",
+        "Sigmund Neufeld",
+        "Eagle-Lion",
+        "Eagle Lion"
       ],
       "logo": "Amazon Prime Video",
       "android_app": "com.amazon.amazonvideo.livingroom",
@@ -348,7 +382,14 @@
       "matches": [
         "MGM+",
         "Epix",
-        "EPIX"
+        "EPIX",
+        "American International Pictures",
+        "=PRC",
+        "Producers Releasing Corporation",
+        "Alta Vista",
+        "Sigmund Neufeld",
+        "Eagle-Lion",
+        "Eagle Lion"
       ],
       "logo": "special://home/addons/script.backlot.helper/resources/media/logos/mgmplus.png",
       "website": "https://www.mgmplus.com",
@@ -375,7 +416,8 @@
       "enabled": true,
       "color": "FF0E2A3A",
       "matches": [
-        "ITV"
+        "ITV",
+        "Big Talk"
       ],
       "logo": "ITV",
       "website": "https://www.itv.com/watch",
@@ -540,5 +582,5 @@
       "FF9C2563"
     ]
   ],
-  "presets_version": 3
+  "presets_version": 4
 }
