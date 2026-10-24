@@ -40,7 +40,8 @@ Kodi installs **Backlot Helper**, **Backlot Sounds** and Kodi's official **Studi
 - **Seven color themes:** Midnight (default), Charcoal, Crimson, Forest, Ocean, OLED Black and Royal.
 
 ### Services
-- **12 presets:** Peacock, HBO Max, Netflix, Paramount+, Disney+, The CW, AMC+, British (BBC/ITV/Channel 4/Sky), Prime Video, Apple TV+, Hulu / FX and Discovery+.
+- **Streaming presets:** Peacock, HBO Max, Netflix, Paramount+, Disney+, The CW, AMC+, UK TV, Prime Video, Apple TV+, Hulu / FX, Discovery+, Starz, PBS, Univision and Crunchyroll.
+- **Networks:** NBC, CBS, ABC, FOX, Telemundo, A&E, History, Lifetime and MGM+, plus BBC, ITV, Channel 4, Channel 5 and Sky under UK TV. Each network can have its own tile, stay only inside its streaming service (NBC in Peacock, CBS in Paramount+, ABC in Disney+, FOX, A&E, History and Lifetime in Hulu, MGM+ in Prime Video), or both. Both is the default. Network and niche-service tiles only appear once your library has something from them, and FOX only matches FOX itself, not 20th Century Fox.
 - **Presets include the studios each company owns.** For example, Paramount Pictures, Nickelodeon and Comedy Central go to Paramount+. Warner Bros., New Line, DC and Adult Swim go to HBO Max. Universal, Focus, DreamWorks and Illumination go to Peacock. MGM and United Artists go to Prime Video.
 - **Collections stay together.** A collection goes under the service that holds most of its movies, so every Blade or Alien film sits in one place even when their studios differ (can be turned off).
 - **Hulu inside Disney+** and **Discovery+ inside HBO Max** are on by default, since that's where those catalogs now live in the US. You can also give either one its own tile or leave it out.
@@ -76,7 +77,7 @@ Kodi installs **Backlot Helper**, **Backlot Sounds** and Kodi's official **Studi
 - **Up Next card.** Near the end of an episode, a Backlot-styled card shows the next one with a countdown, Play now and Close. Uses the Up Next add-on, which Backlot can install for you.
 
 ### Setup and settings
-- **First-run walkthrough** of 13 steps. Each choice shows a preview picture: tile style, names, color theme, services, Hulu/Discovery+, episode layout, collections, Movies/TV tiles, TMDb Helper, PreShow, Up Next, similar titles, weather and sounds.
+- **First-run walkthrough** of 14 steps. Each choice shows a preview picture: tile style, names, color theme, services, networks, Hulu/Discovery+, episode layout, collections, Movies/TV tiles, TMDb Helper, PreShow, Up Next, similar titles, weather and sounds.
 - **Backlot settings screen** (Settings > Backlot skin). Every setup answer can be changed here, with a help panel for each option.
 - **File manager** in Settings for adding sources and copying, moving, renaming or deleting files.
 - **Original navigation sounds**, with an option to use Kodi's sounds or none.
@@ -95,6 +96,7 @@ Captured from a test Kodi with a real library. Click any thumbnail for full size
 | [![](screenshots/thumbs/23-home-banners-disney.jpg)](screenshots/full/23-home-banners-disney.jpg)<br>Disney+ | [![](screenshots/thumbs/24-home-rows-shows.jpg)](screenshots/full/24-home-rows-shows.jpg)<br>New shows row | [![](screenshots/thumbs/25-home-rows-movies.jpg)](screenshots/full/25-home-rows-movies.jpg)<br>New movies row |
 | [![](screenshots/thumbs/29-home-circles.jpg)](screenshots/full/29-home-circles.jpg)<br>Circles | [![](screenshots/thumbs/30-home-circles-netflix.jpg)](screenshots/full/30-home-circles-netflix.jpg)<br>Circles, Netflix | [![](screenshots/thumbs/31-home-circles-labels-all.jpg)](screenshots/full/31-home-circles-labels-all.jpg)<br>Circles, every name shown |
 | [![](screenshots/thumbs/27-home-labels-all.jpg)](screenshots/full/27-home-labels-all.jpg)<br>Banners, every name shown | [![](screenshots/thumbs/28-home-labels-off.jpg)](screenshots/full/28-home-labels-off.jpg)<br>Names off | [![](screenshots/thumbs/26-home-topbar.jpg)](screenshots/full/26-home-topbar.jpg)<br>Top bar |
+| [![](screenshots/thumbs/23c-home-network-nbc.jpg)](screenshots/full/23c-home-network-nbc.jpg)<br>A network tile (NBC) | [![](screenshots/thumbs/23d-home-uktv.jpg)](screenshots/full/23d-home-uktv.jpg)<br>UK TV | |
 | [![](screenshots/thumbs/25d-home-collections-tile.jpg)](screenshots/full/25d-home-collections-tile.jpg)<br>Collections tile | [![](screenshots/thumbs/52-library-collections.jpg)](screenshots/full/52-library-collections.jpg)<br>Collections | |
 | [![](screenshots/thumbs/25b-home-movies-tile.jpg)](screenshots/full/25b-home-movies-tile.jpg)<br>Movies tile | [![](screenshots/thumbs/25c-home-continue-watching.jpg)](screenshots/full/25c-home-continue-watching.jpg)<br>Continue watching | [![](screenshots/thumbs/23b-home-empty-service.jpg)](screenshots/full/23b-home-empty-service.jpg)<br>A service with nothing yet |
 
@@ -126,11 +128,11 @@ Captured from a test Kodi with a real library. Click any thumbnail for full size
 | | | |
 |---|---|---|
 | [![](screenshots/thumbs/00-setup-welcome.jpg)](screenshots/full/00-setup-welcome.jpg)<br>Welcome | [![](screenshots/thumbs/01-setup-style.jpg)](screenshots/full/01-setup-style.jpg)<br>1. Tile style | [![](screenshots/thumbs/02-setup-labels.jpg)](screenshots/full/02-setup-labels.jpg)<br>Names under tiles |
-| [![](screenshots/thumbs/03-setup-theme.jpg)](screenshots/full/03-setup-theme.jpg)<br>2. Color theme | [![](screenshots/thumbs/04-setup-services.jpg)](screenshots/full/04-setup-services.jpg)<br>3. Services | [![](screenshots/thumbs/05-setup-hulu.jpg)](screenshots/full/05-setup-hulu.jpg)<br>4. Hulu |
-| [![](screenshots/thumbs/06-setup-discovery.jpg)](screenshots/full/06-setup-discovery.jpg)<br>4. Discovery+ | [![](screenshots/thumbs/07-setup-episodes.jpg)](screenshots/full/07-setup-episodes.jpg)<br>5. Episodes | [![](screenshots/thumbs/08-setup-collections.jpg)](screenshots/full/08-setup-collections.jpg)<br>6. Collections |
-| [![](screenshots/thumbs/09-setup-fallbacks.jpg)](screenshots/full/09-setup-fallbacks.jpg)<br>7. Movies / Collections / TV tiles | [![](screenshots/thumbs/10-setup-tmdbhelper.jpg)](screenshots/full/10-setup-tmdbhelper.jpg)<br>8. TMDb Helper | [![](screenshots/thumbs/11-setup-preshow.jpg)](screenshots/full/11-setup-preshow.jpg)<br>9. PreShow |
-| [![](screenshots/thumbs/11b-setup-upnext.jpg)](screenshots/full/11b-setup-upnext.jpg)<br>10. Up Next | [![](screenshots/thumbs/12-setup-similar.jpg)](screenshots/full/12-setup-similar.jpg)<br>11. More like this | [![](screenshots/thumbs/13-setup-weather.jpg)](screenshots/full/13-setup-weather.jpg)<br>12. Weather |
-| [![](screenshots/thumbs/14-setup-sounds.jpg)](screenshots/full/14-setup-sounds.jpg)<br>13. Sounds | [![](screenshots/thumbs/15-setup-done.jpg)](screenshots/full/15-setup-done.jpg)<br>Done | |
+| [![](screenshots/thumbs/03-setup-theme.jpg)](screenshots/full/03-setup-theme.jpg)<br>2. Color theme | [![](screenshots/thumbs/04-setup-services.jpg)](screenshots/full/04-setup-services.jpg)<br>3. Services | [![](screenshots/thumbs/04b-setup-networks.jpg)](screenshots/full/04b-setup-networks.jpg)<br>4. Networks |
+| [![](screenshots/thumbs/05-setup-hulu.jpg)](screenshots/full/05-setup-hulu.jpg)<br>5. Hulu | [![](screenshots/thumbs/06-setup-discovery.jpg)](screenshots/full/06-setup-discovery.jpg)<br>5. Discovery+ | [![](screenshots/thumbs/07-setup-episodes.jpg)](screenshots/full/07-setup-episodes.jpg)<br>6. Episodes |
+| [![](screenshots/thumbs/08-setup-collections.jpg)](screenshots/full/08-setup-collections.jpg)<br>7. Collections | [![](screenshots/thumbs/09-setup-fallbacks.jpg)](screenshots/full/09-setup-fallbacks.jpg)<br>8. Movies / Collections / TV tiles | [![](screenshots/thumbs/10-setup-tmdbhelper.jpg)](screenshots/full/10-setup-tmdbhelper.jpg)<br>9. TMDb Helper |
+| [![](screenshots/thumbs/11-setup-preshow.jpg)](screenshots/full/11-setup-preshow.jpg)<br>10. PreShow | [![](screenshots/thumbs/11b-setup-upnext.jpg)](screenshots/full/11b-setup-upnext.jpg)<br>11. Up Next | [![](screenshots/thumbs/12-setup-similar.jpg)](screenshots/full/12-setup-similar.jpg)<br>12. More like this |
+| [![](screenshots/thumbs/13-setup-weather.jpg)](screenshots/full/13-setup-weather.jpg)<br>13. Weather | [![](screenshots/thumbs/14-setup-sounds.jpg)](screenshots/full/14-setup-sounds.jpg)<br>14. Sounds | [![](screenshots/thumbs/15-setup-done.jpg)](screenshots/full/15-setup-done.jpg)<br>Done |
 
 ### Settings and service management
 | | | |
@@ -139,6 +141,7 @@ Captured from a test Kodi with a real library. Click any thumbnail for full size
 | [![](screenshots/thumbs/70-settings.jpg)](screenshots/full/70-settings.jpg)<br>Backlot settings | [![](screenshots/thumbs/71-settings-lower.jpg)](screenshots/full/71-settings-lower.jpg)<br>More settings | [![](screenshots/thumbs/81b-arrange-services-moving.jpg)](screenshots/full/81b-arrange-services-moving.jpg)<br>Arrange services |
 | [![](screenshots/thumbs/82-manage-services.jpg)](screenshots/full/82-manage-services.jpg)<br>Manage services | [![](screenshots/thumbs/84-edit-service-max.jpg)](screenshots/full/84-edit-service-max.jpg)<br>Edit a service | [![](screenshots/thumbs/85-edit-studios.jpg)](screenshots/full/85-edit-studios.jpg)<br>Studios and networks |
 | [![](screenshots/thumbs/86-edit-open-button.jpg)](screenshots/full/86-edit-open-button.jpg)<br>Open button | [![](screenshots/thumbs/89-studios-report.jpg)](screenshots/full/89-studios-report.jpg)<br>Studios report | [![](screenshots/thumbs/90-studios-report-assign.jpg)](screenshots/full/90-studios-report-assign.jpg)<br>Give a studio a home |
+| [![](screenshots/thumbs/91b-manage-networks.jpg)](screenshots/full/91b-manage-networks.jpg)<br>Networks | [![](screenshots/thumbs/91c-network-nbc.jpg)](screenshots/full/91c-network-nbc.jpg)<br>One network's options | |
 | [![](screenshots/thumbs/91-manage-hulu.jpg)](screenshots/full/91-manage-hulu.jpg)<br>Where Hulu goes | [![](screenshots/thumbs/92-weather-provider.jpg)](screenshots/full/92-weather-provider.jpg)<br>Weather source | [![](screenshots/thumbs/80-sounds-picker.jpg)](screenshots/full/80-sounds-picker.jpg)<br>Sounds |
 
 ### Color themes

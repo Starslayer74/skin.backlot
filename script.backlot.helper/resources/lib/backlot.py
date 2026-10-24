@@ -49,11 +49,12 @@ def _preset_service(p):
     return {"id": p["id"], "name": p["name"], "enabled": p.get("enabled", False),
             "color": p.get("color", FALLBACK_COLOR), "matches": list(p.get("matches", [])),
             "banner": "", "icon": "", "logo": p.get("logo", ""), "preset": True,
-            "android_app": p.get("android_app", ""), "website": p.get("website", ""), "launch": ""}
+            "android_app": p.get("android_app", ""), "website": p.get("website", ""), "launch": "",
+            "network": p.get("network", ""), "auto_hide": bool(p.get("auto_hide"))}
 
 
 # preset logos replaced in later versions; saved configs still holding these get the new one
-OLD_LOGOS = {"max": ("HBO Max",)}
+OLD_LOGOS = {"max": ("HBO Max",), "british": ("BBC",)}
 # preset studio lists from before presets_version 2; saved services still using
 # exactly these get the fuller lists (anything the user customized is left alone)
 OLD_MATCHES = {"peacock": ["NBC", "Universal"], "max": ["HBO", "Cinemax"], "netflix": ["Netflix"], "paramount": ["CBS", "Showtime"], "disney": ["ABC"], "cw": ["The CW", "Paramount Network", "The WB"], "amc": ["AMC", "Shudder"], "british": ["BBC"], "prime": ["Amazon", "MGM"], "appletv": ["Apple TV+", "Apple Studios", "Apple Original Films"], "hulu": ["Hulu", "FX"], "discovery": ["Discovery", "TLC", "HGTV", "Food Network"]}
@@ -78,8 +79,15 @@ def load():
         # Max went back to being HBO Max; rename it unless the user renamed it themselves
         if s.get("preset") and s["id"] == "max" and s.get("name") == "Max":
             s["name"] = "HBO Max"
-        if s.get("preset") and s["id"] in by_id and s.get("matches") == OLD_MATCHES.get(s["id"]):
+        if s.get("preset") and s["id"] in by_id and s.get("matches") in _old_lists(s["id"]):
             s["matches"] = list(by_id[s["id"]].get("matches", []))
+        if s.get("preset") and s["id"] == "british" and s.get("name") == "British":
+            s["name"] = "UK TV"
+        if s.get("preset") and s["id"] in by_id:
+            # network presets added later: keep their roll-up parent and auto-hide flag current
+            for k in ("network", "auto_hide"):
+                if by_id[s["id"]].get(k):
+                    s[k] = by_id[s["id"]][k]
         if s.get("preset") and s["id"] in by_id:
             for k in ("android_app", "website"):
                 s.setdefault(k, by_id[s["id"]].get(k, ""))
@@ -94,7 +102,32 @@ def load():
     cfg.setdefault("group_sets", True)
     cfg.setdefault("keep_sets_together", True)
     cfg.setdefault("show_collections", True)
+    cfg.setdefault("networks", {})
     return cfg
+
+
+# saved services still holding one of these exact studio lists get the current preset's list
+OLD_MATCH_LISTS = {
+    "british": [["BBC"], ["BBC", "ITV", "Channel 4", "Sky UK", "Sky Atlantic", "Sky Studios"]],
+    "prime": [["Amazon", "MGM", "Metro-Goldwyn-Mayer", "United Artists", "Orion Pictures", "Epix"]],
+}
+
+
+def _old_lists(sid):
+    lists = list(OLD_MATCH_LISTS.get(sid, []))
+    if sid in OLD_MATCHES:
+        lists.append(OLD_MATCHES[sid])
+    return lists
+
+
+NETWORK_MODES = ("both", "inside", "own")
+
+
+def network_mode(cfg, sid):
+    """both = its own tile and inside its streaming service, inside = only
+    inside the service, own = only its own tile."""
+    mode = cfg.get("networks", {}).get(sid, "both")
+    return mode if mode in NETWORK_MODES else "both"
 
 
 # services that can live inside another one: child id -> (parent id, config key, default)
@@ -109,6 +142,19 @@ def active_services(cfg):
     inside Disney+, Discovery+ inside HBO Max) add their studios to the parent
     and get no tile of their own."""
     svcs = [dict(s, matches=list(s.get("matches", []))) for s in cfg["services"]]
+    by_id = {x["id"]: x for x in svcs}
+    # networks first (NBC into Peacock, FOX into Hulu ...), so a network inside
+    # Hulu follows Hulu into Disney+ below
+    for net in svcs:
+        parent = by_id.get(net.get("network") or "")
+        if not parent:
+            continue
+        mode = network_mode(cfg, net["id"])
+        if mode in ("both", "inside"):
+            parent["matches"] += [m for m in net["matches"] if m not in parent["matches"]]
+        else:
+            parent["matches"] = [m for m in parent["matches"] if m not in net["matches"]]
+        net["enabled"] = mode in ("both", "own")
     for child_id, (parent_id, key, default) in MERGES.items():
         if not cfg.get(key, default):
             continue
@@ -322,26 +368,36 @@ def build_slots(cfg):
             os.remove(os.path.join(PLAYLISTS, f))
     slots, used_values = [], []
     active = active_services(cfg)
-    fixes = set_fixes(active) if cfg.get("keep_sets_together", True) else {}
+    # networks (NBC, FOX ...) list everything from that network; collections are
+    # only kept together across the streaming services
+    fixes = set_fixes([a for a in active if not a.get("network")]) if cfg.get("keep_sets_together", True) else {}
+    lib = None
     for svc in active:
-        sid, name, rule = svc["id"], svc["name"], [("studio", "contains", svc["matches"])]
+        sid, name = svc["id"], svc["name"]
+        rule, match = studio_rules(svc["matches"])
+        if svc.get("auto_hide"):
+            # network and niche service tiles only show up once the library has something for them
+            if lib is None:
+                lib = library_items()
+            if not any(matches_any(st, svc["matches"]) for _k, _t, st in lib):
+                continue
         used_values += svc["matches"]
         mine, theirs = fixes.get(sid, ([], []))
         if mine or theirs:
             mpath = _movies_url(svc["matches"], mine, theirs, ("ascending", "sorttitle"))
             rpath = _movies_url(svc["matches"], mine, theirs, RECENT, 20)
         else:
-            mpath = _playlist("%s_movies.xsp" % sid, "movies", "Movies", rule, group_sets=cfg.get("group_sets", True))
-            rpath = _playlist("%s_movies_recent.xsp" % sid, "movies", "New %s movies" % name, rule, RECENT, 20)
+            mpath = _playlist("%s_movies.xsp" % sid, "movies", "Movies", rule, group_sets=cfg.get("group_sets", True), match=match)
+            rpath = _playlist("%s_movies_recent.xsp" % sid, "movies", "New %s movies" % name, rule, RECENT, 20, match=match)
         slots.append({
             "id": sid, "label": name, "color": svc.get("color") or FALLBACK_COLOR,
             "banner": art_for(svc, "banner"), "icon": art_for(svc, "icon"), "logo": logo_for(svc),
             "tint": tint(svc.get("color") or FALLBACK_COLOR),
             "can_launch": "true" if all(launch_target(svc)) else "",
-            "tab1_label": "TV Shows", "tab1_path": _playlist("%s_tvshows.xsp" % sid, "tvshows", "TV Shows", rule),
+            "tab1_label": "TV Shows", "tab1_path": _playlist("%s_tvshows.xsp" % sid, "tvshows", "TV Shows", rule, match=match),
             "tab2_label": "Movies", "tab2_path": mpath,
             "row1_label": "New %s shows" % name,
-            "row1_path": _playlist("%s_tvshows_recent.xsp" % sid, "tvshows", "New %s shows" % name, rule, RECENT, 20),
+            "row1_path": _playlist("%s_tvshows_recent.xsp" % sid, "tvshows", "New %s shows" % name, rule, RECENT, 20, match=match),
             "row2_label": "New %s movies" % name,
             "row2_path": rpath,
         })
@@ -411,7 +467,12 @@ def _movies_url(matches, mine, theirs, order, limit=None):
     (smart playlist files can't say "this studio OR this collection, but not
     those collections")."""
     from urllib.parse import quote
-    anyof = [{"field": "studio", "operator": "contains", "value": list(matches)}]
+    contains, exact = split_values(matches)
+    anyof = []
+    if contains:
+        anyof.append({"field": "studio", "operator": "contains", "value": contains})
+    if exact:
+        anyof.append({"field": "studio", "operator": "is", "value": exact})
     if mine:
         anyof.append({"field": "set", "operator": "is", "value": sorted(mine)})
     rules = [{"or": anyof} if len(anyof) > 1 else anyof[0]]
@@ -582,8 +643,33 @@ def studio_counts(items=None):
 
 
 def matches_any(studios, values):
+    """A value matches when it appears inside a studio name; a value starting
+    with "=" must equal the studio name (so FOX doesn't catch 20th Century Fox)."""
     low = [s.lower() for s in studios]
-    return any(v.lower() in s for v in values for s in low)
+    for v in values:
+        v = v.lower()
+        if v.startswith("="):
+            if v[1:] in low:
+                return True
+        elif any(v in s for s in low):
+            return True
+    return False
+
+
+def split_values(values):
+    """(contains values, exact values) for building library filters."""
+    return [v for v in values if not v.startswith("=")], [v[1:] for v in values if v.startswith("=")]
+
+
+def studio_rules(values):
+    """Smart playlist rules for "any of these studios"; returns (rules, match)."""
+    contains, exact = split_values(values)
+    rules = []
+    if contains:
+        rules.append(("studio", "contains", contains))
+    if exact:
+        rules.append(("studio", "is", exact))
+    return rules, ("one" if len(rules) > 1 else "all")
 
 
 def unmatched_studios(cfg):

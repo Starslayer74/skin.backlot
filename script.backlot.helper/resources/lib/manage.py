@@ -45,6 +45,7 @@ def main():
             ("Change order", reorder),
             ("Add a custom service", add_custom),
             ("Edit a service", edit_service),
+            ("Networks (NBC, CBS, ABC, FOX, BBC ...)", choose_networks),
             ("Studios not in any service", unmatched_report),
             ("Movies and TV Shows tiles: %s" % fb, toggle_fallbacks),
             ("Group collections into one tile: %s" % ("on" if cfg.get("group_sets", True) else "off"), toggle_sets),
@@ -66,7 +67,7 @@ def main():
 # ------------------------------------------------------------------ actions
 def toggle_services(quiet=False):
     cfg = backlot.load()
-    svcs = cfg["services"]
+    svcs = [s for s in cfg["services"] if not s.get("network")]  # networks have their own menu
     pre = [n for n, s in enumerate(svcs) if s.get("enabled")]
     chosen = DIALOG.multiselect("Services on the home screen", [s["name"] for s in svcs], preselect=pre)
     if chosen is None:
@@ -316,6 +317,62 @@ def unmatched_report():
         if studio not in svc["matches"]:
             svc["matches"].append(studio)
         commit(cfg, "%s added to %s" % (studio, svc["name"]))
+
+
+NET_MODE_TEXT = {"both": "own tile and inside %s", "inside": "only inside %s", "own": "own tile only"}
+
+
+def _parent_name(cfg, net):
+    parent = next((x for x in cfg["services"] if x["id"] == net.get("network")), {})
+    name = parent.get("name", "its service")
+    merge = backlot.MERGES.get(parent.get("id", ""))
+    if merge and cfg.get(merge[1], merge[2]):
+        # e.g. FOX rolls into Hulu, which itself lives inside Disney+
+        top = next((x for x in cfg["services"] if x["id"] == merge[0]), {})
+        if top:
+            name = top["name"]
+    return name
+
+
+def network_label(cfg, net):
+    mode = backlot.network_mode(cfg, net["id"])
+    return NET_MODE_TEXT[mode] % _parent_name(cfg, net) if "%s" in NET_MODE_TEXT[mode] else NET_MODE_TEXT[mode]
+
+
+def network_choices(cfg, net):
+    parent = _parent_name(cfg, net)
+    return [("Both", "%s gets its own tile, and its shows also appear under %s." % (net["name"], parent)),
+            ("Only inside %s" % parent, "No %s tile. Its shows appear under %s." % (net["name"], parent)),
+            ("Own tile only", "%s shows appear only on the %s tile, not under %s." % (net["name"], net["name"], parent))]
+
+
+def choose_networks():
+    """Networks: each one rolls up into its streaming service, gets its own tile, or both."""
+    while True:
+        cfg = backlot.load()
+        nets = [s for s in cfg["services"] if s.get("network")]
+        items = [xbmcgui.ListItem(n["name"], network_label(cfg, n)) for n in nets]
+        items.append(xbmcgui.ListItem("Set all networks at once", "Both, only inside their services, or own tiles only"))
+        i = DIALOG.select("Networks", items, useDetails=True)
+        if i < 0:
+            return
+        if i == len(nets):
+            j = DIALOG.select("All networks", [xbmcgui.ListItem(a, b) for a, b in (
+                ("Both", "Own tiles, and inside their streaming services"),
+                ("Only inside their services", "No network tiles"),
+                ("Own tiles only", "Not inside their streaming services"))], useDetails=True)
+            if j >= 0:
+                for n in nets:
+                    cfg["networks"][n["id"]] = backlot.NETWORK_MODES[j]
+                commit(cfg, "Networks updated")
+            continue
+        net = nets[i]
+        cur = backlot.NETWORK_MODES.index(backlot.network_mode(cfg, net["id"]))
+        j = DIALOG.select(net["name"], [xbmcgui.ListItem(a, b) for a, b in network_choices(cfg, net)],
+                          preselect=cur, useDetails=True)
+        if j >= 0:
+            cfg["networks"][net["id"]] = backlot.NETWORK_MODES[j]
+            commit(cfg, "%s: %s" % (net["name"], network_label(cfg, net)))
 
 
 def toggle_fallbacks():
@@ -618,7 +675,7 @@ def setup():
         skin_bool("backlot.setup_done", True)
 
 
-TOTAL_STEPS = 13
+TOTAL_STEPS = 14
 
 
 def _step(n):
@@ -692,6 +749,29 @@ def _setup():
     # 3. services
     toggle_services(quiet=True)
 
+    # 3b. networks
+    cfg = backlot.load()
+    nets = [s for s in cfg["services"] if s.get("network")]
+    modes = {backlot.network_mode(cfg, n["id"]) for n in nets}
+    cur = {"both": 0, "inside": 1, "own": 2}.get(modes.pop(), 0) if len(modes) == 1 else 3
+    j = choose("Networks", [
+        ("Their own tiles, and inside their services", "NBC, CBS, ABC, FOX, BBC and others get their own tiles, and their shows also stay under Peacock, Paramount+, Disney+ and so on. A network tile only appears once you have something from it.", ""),
+        ("Only inside their streaming services", "No network tiles. NBC shows live in Peacock, CBS in Paramount+, ABC in Disney+.", ""),
+        ("Their own tiles only", "Network shows appear only on the network's tile.", ""),
+        ("Let me choose for each network", "Pick which networks get their own tile.", "")],
+        question="Broadcast and cable networks can have their own tiles too.", step=_step(4), preselect=cur, current=cur)
+    if j in (0, 1, 2):
+        for n in nets:
+            cfg["networks"][n["id"]] = backlot.NETWORK_MODES[j]
+        backlot.save(cfg)
+    elif j == 3:
+        pre = [k for k, n in enumerate(nets) if backlot.network_mode(cfg, n["id"]) != "inside"]
+        chosen = DIALOG.multiselect("Which networks get their own tile?", ["%s  (also inside %s)" % (n["name"], _parent_name(cfg, n)) for n in nets], preselect=pre)
+        if chosen is not None:
+            for k, n in enumerate(nets):
+                cfg["networks"][n["id"]] = "both" if k in chosen else "inside"
+            backlot.save(cfg)
+
     # 4. Hulu and Discovery+
     cfg = backlot.load()
     for sid, question in (("hulu", "In the US, Hulu is folding into the Disney+ app."),
@@ -700,7 +780,7 @@ def _setup():
         svc = next((s for s in cfg["services"] if s["id"] == sid), {})
         cur = 0 if cfg.get(key, default) else (1 if svc.get("enabled") else 2)
         j = choose("Where should %s go?" % MERGE_TEXT[sid][0], [(a, b, "") for a, b in merge_choices(sid)],
-                   question=question, step=_step(4), preselect=cur, current=cur)
+                   question=question, step=_step(5), preselect=cur, current=cur)
         if j >= 0:
             set_merge(cfg, sid, j)
 
@@ -709,7 +789,7 @@ def _setup():
     j = choose("How should episodes look?", [
         ("Seasons and episode list", "Seasons down the left, episodes on the right with a picture, runtime and description for each. Like Netflix today.", "episodes_modern"),
         ("One row of big thumbnails", "Large episode pictures in a single row, with a season switcher above.", "episodes_classic")],
-        step=_step(5), preselect=1 if classic else 0, current=1 if classic else 0)
+        step=_step(6), preselect=1 if classic else 0, current=1 if classic else 0)
     if j >= 0:
         skin_bool("backlot.episodes_classic", j == 1)
 
@@ -718,7 +798,7 @@ def _setup():
     j = choose("Movie collections", [
         ("One tile per collection", "All the movies in a collection (like every John Wick film) sit behind one tile you open.", "sets_grouped"),
         ("Every movie on its own", "Collections aren't grouped. Each movie gets its own tile.", "sets_single")],
-        step=_step(6), preselect=cur, current=cur)
+        step=_step(7), preselect=cur, current=cur)
     if j >= 0:
         cfg["group_sets"] = j == 0
 
@@ -728,7 +808,7 @@ def _setup():
         ("Movies, Collections and TV Shows", "Three tiles after your services: your whole movie library, every collection on its own, and all your TV shows.", "fallbacks_on"),
         ("Movies and TV Shows only", "No separate Collections tile. Collections still show inside Movies.", "fallbacks_on"),
         ("Leave them off", "Only your services appear on the home screen.", "")],
-        step=_step(7), preselect=cur, current=cur)
+        step=_step(8), preselect=cur, current=cur)
     if j >= 0:
         cfg["show_fallbacks"] = j < 2
         cfg["show_collections"] = j == 0
@@ -740,7 +820,7 @@ def _setup():
         j = choose("Cast details on info screens", [
             ("Install TMDb Helper", "Adds actor pages with photos, biographies and filmographies. Kodi will ask you to confirm twice.", ""),
             ("Not now", "Info screens show the cast from your library without biographies. You can install it later from Backlot settings.", "")],
-            step=_step(8))
+            step=_step(9))
         if j == 0:
             install_tmdbhelper(ask=False)
 
@@ -749,7 +829,7 @@ def _setup():
         j = choose("PreShow Experience", [
             ("Install it", "Trailers, intros and ratings before your movie, like a night at the theater. Adds a PreShow button next to Play.", ""),
             ("Not now", "You can install it later from Backlot settings.", "")],
-            step=_step(9))
+            step=_step(10))
         if j == 0:
             install_preshow(ask=False)
 
@@ -758,7 +838,7 @@ def _setup():
         j = choose("Up Next", [
             ("Install it", "Near the end of an episode, a card shows the next one with a countdown, like Netflix. Comes from Kodi's official repository.", ""),
             ("Not now", "You can install it later from Backlot settings.", "")],
-            step=_step(10))
+            step=_step(11))
         if j == 0:
             install_upnext(ask=False)
 
@@ -767,7 +847,7 @@ def _setup():
     j = choose("'More like this' and filmographies", [
         ("Only what's in my library", "Suggestions come from your own movies and shows, so everything can be played.", ""),
         ("Everything", "Shows everything from TMDb and marks what you own. Needs TMDb Helper.", "")],
-        step=_step(11), preselect=1 if allsim else 0, current=1 if allsim else 0)
+        step=_step(12), preselect=1 if allsim else 0, current=1 if allsim else 0)
     if j >= 0:
         skin_bool("backlot.similar_all", j == 1)
 
@@ -776,13 +856,13 @@ def _setup():
     j = choose("Weather on the home screen", [
         ("Show it", "Temperature and conditions in the top-left corner. Next you'll pick a weather source and your location.", ""),
         ("Leave it off", "", "")],
-        step=_step(12), preselect=1 if hide else 0, current=1 if hide else 0)
+        step=_step(13), preselect=1 if hide else 0, current=1 if hide else 0)
     if j == 0:
         skin_bool("backlot.hide_weather", False)
         setup_weather(ask=False)
     elif j == 1:
         skin_bool("backlot.hide_weather", True)
-    choose_sounds(step=_step(13))
+    choose_sounds(step=_step(14))
     DIALOG.ok("All set", "Backlot is ready. Change any of these answers in Settings > Backlot skin, or run setup again from there.")
 
 

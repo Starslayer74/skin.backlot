@@ -1,5 +1,5 @@
 {
-  "_note": "Preset services. 'matches' are studio/network names; a title belongs to a service when any of its studios contains one of them (case-insensitive). 'enabled' is the out-of-the-box state. Art lives in resources/media/services/<id>_banner.png and <id>_icon.png.",
+  "_note": "Preset services. 'matches' are studio/network names; a title belongs to a service when any of its studios contains one of them (case-insensitive). 'enabled' is the out-of-the-box state. Art lives in resources/media/services/<id>_banner.png and <id>_icon.png. 'network': <parent service id> marks a network that can roll up into that service, get its own tile, or both. A value starting with '=' must match a studio name exactly (FOX must not catch 20th Century Fox). 'auto_hide' tiles only appear when the library has titles for them.",
   "services": [
     {
       "id": "peacock",
@@ -139,18 +139,31 @@
     },
     {
       "id": "british",
-      "name": "British",
+      "name": "UK TV",
       "enabled": true,
       "color": "FF7A0019",
       "matches": [
+        "UKTV",
+        "BritBox",
         "BBC",
         "ITV",
         "Channel 4",
+        "Channel 5",
         "Sky UK",
         "Sky Atlantic",
-        "Sky Studios"
+        "Sky Studios",
+        "Sky One",
+        "Sky Max",
+        "Sky Showcase",
+        "Sky Cinema",
+        "Sky Witness",
+        "Sky Comedy",
+        "Sky Documentaries",
+        "Sky Crime",
+        "E4",
+        "Film4"
       ],
-      "logo": "BBC",
+      "logo": "special://home/addons/script.backlot.helper/resources/media/logos/uktv.png",
       "android_app": "uk.co.bbc.iplayer",
       "website": "https://www.bbc.co.uk/iplayer"
     },
@@ -164,8 +177,7 @@
         "MGM",
         "Metro-Goldwyn-Mayer",
         "United Artists",
-        "Orion Pictures",
-        "Epix"
+        "Orion Pictures"
       ],
       "logo": "Amazon Prime Video",
       "android_app": "com.amazon.amazonvideo.livingroom",
@@ -217,6 +229,262 @@
       "logo": "Discovery+",
       "android_app": "",
       "website": "https://www.discoveryplus.com"
+    },
+    {
+      "id": "nbc",
+      "name": "NBC",
+      "enabled": true,
+      "color": "FF1E1E1E",
+      "matches": [
+        "NBC"
+      ],
+      "logo": "NBC",
+      "website": "https://www.nbc.com",
+      "network": "peacock",
+      "auto_hide": true
+    },
+    {
+      "id": "cbs",
+      "name": "CBS",
+      "enabled": true,
+      "color": "FF0A1F44",
+      "matches": [
+        "CBS"
+      ],
+      "logo": "CBS",
+      "website": "https://www.cbs.com",
+      "network": "paramount",
+      "auto_hide": true
+    },
+    {
+      "id": "abc",
+      "name": "ABC",
+      "enabled": true,
+      "color": "FF1E1E1E",
+      "matches": [
+        "ABC"
+      ],
+      "logo": "ABC",
+      "website": "https://abc.com",
+      "network": "disney",
+      "auto_hide": true
+    },
+    {
+      "id": "fox",
+      "name": "FOX",
+      "enabled": true,
+      "color": "FF0B1D3A",
+      "matches": [
+        "=FOX",
+        "=Fox",
+        "Fox Broadcasting",
+        "FOX (US)",
+        "Fox Television Network"
+      ],
+      "logo": "Fox",
+      "website": "https://www.fox.com",
+      "network": "hulu",
+      "auto_hide": true
+    },
+    {
+      "id": "telemundo",
+      "name": "Telemundo",
+      "enabled": true,
+      "color": "FF1E1E1E",
+      "matches": [
+        "Telemundo"
+      ],
+      "logo": "",
+      "website": "https://www.telemundo.com",
+      "network": "peacock",
+      "auto_hide": true
+    },
+    {
+      "id": "ae",
+      "name": "A&E",
+      "enabled": true,
+      "color": "FF1E1E1E",
+      "matches": [
+        "A&E"
+      ],
+      "logo": "A&E",
+      "website": "https://www.aetv.com",
+      "network": "hulu",
+      "auto_hide": true
+    },
+    {
+      "id": "history",
+      "name": "History",
+      "enabled": true,
+      "color": "FF2A1A10",
+      "matches": [
+        "=History",
+        "=HISTORY",
+        "History Channel",
+        "The History Channel",
+        "History (US)"
+      ],
+      "logo": "History",
+      "website": "https://www.history.com",
+      "network": "hulu",
+      "auto_hide": true
+    },
+    {
+      "id": "lifetime",
+      "name": "Lifetime",
+      "enabled": true,
+      "color": "FF3A0A12",
+      "matches": [
+        "Lifetime"
+      ],
+      "logo": "Lifetime",
+      "website": "https://www.mylifetime.com",
+      "network": "hulu",
+      "auto_hide": true
+    },
+    {
+      "id": "mgmplus",
+      "name": "MGM+",
+      "enabled": true,
+      "color": "FF2B2410",
+      "matches": [
+        "MGM+",
+        "Epix",
+        "EPIX"
+      ],
+      "logo": "",
+      "website": "https://www.mgmplus.com",
+      "network": "prime",
+      "auto_hide": true
+    },
+    {
+      "id": "bbc",
+      "name": "BBC",
+      "enabled": true,
+      "color": "FF2A0A0A",
+      "matches": [
+        "BBC"
+      ],
+      "logo": "BBC",
+      "website": "https://www.bbc.co.uk/iplayer",
+      "network": "british",
+      "auto_hide": true
+    },
+    {
+      "id": "itv",
+      "name": "ITV",
+      "enabled": true,
+      "color": "FF0E2A3A",
+      "matches": [
+        "ITV"
+      ],
+      "logo": "ITV",
+      "website": "https://www.itv.com",
+      "network": "british",
+      "auto_hide": true
+    },
+    {
+      "id": "channel4",
+      "name": "Channel 4",
+      "enabled": true,
+      "color": "FF1E1A3A",
+      "matches": [
+        "Channel 4",
+        "E4",
+        "Film4"
+      ],
+      "logo": "Channel 4",
+      "website": "https://www.channel4.com",
+      "network": "british",
+      "auto_hide": true
+    },
+    {
+      "id": "channel5",
+      "name": "Channel 5",
+      "enabled": true,
+      "color": "FF1E1E1E",
+      "matches": [
+        "Channel 5"
+      ],
+      "logo": "Channel 5",
+      "website": "https://www.channel5.com",
+      "network": "british",
+      "auto_hide": true
+    },
+    {
+      "id": "sky",
+      "name": "Sky",
+      "enabled": true,
+      "color": "FF1E1E1E",
+      "matches": [
+        "Sky UK",
+        "Sky Atlantic",
+        "Sky Studios",
+        "Sky One",
+        "Sky Max",
+        "Sky Showcase",
+        "Sky Cinema",
+        "Sky Witness",
+        "Sky Comedy",
+        "Sky Documentaries",
+        "Sky Crime"
+      ],
+      "logo": "Sky",
+      "website": "https://www.sky.com",
+      "network": "british",
+      "auto_hide": true
+    },
+    {
+      "id": "pbs",
+      "name": "PBS",
+      "enabled": true,
+      "color": "FF1A3E8C",
+      "matches": [
+        "PBS"
+      ],
+      "logo": "",
+      "website": "https://www.pbs.org/video/",
+      "android_app": "com.pbs.video",
+      "auto_hide": true
+    },
+    {
+      "id": "univision",
+      "name": "Univision",
+      "enabled": true,
+      "color": "FF1E1E1E",
+      "matches": [
+        "Univision",
+        "UniMás"
+      ],
+      "logo": "Univision",
+      "website": "https://www.univision.com",
+      "auto_hide": true
+    },
+    {
+      "id": "starz",
+      "name": "Starz",
+      "enabled": true,
+      "color": "FF1E1E1E",
+      "matches": [
+        "Starz",
+        "STARZ"
+      ],
+      "logo": "Starz",
+      "website": "https://www.starz.com",
+      "auto_hide": true
+    },
+    {
+      "id": "crunchyroll",
+      "name": "Crunchyroll",
+      "enabled": true,
+      "color": "FF3A1E0A",
+      "matches": [
+        "Crunchyroll"
+      ],
+      "logo": "",
+      "website": "https://www.crunchyroll.com",
+      "android_app": "com.crunchyroll.crunchyroid",
+      "auto_hide": true
     }
   ],
   "palette": [
@@ -269,5 +537,5 @@
       "FF9C2563"
     ]
   ],
-  "presets_version": 2
+  "presets_version": 3
 }

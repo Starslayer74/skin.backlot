@@ -16,7 +16,11 @@ PER_TYPE = 15
 
 
 def _filter(values, op):
-    rules = [{"field": "studio", "operator": op, "value": v} for v in values]
+    """Any of (op=contains) / none of (op=doesnotcontain) these studios; values
+    starting with "=" are exact names."""
+    exact_op = "is" if op == "contains" else "isnot"
+    rules = [{"field": "studio", "operator": exact_op, "value": v[1:]} if v.startswith("=")
+             else {"field": "studio", "operator": op, "value": v} for v in values]
     if not rules:
         return None
     if len(rules) == 1:
