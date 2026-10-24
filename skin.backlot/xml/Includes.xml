@@ -371,6 +371,108 @@
 		</definition>
 	</include>
 
+	<!-- ============================================================ file manager rows -->
+	<include name="FileManagerLayouts">
+		<definition>
+			<itemlayout width="820" height="72">
+				<control type="image">
+					<left>16</left>
+					<top>14</top>
+					<width>44</width>
+					<height>44</height>
+					<aspectratio>keep</aspectratio>
+					<texture background="true">$INFO[ListItem.Icon]</texture>
+				</control>
+				<control type="label">
+					<left>76</left>
+					<width>540</width>
+					<height>72</height>
+					<aligny>center</aligny>
+					<font>f_body</font>
+					<textcolor>text</textcolor>
+					<selectedcolor>accent</selectedcolor>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+				<control type="label">
+					<left>620</left>
+					<width>176</width>
+					<height>72</height>
+					<align>right</align>
+					<aligny>center</aligny>
+					<font>f_small</font>
+					<textcolor>text3</textcolor>
+					<label>$INFO[ListItem.Label2]</label>
+				</control>
+				<control type="image">
+					<left>772</left>
+					<top>22</top>
+					<width>28</width>
+					<height>28</height>
+					<texture colordiffuse="accent">icons/check.png</texture>
+					<visible>ListItem.IsSelected</visible>
+				</control>
+			</itemlayout>
+			<focusedlayout width="820" height="72">
+				<control type="image">
+					<texture border="16" colordiffuse="focus">frame/rounded16.png</texture>
+					<visible>Control.HasFocus($PARAM[id])</visible>
+				</control>
+				<control type="image">
+					<texture border="16" colordiffuse="surface2">frame/rounded16.png</texture>
+					<visible>!Control.HasFocus($PARAM[id])</visible>
+				</control>
+				<control type="image">
+					<left>16</left>
+					<top>14</top>
+					<width>44</width>
+					<height>44</height>
+					<aspectratio>keep</aspectratio>
+					<texture background="true">$INFO[ListItem.Icon]</texture>
+				</control>
+				<control type="label">
+					<left>76</left>
+					<width>540</width>
+					<height>72</height>
+					<aligny>center</aligny>
+					<font>f_body_m</font>
+					<scroll>true</scroll>
+					<textcolor>on_focus</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+					<visible>Control.HasFocus($PARAM[id])</visible>
+				</control>
+				<control type="label">
+					<left>76</left>
+					<width>540</width>
+					<height>72</height>
+					<aligny>center</aligny>
+					<font>f_body_m</font>
+					<textcolor>text</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+					<visible>!Control.HasFocus($PARAM[id])</visible>
+				</control>
+				<control type="label">
+					<left>620</left>
+					<width>176</width>
+					<height>72</height>
+					<align>right</align>
+					<aligny>center</aligny>
+					<font>f_small</font>
+					<textcolor>on_focus</textcolor>
+					<label>$INFO[ListItem.Label2]</label>
+					<visible>Control.HasFocus($PARAM[id])</visible>
+				</control>
+				<control type="image">
+					<left>772</left>
+					<top>22</top>
+					<width>28</width>
+					<height>28</height>
+					<texture colordiffuse="accent">icons/check.png</texture>
+					<visible>ListItem.IsSelected</visible>
+				</control>
+			</focusedlayout>
+		</definition>
+	</include>
+
 	<!-- ============================================================ settings rows -->
 	<include name="SettingRow">
 		<param name="height">80</param>

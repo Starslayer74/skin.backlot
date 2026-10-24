@@ -40,7 +40,7 @@
 		<news>v0.4.6 - Fuller studio lists per service, Discovery+ inside Max, one-step services from the studios report.</news>
 	</extension>
 </addon>
-<addon id="skin.backlot" version="0.4.8" name="Backlot" provider-name="starslayer74">
+<addon id="skin.backlot" version="0.4.9" name="Backlot" provider-name="starslayer74">
 	<requires>
 		<import addon="xbmc.gui" version="5.17.0"/>
 		<import addon="script.backlot.helper" version="0.4.7"/>
@@ -58,7 +58,7 @@
 			<icon>resources/backlot-icon.png</icon>
 			<fanart>resources/backlot-fanart.jpg</fanart>
 		</assets>
-		<news>v0.4.8 - Info screens and episode lists no longer start a line with a stray dot when a director or runtime is missing. v0.4.7 - Check for Backlot updates button in settings. v0.4.6 - Services now include the studios their companies own (Paramount Pictures in Paramount+, MGM in Prime Video and more). Discovery+ inside Max option. Clearer studios report with one-step new services.</news>
+		<news>v0.4.9 - File manager is back in Settings (add sources, copy, move, rename, delete). v0.4.8 - Info screens and episode lists no longer start a line with a stray dot when a director or runtime is missing. v0.4.7 - Check for Backlot updates button in settings. v0.4.6 - Services now include the studios their companies own (Paramount Pictures in Paramount+, MGM in Prime Video and more). Discovery+ inside Max option. Clearer studios report with one-step new services.</news>
 	</extension>
 </addon>
 <addon id="resource.uisounds.backlot" version="1.0.0" name="Backlot Sounds" provider-name="starslayer74">

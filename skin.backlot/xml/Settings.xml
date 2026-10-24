@@ -101,6 +101,11 @@
 						<onclick>ActivateWindow(SkinSettings)</onclick>
 					</item>
 					<item>
+						<label>File manager</label>
+						<icon>icons/folder.png</icon>
+						<onclick>ActivateWindow(FileManager)</onclick>
+					</item>
+					<item>
 						<label>Add-ons</label>
 						<icon>icons/addons.png</icon>
 						<onclick>ActivateWindow(AddonBrowser)</onclick>
