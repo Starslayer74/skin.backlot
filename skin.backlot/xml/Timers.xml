@@ -7,4 +7,13 @@
 		<start reset="true">Player.Paused + Window.IsActive(fullscreenvideo)</start>
 		<stop>!Player.Paused | !Window.IsActive(fullscreenvideo)</stop>
 	</timer>
+	<!-- paused with the controls open and no button pressed for 5 seconds: close the
+	     controls so the paused info screen can show (pausing with OK opens them) -->
+	<timer>
+		<name>backlot_osd_idle</name>
+		<description>Closes the OSD after 5 idle seconds while paused</description>
+		<start reset="true">Player.Paused + Window.IsActive(videoosd) + System.IdleTime(5) + !Skin.HasSetting(backlot.no_pausescreen) + !Window.IsActive(osdsubtitlesettings) + !Window.IsActive(osdaudiosettings) + !Window.IsActive(osdvideosettings) + !Window.IsActive(videobookmarks) + !Window.IsActive(sliderdialog)</start>
+		<onstart>Dialog.Close(videoosd)</onstart>
+		<stop>!Window.IsActive(videoosd)</stop>
+	</timer>
 </timers>
